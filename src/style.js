@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .logo {
-    &.copiloto {
+    &.fdpd {
       background: url('https://storage.googleapis.com/apps-copiloto/analytics/images/logo_kaufmann.png') no-repeat center;
         background-size: 100% 100%;
         background-position:350%;

@@ -5,18 +5,27 @@ import { getCurrentYear } from 'utils/datetime';
 import { StyledLogin } from './Login.styles';
 import TransformToJson from './Components/index';
 import BackgroundVideo from 'components/BackgroundVideo';
+import Button from '../../ui/Button/Button';
+import { MoreOutlined } from '@ant-design/icons';
+
 const Login = (props) => {
   const {  videoSource } = props;
   return (
     <BackgroundVideo videoSource={videoSource}>
-            <div class="container mx-auto mt-5">
-          <button>
-              Botón con Tail
-          </button>
+            <div>
+{/*             <button className="max-h-14">
+                Botón con Tail
+            </button> */}
+
         </div>
       <StyledLogin>
       <div className="login-container">
-      
+          <Button
+            $transparent
+            shape="circle"
+            icon={<MoreOutlined />}
+            style={{ paddingTop: '6px' }}
+            />
       </div>
 
       </StyledLogin>
