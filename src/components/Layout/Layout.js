@@ -1,33 +1,61 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import AntdLayout from 'antd/lib/layout/layout';
 import useAccountStore from 'store/common/account';
 import { StyledLayout } from './Layout.styles';
 import Header from './Header/Header';
 import Body from './Body/Body';
 import Menu from './Header/children/Menu/Menu';
-import { MenuOutlined } from '@ant-design/icons';
 import SiderBar from './SiderBar/Sider';
+import SiderBarMenu from './Header/options/SiderBarMenu/SideBarMenu';
+import useSidebarState from 'store/common/sidebar';
+import User from './Header/options/User/User';
 const Layout = (props)=>{
+    /* States */
     const { children, ...rest } = props;
+    const [dimensions, setDimensions] = useState({
+        width: window.innerWidth
+      });
+      
     const {disableSider,setDisableSider} =useAccountStore();
-    const toggleToClose = () => setDisableSider(false);
-    const toggleOpen = () => setDisableSider(true);
+    const { collapsed, setCollapsed } = useSidebarState();
+    /* Functions */
+    const handleResize = () => {
+        setDimensions({
+        width: window.innerWidth
+        });
+      }
+    const toggleToClose = () => setDisableSider(!disableSider);
+      useEffect(()=>{
+        toggleToClose();
+      },[collapsed]);
+    useEffect(() => {
+      window.addEventListener("resize", handleResize, false);
+    }, []);
+    useEffect(()=>{
+        if(dimensions.width <= 768){
+            setDisableSider(true);
+        }else if(dimensions.width > 768 && !collapsed){
+            setDisableSider(false);
+        }
+    },[dimensions]);
     return (
         <StyledLayout className="layout" as={AntdLayout}>
             <Header>
                 <Menu float='left'>
-                {!disableSider ? (
+                <Menu.Item>
+                <Menu className="mobile-menu">
                     <Menu.Item>
-                    <div className="sider-button-container" onClick={toggleToClose}>
-                        <MenuOutlined />
-                    </div>
+                    <SiderBarMenu {...rest} />
                     </Menu.Item>
-                ) : (
-                    <></>
-                )}
                 </Menu>
-                <Menu float='right'></Menu>
+                </Menu.Item>
+                </Menu>
+                <Menu float='right'>
+                <Menu.Item>
+                    <User />
+                </Menu.Item>
+                </Menu>
             </Header>
             <StyledLayout className="layout" as={AntdLayout} hasSider={!disableSider}>
                 {!disableSider ? (

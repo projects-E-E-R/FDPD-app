@@ -101,8 +101,8 @@ const defaultImg = `logo.png`;
                 key={1}>
                 <Avatar
                     size={{
-                    xs: 24,
-                    sm: 32,
+                    xs: 260,
+                    sm: 260,
                     md: 260,
                     lg: 260,
                     xl: 260,

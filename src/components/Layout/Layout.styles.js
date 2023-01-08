@@ -26,7 +26,7 @@ export const StyledLayout = styled.div`
   }
   @media ${device.tablet} {
     & .mobile-menu {
-      display: none;
+      display: unset;
     }
   }
 
