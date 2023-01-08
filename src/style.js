@@ -20,23 +20,22 @@ const GlobalStyle = createGlobalStyle`
 
   .logo {
     &.fdpd {
-      background: url('https://storage.googleapis.com/apps-copiloto/analytics/images/logo_kaufmann.png') no-repeat center;
+      background: url('https://www.ucn.cl/wp-content/themes/ucn-central/img/logo.png') no-repeat center;
         background-size: 100% 100%;
-        background-position:350%;
       &.header {
-        background: url('https://storage.googleapis.com/apps-copiloto/analytics/images/logo_kaufmann.png') no-repeat center;
+        background: url('https://www.ucn.cl/wp-content/themes/ucn-central/img/logo.png') no-repeat center;
         background-size: 106% 150%;
         background-position:100%;
         height: 100%;
         width:350;
       }
       &.white {
-        background: url('https://storage.googleapis.com/apps-copiloto/analytics/images/PRO.png') no-repeat center;
+        background: url('https://www.ucn.cl/wp-content/themes/ucn-central/img/logo.png') no-repeat center;
         background-size: 100% 90%;
         background-position:100%;
       }
       &.isotipo {
-        background: url('https://storage.googleapis.com/apps-copiloto/analytics/images/logo-wicar-header.svg') no-repeat center;
+        background: url('https://www.ucn.cl/wp-content/themes/ucn-central/img/logo.png') no-repeat center;
         background-size: 90% 90%;
         background-position:100%;
         height: 100%;

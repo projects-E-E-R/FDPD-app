@@ -27,11 +27,11 @@ export const StyledLogin= styled.div`
     justify-content: space-between;
     padding: 0 3rem;
     .logo-container {
-      height: 15rem;
+      height: 16rem;
       padding: 5rem 0rem;
       display: flex;
-      margin-top: 1rem;
-      margin-bottom: 10rem;
+      margin-top: 0rem;
+      margin-bottom: 0rem;
       .logo {
         width: 100%;
       }

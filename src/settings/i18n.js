@@ -20,10 +20,42 @@ i18n
     resources: {
       es: {
         translation: {
+          login:{
+            inputUsernameError: 'por favor ingrese su usuario',
+            inputPasswordError: 'por favor ingrese su contraseña',
+            rememberMe: 'recordarme',
+            signIn: 'ingresar',
+            logOut: 'Cerrar sesión',
+            lofNotification: 'Notificaciones',
+            confirmTitle: 'Cerrar sesión',
+            passForgot: '¿Has olvidado la contraseña?',
+            passChange: 'Cambiar contraseña',
+            passChangeInstruction:
+              'Por favor ingrese su correo para cambiar contraseña',
+            send: 'enviar',
+            notificationPositive:
+              'Solicitud de cambio de contraseña exitoso, revise su correo por favor',
+            notificationNegative:
+              'Solicitud de cambio de contraseña no exitoso',
+            confirmMessage:
+              'La sesión terminará y se deberá volver a iniciar sesión',
+            success: 'Sesión finalizada',
+            update: 'Actualizar'
+          },
+          common: {
+            searching: 'Buscando ...',
+            search: 'Buscar',
+            date: 'Fecha',
+            wait: 'Espere',
+            pleaseWait: 'Espere un momento...',
+          }
       }
      },
       en: {
         translation: {
+          login:{
+            signIn:'Sign in'
+          }
       }
     }
    }

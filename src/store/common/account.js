@@ -2,16 +2,13 @@ import Cookies from 'js-cookie';
 import { BehaviorSubject, map, mergeMap } from 'rxjs';
 import {
   authenticateUser,
-  setUserData,
-  getUserData,
-  revokeToken,
-  authenticateUserExternal
-} from 'services/account';
+  revokeToken
+} from '../../services/account';
 import {
   getToken,
   removeToken,
   setToken as tokenCookies
-} from 'services/token';
+} from '../../services/token';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -56,94 +53,12 @@ const useAccountStore = create(
         authenticate: ({ username, password, remember }) => {
           set({ loading: true, error: null });
           authenticateUser({ username, password, remember })
-            .pipe(
-              mergeMap((result) => getUserData(result)),
-              map(setUserData)
-            )
             .subscribe({
               next: (result) => {
                 if (result) {
                   const { token, ...rest } = result;
                   set({ ...result });
                   tokenCookies(token);
-                  session$.next(rest);
-                  Cookies.set('timezone', rest.timezone);
-                } else {
-                  set({
-                    loading: false,
-                    error: { message: 'User not found.' }
-                  });
-                }
-              },
-              error: (error) => set({ error, loading: false }),
-              complete: () => set({ loading: false })
-            });
-        },
-        authenticateExt: (params) => {
-          set({ loading: true, error: null });
-          getUserData(params)
-            .pipe(map(setUserData))
-            .subscribe({
-              next: (result) => {
-                if (result) {
-                  const { token } = params;
-                  set(result);
-                  tokenCookies(token);
-                  session$.next(result);
-                  /*  Cookies.set('token', result.token); */
-
-                  Cookies.set('timezone', result.timezone);
-                } else {
-                  set({
-                    loading: false,
-                    error: { message: 'User not found.' }
-                  });
-                }
-              },
-              error: (error) => set({ error, loading: false }),
-              complete: () => set({ loading: false })
-            });
-        },
-        authenticateExtAuth: (tokenExternAuth) => {
-          //set({ token: tokenExternAuth });
-          set({ loading: true, error: null });
-          authenticateUserExternal(tokenExternAuth)
-            .pipe(
-              mergeMap((result) => getUserData(result)),
-              map(setUserData)
-            )
-            .subscribe({
-              next: (result) => {
-                if (result) {
-                  const { ...rest } = result;
-                  const {
-                    apps,
-                    companies,
-                    email,
-                    firstName,
-                    group_vehicles,
-                    lastName,
-                    name,
-                    shortName,
-                    timezone,
-                    vehicles
-                  } = result;
-                  set({
-                    user: name,
-                    shortName: shortName,
-                    apps: apps,
-                    companies: companies,
-                    email: email,
-                    firstName: firstName,
-                    group_vehicles: group_vehicles,
-                    lastName: lastName,
-                    timezone: timezone,
-                    vehicles: vehicles
-                  });
-                  set({ loading: true, error: null });
-
-                  //set({ ...result });
-                  //tokenCookies(token);
                   session$.next(rest);
                   Cookies.set('timezone', rest.timezone);
                 } else {

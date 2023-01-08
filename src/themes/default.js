@@ -1,6 +1,5 @@
 import { generate } from '@ant-design/colors';
-/*const appColors = generate('#2f94b6');*/
-const appColors = generate('#212E41');
+const appColors = generate('#23415B');
 const appColors2 = generate('lightGray');
 
 export const colors = {
@@ -14,14 +13,15 @@ export const colors = {
   lightGray: '#CCCCCC',
   green: '#34b050',
   red: '#dc3545',
-  orange: '#ff9807',
+  orange: '#BC6124',
   lightRed: '#ffccc7',
   softRed: '#fff2f0',
   yellow: '#ffc107',
   silver: '#f5f5f5',
   darkSilver: '#e0e0e0',
   border: appColors2[6],
-  blue: '#0168b5'
+  blue: '#0168b5',
+  secondary:'#8A97B9'
 };
 
 const theme = {
@@ -74,6 +74,14 @@ const theme = {
     dark: {
       backgroundColor: colors.light,
       color: colors.white
+    },
+    orange:{
+      backgroundColor:colors.orange,
+      color:colors.white
+    },
+    secondary:{
+      backgroundColor:colors.secondary,
+      color:colors.white
     }
   },
   input: {

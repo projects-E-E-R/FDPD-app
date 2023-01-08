@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { SEND_EXCEL } from 'settings/constants';
+import { BASE_URL } from 'settings/constants';
 import { getUnix } from 'utils/datetime';
-import { getData, POST } from 'services/common/http';
+import { getData, GET } from 'services/common/http';
 import create from 'zustand';
 import { map } from 'rxjs/operators';
-const useStoreUploadExcel = create((set) => ({
+const useStoreLogin = create((set) => ({
   changedAt: undefined,
   cleanup: () =>
     set({
@@ -18,14 +18,9 @@ const useStoreUploadExcel = create((set) => ({
   loading: false,
   onChange: (selection) => set({ value: selection, changedAt: getUnix() }),
   response: null,
-  requestData: (titleExcel,wicardCodes) => {
+  requestData: () => {
     set({ loading: true });
-    getData(SEND_EXCEL, POST, {
-      data: {
-        title: titleExcel,
-        wicard_codes:wicardCodes
-      }
-    })()
+    getData(BASE_URL, GET)()
       .pipe(
         map((x) => {
           return {
@@ -80,4 +75,4 @@ const useStoreUploadExcel = create((set) => ({
   value: undefined
 }));
 
-export default useStoreUploadExcel;
+export default useStoreLogin;

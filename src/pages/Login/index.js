@@ -1,25 +1,25 @@
 /* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { VIDEOS_SRC_URL } from 'settings/constants';
-import { randomTo } from 'utils/numeric';
 import Login from './Login';
-/* import { useLocation } from 'react-router-dom'; */
-
+import Video from './Components/background_ucn_video.mov';
+import useAccountStore from '../../store/common/account';
 const WrapperComponent = () => {
-  /*  const urlLogin = window.location.pathname;
-  const urlLoginFull = window.location.href; */
-
-  /*   const location = useLocation(); */
-  const videoSource = [
-    'background_New_Actros2.mp4','background_New_Actros1.mp4'
-  ];
+  const {
+    authenticate,token
+  } = useAccountStore();
+  const onFinish = (values) => {
+    authenticate(values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
   const getVideoSource = useCallback(() => {
-    const videoIndex = randomTo(videoSource.length);
-    const videoName = videoSource[videoIndex - 1];
-    return `${VIDEOS_SRC_URL}${videoName}`;
-  }, [videoSource]);
+    return Video;
+  }, []);
+  useEffect(()=>{
+    console.log(token);
+  },[token])
 
-  return <Login  videoSource={getVideoSource()}/>;
+  return <Login  videoSource={getVideoSource()} onFinish={onFinish} onFinishFailed={onFinishFailed}/>;
 };
 export default WrapperComponent;
