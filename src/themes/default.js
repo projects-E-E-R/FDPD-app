@@ -140,6 +140,11 @@ const theme = {
     content: {
       backgroundColor: appColors2[1]
     }
+  },
+  avatar:{
+    primary: {
+      color: colors.light
+    }
   }
 };
 

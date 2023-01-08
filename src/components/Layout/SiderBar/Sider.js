@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import SSider from 'antd/lib/layout/Sider';
-import StyledSider from './Sider.styles';
-import { ShoppingCartOutlined,UserOutlined } from '@ant-design/icons';
-import { Avatar } from 'antd';
+import {StyledSider} from './Sider.styles';
+import { ShoppingCartOutlined,UserOutlined,FormOutlined,HistoryOutlined,LogoutOutlined } from '@ant-design/icons';
+import { Avatar, Divider } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import CollapsibleTool from './children/CollapsibleTool/CollapsibleTool';
 import Menu from './children/Menu/Menu';
+import LogOut from './children/LogOut/LogOut';
 const Sider = (props) => {
   const {
-
     collapsed,
     setCollapsed
   } = props;
@@ -55,144 +55,66 @@ const defaultImg = `logo.png`;
     );
   };
 
-  const AppItemIcon = (params) => {
-    const { imgSrc } = params;
-    const [imgSource, setImgSource] = useState(null);
-    const handleImageError = () => {
-      setImgSource(defaultImg);
-    };
-
-    useEffect(() => {
-      setImgSource(imgSrc);
-    }, [imgSrc]);
-
-    return (
-      <span>
-        <Avatar size={'90%'} src={imgSource} onError={handleImageError} />
-      </span>
-    );
-  };
 
   return (
-      <StyledSider
-        width={270}
-        collapsedWidth={50}
-        as={SSider}
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        onCollapse={toggleStatus}
-      >
-        <CollapsibleTool toggleStatus={toggleStatus} isCollapsed={collapsed}>
-      
-            <div className="menu-container">
-            <Menu
-              className=""
-              mode="inline"
-              //defaultSelectedKeys={selectedKey}
-              //defaultOpenKeys={openKeys}
-              //onOpenChange={onOpenChange}
-              onSelect={null}
-              //onClick={handleClick}
-              inlineCollapsed={collapsed}
-            >
-              <div
-                className="menu-item-user"
-                key={1}>
-                <Avatar
-                    size={{
-                    xs: 260,
-                    sm: 260,
-                    md: 260,
-                    lg: 260,
-                    xl: 260,
-                    xxl: 260,
-                  }}
-                  icon={<UserOutlined className="menu-item-avatar"/>}
-                  >
-
-                  </Avatar>
-           
-              </div>
-            </Menu>
-
+    <StyledSider
+      width={270}
+      collapsedWidth={50}
+      as={SSider}
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+      onCollapse={toggleStatus}
+    >
+    <CollapsibleTool toggleStatus={toggleStatus} isCollapsed={collapsed}>
+      <div className="menu-container">
+        <Menu
+          className=""
+          mode="inline"
+          inlineCollapsed={collapsed}
+        >
+          <div className="menu-item-content-user">
+            <Avatar
+                size={{
+                xs: 200,
+                sm: 200,
+                md: 200,
+                lg: 200,
+                xl: 200,
+                xxl: 200,
+              }}
+              icon={<UserOutlined className="menu-item-avatar"/>}
+              >
+            </Avatar>
+          </div> 
+          <Menu.name>
+            <div className="menu-item-content-user-welcome">
+            <h1>Bienvenido !!!</h1>
             </div>
-
-        
-
-        </CollapsibleTool>
-      </StyledSider>
+          </Menu.name>
+          <Divider/>
+          <Menu.Item
+          className="menu-item"
+          icon={<UserOutlined className="menu-item-avatar-section"/>}>
+          
+            <h2 className='ant-menu-submenu-title'>Mi perfil</h2>
+          </Menu.Item>
+          <Menu.Item
+          className="menu-item"
+          icon={<FormOutlined className="menu-item-avatar-section"/>}>
+            <h2 className='ant-menu-submenu-title'>Mis Encuestas</h2>
+          </Menu.Item>
+          <Menu.Item
+          className="menu-item"
+          icon={<HistoryOutlined className="menu-item-avatar-section"/>}>
+            <h2 className='ant-menu-submenu-title'>Mi Historial</h2>
+          </Menu.Item>   
+        </Menu>
+      </div>
+      <LogOut/>
+    </CollapsibleTool>
+    </StyledSider>
   );
 };
 
 export default Sider;
-/* 
-            <span
-              className="item-content-disabled"
-              onClick={() =>console.log('some')}
-            >
-           
-              <Avatar
-                className="shopIcon"
-                size={'medium'}
-                style={{ alignItems: 'center' }}
-              >
-                <UserOutlined />
-              </Avatar>
-            </span>
-
-
-*/
-
-/* 
-       <Menu
-              className=""
-              mode="inline"
-              //defaultSelectedKeys={selectedKey}
-              //defaultOpenKeys={openKeys}
-              //onOpenChange={onOpenChange}
-              onSelect={null}
-              //onClick={handleClick}
-              inlineCollapsed={collapsed}
-            >
-              <Menu.SubMenu
-                className="menu-item-module"
-                //collapsed ? '' : t(`app.breadcrumb.${moduleName}`)
-                title={'some'}
-                popupOffset={true}
-                key={1}
-                icon={
-                  <Avatar
-                    style={{ padding: 6 }}
-                    size={'100%'}
-                    src={defaultImg}
-                  />}>
-                <Menu.Item
-                  className="menu-item"
-                  //title={t(`app.${params.key}`)}
-                  title={'some'}
-                  //disabled={!params.allowed}
-                  key={1}
-                  icon={
-                        <span
-                              className="item-content-disabled"
-                              onClick={() =>console.log('some')}
-                            >
-                            
-                              <Avatar
-                                className="shopIcon"
-                                size={'medium'}
-                                style={{ alignItems: 'center' }}
-                              >
-                                <UserOutlined />
-                              </Avatar>
-                        </span>
-                  }>
-                            
-                </Menu.Item>
-              </Menu.SubMenu>
-            </Menu>
-
-
-
-*/

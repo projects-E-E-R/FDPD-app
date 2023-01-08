@@ -2,7 +2,7 @@ import { device } from 'settings/theme';
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-const StyledSider = styled.div`
+export const StyledSider = styled.div`
   overflow: auto;
   position: relative;
 
@@ -47,5 +47,3 @@ const StyledSider = styled.div`
     display: flex;
   }
 `;
-
-export default StyledSider;

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect,useState } from 'react';
 import AntdLayout from 'antd/lib/layout/layout';
 import useAccountStore from 'store/common/account';
@@ -9,7 +8,6 @@ import Menu from './Header/children/Menu/Menu';
 import SiderBar from './SiderBar/Sider';
 import SiderBarMenu from './Header/options/SiderBarMenu/SideBarMenu';
 import useSidebarState from 'store/common/sidebar';
-import User from './Header/options/User/User';
 const Layout = (props)=>{
     /* States */
     const { children, ...rest } = props;
@@ -18,7 +16,7 @@ const Layout = (props)=>{
       });
       
     const {disableSider,setDisableSider} =useAccountStore();
-    const { collapsed, setCollapsed } = useSidebarState();
+    const { collapsed } = useSidebarState();
     /* Functions */
     const handleResize = () => {
         setDimensions({
@@ -29,6 +27,7 @@ const Layout = (props)=>{
       useEffect(()=>{
         toggleToClose();
       },[collapsed]);
+      
     useEffect(() => {
       window.addEventListener("resize", handleResize, false);
     }, []);
@@ -52,9 +51,7 @@ const Layout = (props)=>{
                 </Menu.Item>
                 </Menu>
                 <Menu float='right'>
-                <Menu.Item>
-                    <User />
-                </Menu.Item>
+  
                 </Menu>
             </Header>
             <StyledLayout className="layout" as={AntdLayout} hasSider={!disableSider}>
