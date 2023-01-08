@@ -7,7 +7,7 @@ import {
 const Home = () => {
   
   useEffect(() => {
-    document.title = 'Welcome';
+    document.title = 'Bienvenido a FDPD App';
 /*     setSidebarMenuOutlinedVisibility(false); */
   }, []);
 

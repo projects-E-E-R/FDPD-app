@@ -3,7 +3,6 @@ import { KeyOutlined, UserOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { getCurrentYear } from 'utils/datetime';
 import { StyledLogin } from './Login.styles';
-import TransformToJson from './Components/index';
 import BackgroundVideo from 'components/BackgroundVideo';
 import Button from '../../ui/Button/Button';
 import { MoreOutlined } from '@ant-design/icons';

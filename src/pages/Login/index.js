@@ -18,9 +18,7 @@ const WrapperComponent = () => {
   const getVideoSource = useCallback(() => {
     return Video;
   }, []);
-  useEffect(()=>{
-    console.log(token);
-  },[token])
+ 
 
   return token ? <Layout><Home/></Layout> : <Login  videoSource={getVideoSource()} onFinish={onFinish} onFinishFailed={onFinishFailed}/>;
 };
