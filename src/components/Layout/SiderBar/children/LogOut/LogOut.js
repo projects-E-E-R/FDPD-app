@@ -59,8 +59,7 @@ const LogOut = () => {
       color="primary"
       onClick={showConfirmation}
       icon={<LogoutOutlined />}
-      style={{width:240,height:50,fontSize:20}}
-      
+      style={{width:240,height:50,fontSize:18}}
     >
       {t('login.logOut')}
     </Button>

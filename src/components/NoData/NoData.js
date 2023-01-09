@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Empty as SEmpty } from 'antd';
 import Empty from 'ui/Empty/Empty';
 import { StyledEmpty } from './NoData.styles';
-import { IMAGES_SRC_URL } from 'settings/constants';
+
 
 const NoData = (props) => {
   const { noData, description, children, useLogo } = props;
@@ -14,7 +14,7 @@ const NoData = (props) => {
           description={description}
           image={
             useLogo
-              ? `${IMAGES_SRC_URL}Isotipo%20-%20Fondo%20Claro.png`
+              ? `https://www.ucn.cl/wp-content/themes/ucn-central/img/logo.png`
               : SEmpty.PRESENTED_IMAGE_SIMPLE
           }
           as={Empty}

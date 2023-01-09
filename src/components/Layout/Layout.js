@@ -4,6 +4,7 @@ import useAccountStore from 'store/common/account';
 import { StyledLayout } from './Layout.styles';
 import Header from './Header/Header';
 import Body from './Body/Body';
+import Content from './Body/children/Content/Content';
 import Menu from './Header/children/Menu/Menu';
 import SiderBar from './SiderBar/Sider';
 import SiderBarMenu from './Header/options/SiderBarMenu/SideBarMenu';
@@ -69,5 +70,8 @@ const Layout = (props)=>{
 };
 /* Prototypes */
 Layout.Header = Header;
+Layout.Body = Body;
+Layout.Sidebar = SiderBar;
+Layout.Content = Content;
 
 export default Layout;

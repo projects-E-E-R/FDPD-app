@@ -35,6 +35,7 @@ const StyledMenu = styled.div`
   .ant-menu-submenu-title {
      padding-left: -10px; 
      display: contents;
+     font-size:20px;
   }
   .menu-item-sidebar {
     margin-left: -10px;
@@ -47,13 +48,10 @@ const StyledMenu = styled.div`
     align-items: center;
   }
   .menu-item-content-user-welcome{
-    margin-top: 40px;
-    margin-bottom: 40px;
-    margin-left: 10px;
-    height: 100%;
+    font-size:20px;
   }
   .menu-item-avatar {
-    font-size:8rem;
+    font-size:4rem;
     color: ${({ theme }) => theme.avatar.primary.color};
   }
   .menu-item-avatar-section {

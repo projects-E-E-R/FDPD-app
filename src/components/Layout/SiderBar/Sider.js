@@ -76,22 +76,20 @@ const defaultImg = `logo.png`;
           <div className="menu-item-content-user">
             <Avatar
                 size={{
-                xs: 200,
-                sm: 200,
-                md: 200,
-                lg: 200,
-                xl: 200,
-                xxl: 200,
+                xs: 115,
+                sm: 115,
+                md: 115,
+                lg: 115,
+                xl: 115,
+                xxl: 115,
               }}
               icon={<UserOutlined className="menu-item-avatar"/>}
               >
             </Avatar>
           </div> 
-          <Menu.name>
-            <div className="menu-item-content-user-welcome">
-            <h1>Bienvenido !!!</h1>
-            </div>
-          </Menu.name>
+          <div className="menu-item-content-user">
+          <h1 className='menu-item-content-user-welcome'>Bienvenido</h1>
+          </div>
           <Divider/>
           <Menu.Item
           className="menu-item"
