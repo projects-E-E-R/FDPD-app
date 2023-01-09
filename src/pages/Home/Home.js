@@ -20,8 +20,6 @@ const Home = (props) => {
             <Col key={index} xs={24} sm={24} md={12} lg={8}>
               <Card
                 {...params}
-                //handleOpenModal={handleOpenModal}
-                //keyName={params.key}
               />
             </Col> 
         )}
@@ -32,7 +30,6 @@ const Home = (props) => {
 
   useEffect(() => {
     document.title = 'Bienvenido a FDPD App';
-/*     setSidebarMenuOutlinedVisibility(false); */
   }, []);
 
   return (

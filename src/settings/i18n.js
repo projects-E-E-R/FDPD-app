@@ -48,6 +48,7 @@ i18n
             date: 'Fecha',
             wait: 'Espere',
             pleaseWait: 'Espere un momento...',
+            charging: 'Cargando información...'
           }
       }
      },

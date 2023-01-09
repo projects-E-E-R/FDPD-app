@@ -39,7 +39,7 @@ const useAccountStore = create(
         path: undefined,
         allowedApp: undefined,
         idUser: undefined,
-        isStaff: null,
+        typeUser:'student',
         setAllowedApp: (value) => set({ allowedApp: value }),
         setDisableSider: (value) => set({ disableSider: value }),
         setTokenExternAuth: (value) => set({ tokenExternAuth: value }),
@@ -49,7 +49,7 @@ const useAccountStore = create(
         setToken: (value) => set({ token: value }),
         setError: (error) => set({ error }),
         setIdUser: (value) => set({ idUser: value }),
-
+        setIdUser: (value) => set({ typeUser: value }),
         authenticate: ({ username, password, remember }) => {
           set({ loading: true, error: null });
           authenticateUser({ username, password, remember })
@@ -99,8 +99,7 @@ const useAccountStore = create(
             path: undefined,
             disableSider: false,
             allowedApp: undefined,
-            idUser: undefined,
-            isStaff: null
+            idUser: undefined
           });
           session$.next(null);
         }

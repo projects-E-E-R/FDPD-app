@@ -12,7 +12,7 @@ const SectionBody = ({ loading, children }) => {
       <Spin
         spinning={loading}
         indicator={<LoadingOutlined style={{ fontSize: 25 }} spin />}
-        tip={t('common.pleaseWait')}
+        tip={t('common.charging')}
       >
         <div className="body-content">{children}</div>
       </Spin>
