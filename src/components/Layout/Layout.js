@@ -43,9 +43,9 @@ const Layout = (props)=>{
         <StyledLayout className="layout" as={AntdLayout}>
             <Header>
                 <Menu float='left'>
-                <Menu.Item>
+                <Menu.Item key={1}>
                 <Menu className="mobile-menu">
-                    <Menu.Item>
+                    <Menu.Item key={2}>
                     <SiderBarMenu {...rest} />
                     </Menu.Item>
                 </Menu>

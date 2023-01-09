@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect,useState } from 'react';
 import {
-  StyledHome
-} from './Home.styles';
+  StyledForm
+} from './Forms.styles';
 import Widget from 'components/Widget/Widget';
 import { useTranslation } from 'react-i18next';
 import Layout from 'components/Layout/Layout';
@@ -10,7 +10,7 @@ import Section from 'components/Section/Section';
 import { AlertOutlined } from '@ant-design/icons';
 import  Card from 'ui/Card/Card';
 import {Row,Col} from 'antd';
-const Home = (props) => {
+const Forms = (props) => {
   const {t} =useTranslation();
   const [formFilter,setFormFilter]= useState(null);
   let formUser = [{id:1,name:'Test 1',path:'/form',answered:false},{id:2,name:'Test 2',path:'/form',answered:false},
@@ -34,21 +34,22 @@ const Home = (props) => {
     setFormFilter(formUser.filter((form)=> form.answered == false))
   }, []);
   useEffect(() => {
-    document.title = 'Bienvenido a FDPD App';
+    document.title = 'Mis encuestas';
   }, []);
 
+
   return (
-    <StyledHome>
+    <StyledForm>
     <Layout.Content>
-    <Section  title={'Encuestas por responder'}  icon={<AlertOutlined />} loading={false} shadow>
+    <Section  title={'Mis encuestas'}  icon={<AlertOutlined />} loading={false} shadow>
     <FormViewer formFilter={formFilter}/>
 
     </Section>
     
     </Layout.Content>
 
-    </StyledHome>
+    </StyledForm>
   );
 };
 
-export default Home;
+export default Forms;

@@ -20,6 +20,6 @@ const WrapperComponent = () => {
   }, []);
  
 
-  return token ? <Layout><Home/></Layout> : <Login  videoSource={getVideoSource()} onFinish={onFinish} onFinishFailed={onFinishFailed}/>;
+  return token ? <Home/> : <Login  videoSource={getVideoSource()} onFinish={onFinish} onFinishFailed={onFinishFailed}/>;
 };
 export default WrapperComponent;

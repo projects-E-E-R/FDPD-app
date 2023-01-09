@@ -3,16 +3,18 @@ import {Card as SCard,Avatar,Rate} from 'antd';
 import {StyledCard} from './Card.styles';
 import Button from 'ui/Button/Button';
 import { useTranslation } from 'react-i18next';
-import {UnorderedListOutlined} from '@ant-design/icons'
+import {UnorderedListOutlined} from '@ant-design/icons';
+import { useHistory } from 'react-router';
 const Card = (props) => {
+  const history = useHistory();
   const{id,name}=props;
   const {t}=useTranslation();
-  const onClickHandler = () =>{
-    console.log('Got to encuesta')
+  const onClickHandler = (props) =>{
+    history.push(props?.path,props);
   }
   return (
     <StyledCard size="medium" as={SCard} {...props} key={id}>
-      <div className="container" onClick={() =>onClickHandler('path')}>
+      <div className="container" onClick={() =>onClickHandler(props)}>
             <div className="top">
               <div className="icon">
                   <Avatar
