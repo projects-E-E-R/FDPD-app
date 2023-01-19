@@ -43,13 +43,13 @@ const Layout = (props)=>{
         <StyledLayout className="layout" as={AntdLayout}>
             <Header>
                 <Menu float='left'>
-                <Menu.Item key={1}>
-                <Menu className="mobile-menu">
-                    <Menu.Item key={2}>
-                    <SiderBarMenu {...rest} />
+                    <Menu.Item key={1}>
+                        <Menu className="mobile-menu">
+                            <Menu.Item key={2}>
+                            <SiderBarMenu {...rest} />
+                            </Menu.Item>
+                        </Menu>
                     </Menu.Item>
-                </Menu>
-                </Menu.Item>
                 </Menu>
                 <Menu float='right'>
   
