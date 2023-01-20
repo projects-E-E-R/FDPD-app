@@ -5,6 +5,7 @@ export const SectionStyle = styled.div`
   height: 100%;
   border: 2px solid #0000001a;
   margin-top:25px;
+  margin-bottom:25px;
   border-radius: 3px;
   animation: 0.3s ease-out scaleFadeIn;
   background-color: ${({ theme }) =>

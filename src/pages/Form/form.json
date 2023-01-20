@@ -1,5 +1,4 @@
 {
-  "fvv":1,"pageHistory":0,"fbzx":"4367206215934512302","action":"e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
   "fields": [
     {
       "label": "Que carrera estudia?",
@@ -34,7 +33,7 @@
       "id": "2081366316",
       "section":2,
       "options": [
-        { "label": "Hombrel", "custom": false },
+        { "label": "Hombre", "custom": false },
         { "label": "Mujer", "custom": false },
         { "label": "No lo quiero identificar", "custom": false }
       ],
@@ -70,7 +69,7 @@
       "type": "LINEAR",
       "id": "2081366320",
       "section":3,
-      "legend": { "labelFirst": "Soy bueno/a programando", "labelLast": "" , "columns":[
+      "legend": { "labelFirst": "Soy bueno/a programando" , "columns":[
                   { "id":1,
                     "title":"Estoy en desacuerdo"
                   },
@@ -102,7 +101,7 @@
       "type": "LINEAR",
       "id": "2081366321",
       "section":3,
-      "legend": { "labelFirst": "Si encuentro un problema al escribir un programa, no me rendiré hasta que se resuelva.", "labelLast": "" },
+      "legend": { "labelFirst": "Si encuentro un problema al escribir un programa, no me rendiré hasta que se resuelva." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -117,7 +116,7 @@
       "type": "LINEAR",
       "id": "2081366322",
       "section":3,
-      "legend": { "labelFirst": "Confío en que tengo la capacidad de aprender a programar.", "labelLast": "" },
+      "legend": { "labelFirst": "Confío en que tengo la capacidad de aprender a programar." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -131,7 +130,7 @@
       "type": "LINEAR",
       "id": "2081366323",
       "section":3,
-      "legend": { "labelFirst": "Puedo concentrarme en aprender a programar", "labelLast": "" },
+      "legend": { "labelFirst": "Puedo concentrarme en aprender a programar" },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -145,7 +144,7 @@
       "type": "LINEAR",
       "id": "2081366324",
       "section":3,
-      "legend": { "labelFirst": "Puedo resolver problemas de programación de forma independiente.", "labelLast": "" },
+      "legend": { "labelFirst": "Puedo resolver problemas de programación de forma independiente." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -159,7 +158,7 @@
       "type": "LINEAR",
       "id": "2081366325",
       "section":3,
-      "legend": { "labelFirst": "Tengo muchas ganas de aprender a programar", "labelLast": "" },
+      "legend": { "labelFirst": "Tengo muchas ganas de aprender a programar" },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -173,7 +172,7 @@
       "type": "LINEAR",
       "id": "2081366326",
       "section":3,
-      "legend": { "labelFirst": "Creo que la programación facilita la vida humana.", "labelLast": "" },
+      "legend": { "labelFirst": "Creo que la programación facilita la vida humana." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -187,7 +186,7 @@
       "type": "LINEAR",
       "id": "2081366327",
       "section":3,
-      "legend": { "labelFirst": "Sé que la programación me ayudará a resolver problemas en la vida.", "labelLast": "" },
+      "legend": { "labelFirst": "Sé que la programación me ayudará a resolver problemas en la vida." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -201,7 +200,7 @@
       "type": "LINEAR",
       "id": "2081366328",
       "section":3,
-      "legend": { "labelFirst": "Aprender a programar es muy útil.", "labelLast": "" },
+      "legend": { "labelFirst": "Aprender a programar es muy útil." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -215,7 +214,7 @@
       "type": "LINEAR",
       "id": "2081366329",
       "section":3,
-      "legend": { "labelFirst": "Creo que la programación me puede ayudar en mis futuros estudios y exámenes", "labelLast": "" },
+      "legend": { "labelFirst": "Creo que la programación me puede ayudar en mis futuros estudios y exámenes" },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -229,7 +228,7 @@
       "type": "LINEAR",
       "id": "2081366330",
       "section":3,
-      "legend": { "labelFirst": "Creo que la programación puede ayudar a aprender otras materias en la universidad", "labelLast": "" },
+      "legend": { "labelFirst": "Creo que la programación puede ayudar a aprender otras materias en la universidad" },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -243,7 +242,7 @@
       "type": "LINEAR",
       "id": "2081366331",
       "section":3,
-      "legend": { "labelFirst": "Si la gente dice que soy bueno/a programando me hará feliz.", "labelLast": "" },
+      "legend": { "labelFirst": "Si la gente dice que soy bueno/a programando me hará feliz." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -257,7 +256,7 @@
       "type": "LINEAR",
       "id": "2081366332",
       "section":3,
-      "legend": { "labelFirst": "Mis padres piensan que la programación es una de las materias más importantes.", "labelLast": "" },
+      "legend": { "labelFirst": "Mis padres piensan que la programación es una de las materias más importantes." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -271,7 +270,7 @@
       "type": "LINEAR",
       "id": "2081366333",
       "section":3,
-      "legend": { "labelFirst": "Mis padres me animan mucho a aprender a programar.", "labelLast": "" },
+      "legend": { "labelFirst": "Mis padres me animan mucho a aprender a programar." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -285,7 +284,7 @@
       "type": "LINEAR",
       "id": "2081366334",
       "section":3,
-      "legend": { "labelFirst": "Quiero ser amigo de compañeros que sepan programar.", "labelLast": "" },
+      "legend": { "labelFirst": "Quiero ser amigo de compañeros que sepan programar." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -299,7 +298,7 @@
       "type": "LINEAR",
       "id": "2081366335",
       "section":3,
-      "legend": { "labelFirst": "Mi profesor/a cree que puedo sacar buenas notas en programación", "labelLast": "" },
+      "legend": { "labelFirst": "Mi profesor/a cree que puedo sacar buenas notas en programación" },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -313,7 +312,7 @@
       "type": "LINEAR",
       "id": "2081366336",
       "section":3,
-      "legend": { "labelFirst": "Me gusta aprender a programar con otras personas", "labelLast": "" },
+      "legend": { "labelFirst": "Me gusta aprender a programar con otras personas" },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -327,7 +326,7 @@
       "type": "LINEAR",
       "id": "2081366337",
       "section":3,
-      "legend": { "labelFirst": "Creo que a los/las estudiantes que pueden programar les gusta usar productos electrónicos.", "labelLast": "" },
+      "legend": { "labelFirst": "Creo que a los/las estudiantes que pueden programar les gusta usar productos electrónicos." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -341,7 +340,7 @@
       "type": "LINEAR",
       "id": "2081366338",
       "section":3,
-      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden programar son más inteligentes.", "labelLast": "" },
+      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden programar son más inteligentes." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -355,7 +354,7 @@
       "type": "LINEAR",
       "id": "2081366330",
       "section":3,
-      "legend": { "labelFirst": "Creo que los/las estudiantes que son buenos/as programando son más introvertidos y comparten menos con amigos.", "labelLast": "" },
+      "legend": { "labelFirst": "Creo que los/las estudiantes que son buenos/as programando son más introvertidos y comparten menos con amigos." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -370,7 +369,7 @@
       "type": "LINEAR",
       "id": "2081366340",
       "section":3,
-      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden programar son alegres.", "labelLast": "" },
+      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden programar son alegres." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -384,7 +383,7 @@
       "type": "LINEAR",
       "id": "2081366341",
       "section":3,
-      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden codificar son buenos/as en STEM (ciencia, tecnología, ingeniería y matemáticas).", "labelLast": "" },
+      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden codificar son buenos/as en STEM (ciencia, tecnología, ingeniería y matemáticas)." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -398,7 +397,7 @@
       "type": "LINEAR",
       "id": "2081366342",
       "section":3,
-      "legend": { "labelFirst": "Sigo las novedades en programación.", "labelLast": "" },
+      "legend": { "labelFirst": "Sigo las novedades en programación." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -412,7 +411,7 @@
       "type": "LINEAR",
       "id": "2081366343",
       "section":3,
-      "legend": { "labelFirst": "Cuando comencé a escribir programas, me sentí muy emocionado/a.", "labelLast": "" },
+      "legend": { "labelFirst": "Cuando comencé a escribir programas, me sentí muy emocionado/a." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -426,7 +425,7 @@
       "type": "LINEAR",
       "id": "2081366344",
       "section":3,
-      "legend": { "labelFirst": "Resolver problemas de programación es divertido", "labelLast": "" },
+      "legend": { "labelFirst": "Resolver problemas de programación es divertido" },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -440,7 +439,7 @@
       "type": "LINEAR",
       "id": "2081366345",
       "section":3,
-      "legend": { "labelFirst": "Aprender a programar me traerá mucha felicidad.", "labelLast": "" },
+      "legend": { "labelFirst": "Aprender a programar me traerá mucha felicidad." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -454,7 +453,7 @@
       "type": "LINEAR",
       "id": "2081366346",
       "section":3,
-      "legend": { "labelFirst": "Deseo participar en trabajos relacionados con la programación en el futuro.", "labelLast": "" },
+      "legend": { "labelFirst": "Deseo participar en trabajos relacionados con la programación en el futuro." },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -463,6 +462,17 @@
         { "label": "5" }
       ],
       "required": true
+    },
+    {
+      "label": "1.Pila de computadores.",
+      "id": "2081366347",
+      "type": "SHORT_ANSWER",
+      "section":4,
+      "required": true,
+      "items":[{"id":1,"title":"Una pila de un computador se carga con cajas de una cinta transportadora. \n Las cajas están marcadas con un número o un operador (+, -, *, o /). La pila del computador se carga hasta que la caja superior es una caja marcada con un operador. Este operador se utiliza entonces en las dos cajas inferiores. A continuación, las tres casillas se funden en una sola y se marcan con el resultado del cálculo. En la pila del computador, los cálculos se introducen de forma diferente a una calculadora normal. Por ejemplo, los siguientes cálculos deben introducirse de esta manera:.- 2+3 debe introducirse como 2 3 + .-10-2 debe introducirse como 10 2 .-5*2+3 debe introducirse como 5 2 * 3 +.- 5+2*3 debe introducirse como 5 2 3 * +.- (8+2)*(3+4) debe introducirse como 8 2 + 3 4 + *"},
+      {"id":2,"title":"Illustración de una pila de un computador","image":"https://drive.google.com/uc?export=view&id=1ZPz0MtEae_g4lO4_gIIc2uu7YA56upAM"},
+      {"id":3,"title":"¿Cómo debe introducirse el siguiente cálculo? 4*(8+3)-2?"}
+    ]
     }
 
   ],
@@ -478,24 +488,7 @@
     },
     {
       "id":2,
-      "title":"Actitud Hacia la Programación",
-      "states":[
-        { "id":1,
-          "title":"Estoy en desacuerdo"
-        },
-        { "id":2,
-        "title":"Estoy moderadamente en desacuerdo"
-        },
-        { "id":3,
-        "title":"No estoy de acuerdo ni en desacuerdo"
-        },
-        { "id":4,
-        "title":"Estoy moderadamente de acuerdo"
-        },
-        { "id":5,
-        "title":"Estoy de acuerdo"
-        }
-      ]
+      "title":"Actitud Hacia la Programación"
     },
     {
       "id":3,
@@ -504,8 +497,8 @@
   ],
   "fieldsOrder": { "2081366314":0,"2081366315":1,"2081366316":2,"2081366317":3,"2081366318":4,"2081366319":5,"2081366320":6,"2081366321":7  ,"2081366322":8  ,"2081366323":9  ,"2081366324":10  ,"2081366325":11  ,"2081366326":12  ,"2081366327":13  ,"2081366328":14,"2081366329":15  ,"2081366330":16
   ,"2081366331":17  ,"2081366332":18,"2081366333":19  ,"2081366334":20,"2081366335":21,"2081366336":22,"2081366337":23,"2081366338":24,"2081366339":25,"2081366340":26,
-  "2081366341":27,"2081366342":28,"2081366343":29,"2081366344":30,"2081366345":31,"2081366346":32
-}
+  "2081366341":27,"2081366342":28,"2081366343":29,"2081366344":30,"2081366345":31,"2081366346":32,"2081366347":33
+  }
 }
 
 

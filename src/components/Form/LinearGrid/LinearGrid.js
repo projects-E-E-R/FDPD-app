@@ -1,8 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-
 import { useLinearInput } from "react-google-forms-hooks";
-import {FirstRow,ErrorLabel,Layout} from "./LinearGrid.style";
+import {ErrorLabel,Layout} from "./LinearGrid.style";
 import { Tooltip } from "antd";
 
 

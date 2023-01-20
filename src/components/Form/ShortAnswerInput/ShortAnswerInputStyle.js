@@ -18,3 +18,13 @@ export const ErrorLabel = styled.span`
   color: red;
   padding: 10px 0;
 `;
+export const QuestionContainer = styled.div`
+  margin-bottom: 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:left;
+`;
+export const StyleImageContent = styled.div`
+ max-width:100%;
+ min-width:100%;
+`;

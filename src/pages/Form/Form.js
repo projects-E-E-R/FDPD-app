@@ -48,7 +48,7 @@ const FormWrapper = (props) => {
                 questionInput = <RadioInput id={id} />;
                 break;
               case "SHORT_ANSWER":
-                questionInput = <ShortAnswerInput id={id} />;
+                questionInput = <ShortAnswerInput id={id} field={field}/>;
                 break;
               case "LINEAR":
               questionInput = <LinearGrid id={id} />;
@@ -61,6 +61,8 @@ const FormWrapper = (props) => {
               return null;
             }
             return (
+              field?.items ? <>{questionInput}</> 
+              :
               <Question command={field?.type =="LINEAR" ? true : false} title={field?.label} shadow loading={false} initSection={false}>
               <QuestionContainer key={id}>
                 {questionInput}
@@ -76,6 +78,8 @@ const FormWrapper = (props) => {
   const onSubmit = async (data) => {
     if(sectionForm == sectionFormMax){
       console.log(">>> Here is the data", data);
+      //console.log(data['2081366331']);
+
     }else{
       setSectionForm(sectionForm+1);
     }
@@ -125,7 +129,9 @@ const FormWrapper = (props) => {
       }
       <GoogleFormProvider {...methods}>
           <Questions/>
-          <Question command title={''}>
+      </GoogleFormProvider>
+    </Section>
+    <Question command title={''}>
           <Button
               $capitalize
               loading={false}
@@ -133,15 +139,11 @@ const FormWrapper = (props) => {
               type="submit"
               color="primary"
               onClick={methods.handleSubmit(onSubmit)}
-              style={{position:'absolute',right:0,bottom:1,top:-10,width:100,height:50,fontSize:16}}
+              style={{position:'absolute',right:-25,bottom:1,top:-30,width:100,height:50,fontSize:16}}
               >
               {  permissionToSend ?   t('common.send') :  t('common.next')}
             </Button>   
-          </Question>
-      </GoogleFormProvider>
-    
-    </Section>
-    
+    </Question>
     </Layout.Content>
 
     </StyledForm>

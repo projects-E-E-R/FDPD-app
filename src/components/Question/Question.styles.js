@@ -37,7 +37,7 @@ export const StyledBox = styled.div`
   margin-top:15px;
 `;
 export const StyledBoxCommand = styled.div`
-  background-color: ${({ theme }) => theme.home.content.backgroundColor};
+  background-color: transparent;
   color: ${({ theme }) => theme.text.color} !important;
   border-radius: 15px;
   box-shadow: 0px;
