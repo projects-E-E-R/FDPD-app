@@ -46,7 +46,7 @@ const Layout = (props)=>{
                     <Menu.Item key={1}>
                         <Menu className="mobile-menu">
                             <Menu.Item key={2}>
-                            <SiderBarMenu {...rest} />
+                                <SiderBarMenu {...rest} />
                             </Menu.Item>
                         </Menu>
                     </Menu.Item>

@@ -49,6 +49,10 @@ i18n
             wait: 'Espere',
             pleaseWait: 'Espere un momento...',
             charging: 'Cargando información...'
+          },
+          user:{
+            male: "Masculino",
+            female: "Femenino"
           }
       }
      },
