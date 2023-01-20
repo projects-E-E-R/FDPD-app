@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useLinearInput } from "react-google-forms-hooks";
 import {FirstRow,ErrorLabel,Layout} from "./LinearGrid.style";
-
+import { Tooltip } from "antd";
 
 
 const LinearGrid = ({ id })=>{
@@ -20,7 +20,10 @@ const LinearGrid = ({ id })=>{
                             <table style={{width:"100%"}}>
                             <tr>
                             {  legend?.columns?.map(({title}) => {
-                              return <td><span>{title}</span></td>
+                              return     <Tooltip placement="top" title={title}>
+                              <td><span>{title}</span></td>
+                                </Tooltip>
+     
                             })}
                             </tr>
                           </table>
@@ -28,7 +31,8 @@ const LinearGrid = ({ id })=>{
                           </Layout>      
                          <Layout>
                           <div class="column">
-                          <div  style={{fontSize:15}}>{legend.labelFirst}</div>     
+                          <div  style={{fontSize:15}}>{legend.labelFirst}</div>
+                          <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>      
                           </div>  
                           <div class="column2">
                           <table style={{width:"100%"}}>
@@ -39,11 +43,11 @@ const LinearGrid = ({ id })=>{
                             </tr>
                           </table>
                           </div> 
-                          <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel> 
                          </Layout></> : 
                          <Layout>
                           <div class="column">
-                          <div  style={{fontSize:15}}>{legend.labelFirst}</div>     
+                          <div  style={{fontSize:15}}>{legend.labelFirst}</div> 
+                          <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>     
                           </div>  
                           <div class="column2">
                           <table style={{width:"100%"}}>
@@ -54,7 +58,7 @@ const LinearGrid = ({ id })=>{
                             </tr>
                           </table>
                           </div> 
-                          <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel> 
+                          
                          </Layout>
 
     }

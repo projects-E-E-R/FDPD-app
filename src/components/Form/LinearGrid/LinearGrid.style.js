@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from 'settings/theme';
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -17,22 +18,53 @@ export const Layout = styled.div`
   display:flex;
   flex-direaction:column;
   align-items:center;
-  margin-bottom:50px;
-  & * {
+  margin-bottom:10px;
+  text-overflow: ellipsis;
+  & input {
     margin: 0 0px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   & td {
-    min-width:10px;
-    max-width:10px;
     text-align: center;
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @media ${device.mobileL}{
+      & td {
+        text-align: center;
+        max-width: 0px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+  }
+  @media ${device.mobileL}{
+      & .column {
+      float: left;
+      width: 30%;
+      padding: 10px;
+      height: 50px; /* Should be removed. Only for demonstration */
+    }
   }
 /* Create two equal columns that floats next to each other */
-  .column {
-    float: left;
+  & .column {
     width: 30%;
-    padding: 10px;
-    height: 50px; /* Should be removed. Only for demonstration */
+  
   }
+  @media ${device.mobileL}{
+      & .column {
+      float: left;
+      width: 30%;
+      padding: 10px;
+      height: 50px; /* Should be removed. Only for demonstration */
+    }
+  }
+
   .column2 {
     margin-top:10px;
     float: right;
