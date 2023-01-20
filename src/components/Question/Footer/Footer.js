@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import HeaderStyle from './Header.styles';
 import Title from 'ui/Title/Title';
 import { Space } from 'antd';
 
-const Header = (props) => {
+const Footer = (props) => {
   const { title, icon, infoText, tools,titleCenter } = props;
 
   return (
@@ -15,17 +14,6 @@ const Header = (props) => {
   );
 };
 
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.object,
-  infoText: PropTypes.string,
-  tool: PropTypes.object
-};
 
-Header.defaultProps = {
-  title: 'no title',
-  error: null,
-  loading: false
-};
 
-export default React.memo(Header);
+export default React.memo(Footer);

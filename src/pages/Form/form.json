@@ -1,0 +1,511 @@
+{
+  "fvv":1,"pageHistory":0,"fbzx":"4367206215934512302","action":"e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
+  "fields": [
+    {
+      "label": "Que carrera estudia?",
+      "type": "RADIO",
+      "id": "2081366314",
+      "section":1,
+      "options": [
+        { "label": "Ingeniería Civil Industrial", "custom": false },
+        { "label": "Ingeniería Civil Informatica", "custom": false },
+        { "label": "Ingeniería Civil Minas", "custom": false },
+        { "label": "Ingeniería Civil Química", "custom": false },
+        { "label": "Ingeniería Civil", "custom": false },
+        { "label": "Ingeniería Civil Metalúrgica", "custom": false },
+        { "label": "Ingeniería Civil Ambiental", "custom": false }
+      ],
+      "required": true
+    },
+    {
+      "label": "¿Está de acuerdo en participar de la encuesta?",
+      "type": "RADIO",
+      "id": "2081366315",
+      "section":1,
+      "options": [
+        { "label": "Si", "custom": false },
+        { "label": "No", "custom": false }
+      ],
+      "required": true
+    },
+    {
+      "label": "Indique su género*",
+      "type": "RADIO",
+      "id": "2081366316",
+      "section":2,
+      "options": [
+        { "label": "Hombrel", "custom": false },
+        { "label": "Mujer", "custom": false },
+        { "label": "No lo quiero identificar", "custom": false }
+      ],
+      "required": true
+    },
+    {
+      "label": "Indique si tiene cualquier experiencia previa de programación*",
+      "type": "RADIO",
+      "id": "2081366317",
+      "section":2,
+      "options": [
+        { "label": "No tengo ninguna experiencia de programación", "custom": false },
+        { "label": "Sí, tengo experiencia de programación", "custom": false }
+      ],
+      "required": true
+    },
+    {
+      "label": "Indique qué edad tenía cuando tuvo la  experiencia de programar por primera vez (Por favor, indique la respuesta en formato numérico y indique 0 si no tiene ninguna experiencia).",
+      "type": "SHORT_ANSWER",
+      "id": "2081366318",
+      "section":2,
+      "required": true
+    },
+    {
+      "label": "Indique cuánto tiempo (en meses) ha estudiado programación previamente*",
+      "type": "SHORT_ANSWER",
+      "id": "2081366319",
+      "section":2,
+      "required": true
+    },
+    {
+      "label": "Indique cuánto está de acuerdo con las afirmaciones abajo.*",
+      "type": "LINEAR",
+      "id": "2081366320",
+      "section":3,
+      "legend": { "labelFirst": "Soy bueno/a programando", "labelLast": "" , "columns":[
+                  { "id":1,
+                    "title":"Estoy en desacuerdo"
+                  },
+                  { "id":2,
+                  "title":"Estoy moderadamente en desacuerdo"
+                  },
+                  { "id":3,
+                  "title":"No estoy de acuerdo ni en desacuerdo"
+                  },
+                  { "id":4,
+                  "title":"Estoy moderadamente de acuerdo"
+                  },
+                  { "id":5,
+                  "title":"Estoy de acuerdo"
+                  }
+                ]}
+    ,
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },
+    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366321",
+      "section":3,
+      "legend": { "labelFirst": "Si encuentro un problema al escribir un programa, no me rendiré hasta que se resuelva.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },
+    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366322",
+      "section":3,
+      "legend": { "labelFirst": "Confío en que tengo la capacidad de aprender a programar.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366323",
+      "section":3,
+      "legend": { "labelFirst": "Puedo concentrarme en aprender a programar", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366324",
+      "section":3,
+      "legend": { "labelFirst": "Puedo resolver problemas de programación de forma independiente.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366325",
+      "section":3,
+      "legend": { "labelFirst": "Tengo muchas ganas de aprender a programar", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366326",
+      "section":3,
+      "legend": { "labelFirst": "Creo que la programación facilita la vida humana.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366327",
+      "section":3,
+      "legend": { "labelFirst": "Sé que la programación me ayudará a resolver problemas en la vida.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366328",
+      "section":3,
+      "legend": { "labelFirst": "Aprender a programar es muy útil.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366329",
+      "section":3,
+      "legend": { "labelFirst": "Creo que la programación me puede ayudar en mis futuros estudios y exámenes", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366330",
+      "section":3,
+      "legend": { "labelFirst": "Creo que la programación puede ayudar a aprender otras materias en la universidad", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366331",
+      "section":3,
+      "legend": { "labelFirst": "Si la gente dice que soy bueno/a programando me hará feliz.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366332",
+      "section":3,
+      "legend": { "labelFirst": "Mis padres piensan que la programación es una de las materias más importantes.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366333",
+      "section":3,
+      "legend": { "labelFirst": "Mis padres me animan mucho a aprender a programar.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366334",
+      "section":3,
+      "legend": { "labelFirst": "Quiero ser amigo de compañeros que sepan programar.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366335",
+      "section":3,
+      "legend": { "labelFirst": "Mi profesor/a cree que puedo sacar buenas notas en programación", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366336",
+      "section":3,
+      "legend": { "labelFirst": "Me gusta aprender a programar con otras personas", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366337",
+      "section":3,
+      "legend": { "labelFirst": "Creo que a los/las estudiantes que pueden programar les gusta usar productos electrónicos.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366338",
+      "section":3,
+      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden programar son más inteligentes.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366330",
+      "section":3,
+      "legend": { "labelFirst": "Creo que los/las estudiantes que son buenos/as programando son más introvertidos y comparten menos con amigos.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },
+    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366340",
+      "section":3,
+      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden programar son alegres.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366341",
+      "section":3,
+      "legend": { "labelFirst": "Creo que los/las estudiantes que pueden codificar son buenos/as en STEM (ciencia, tecnología, ingeniería y matemáticas).", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366342",
+      "section":3,
+      "legend": { "labelFirst": "Sigo las novedades en programación.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366343",
+      "section":3,
+      "legend": { "labelFirst": "Cuando comencé a escribir programas, me sentí muy emocionado/a.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366344",
+      "section":3,
+      "legend": { "labelFirst": "Resolver problemas de programación es divertido", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366345",
+      "section":3,
+      "legend": { "labelFirst": "Aprender a programar me traerá mucha felicidad.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    },    {
+      "label": "",
+      "type": "LINEAR",
+      "id": "2081366346",
+      "section":3,
+      "legend": { "labelFirst": "Deseo participar en trabajos relacionados con la programación en el futuro.", "labelLast": "" },
+      "options": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "5" }
+      ],
+      "required": true
+    }
+
+  ],
+  "total_section":4,
+  "section_content":[
+    {
+      "id":0,
+      "title":"¿La actitud hacia la programación predice el pensamiento computacional?"
+    },
+    {
+      "id":1,
+      "title":"Información Demográfica"
+    },
+    {
+      "id":2,
+      "title":"Actitud Hacia la Programación",
+      "states":[
+        { "id":1,
+          "title":"Estoy en desacuerdo"
+        },
+        { "id":2,
+        "title":"Estoy moderadamente en desacuerdo"
+        },
+        { "id":3,
+        "title":"No estoy de acuerdo ni en desacuerdo"
+        },
+        { "id":4,
+        "title":"Estoy moderadamente de acuerdo"
+        },
+        { "id":5,
+        "title":"Estoy de acuerdo"
+        }
+      ]
+    },
+    {
+      "id":3,
+      "title":"Pensamiento Computacional"
+    }
+  ],
+  "fieldsOrder": { "2081366314":0,"2081366315":1,"2081366316":2,"2081366317":3,"2081366318":4,"2081366319":5,"2081366320":6,"2081366321":7  ,"2081366322":8  ,"2081366323":9  ,"2081366324":10  ,"2081366325":11  ,"2081366326":12  ,"2081366327":13  ,"2081366328":14,"2081366329":15  ,"2081366330":16
+  ,"2081366331":17  ,"2081366332":18,"2081366333":19  ,"2081366334":20,"2081366335":21,"2081366336":22,"2081366337":23,"2081366338":24,"2081366339":25,"2081366340":26,
+  "2081366341":27,"2081366342":28,"2081366343":29,"2081366344":30,"2081366345":31,"2081366346":32
+}
+}
+
+

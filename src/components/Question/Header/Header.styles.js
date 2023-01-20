@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-
+import { darken } from 'polished';
 export const HeaderStyle = styled.div`
   padding: 0.2rem 0.6rem;
   display:flex;
+  color: ##ffff;
   flex-direction:${({ titleCenter }) =>  titleCenter ? `column` : `row`};
   align-items: ${({ titleCenter }) =>  titleCenter ? `center` : `baseline`};
   justify-content: ${({ titleCenter }) => titleCenter ? `none` : `space-between`};

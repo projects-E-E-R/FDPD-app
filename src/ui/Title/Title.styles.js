@@ -38,6 +38,12 @@ const Styled = styled.div`
           font-size: 1rem;
           color: ${theme.title.color};
         `;
+      case 'question':
+      return `
+        font-weight: 600;
+        font-size: 1rem;
+        color: ${theme.header.color};
+      `;
       default:
         return `
           font-size: 1.3rem;

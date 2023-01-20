@@ -5,10 +5,10 @@ import Title from 'ui/Title/Title';
 import { Space } from 'antd';
 
 const Header = (props) => {
-  const { title, icon, infoText, tools,titleCenter } = props;
+  const { title, icon, infoText, tools,titleCenter,questionTitle } = props;
 
   return (
-    <HeaderStyle titleCenter={titleCenter}>
+    <HeaderStyle titleCenter={titleCenter} questionTitle={questionTitle}>
     <Title uppercase kind="widget" icon={icon} infoText={infoText}>{title}</Title>
     <Space>{tools}</Space>
     </HeaderStyle>

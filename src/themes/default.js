@@ -145,6 +145,12 @@ const theme = {
     primary: {
       color: colors.light
     }
+  },
+  question:{
+    header:{
+      backgroundColor: colors.secondary,
+      title:colors.white
+    }
   }
 };
 

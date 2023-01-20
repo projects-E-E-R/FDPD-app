@@ -13,13 +13,13 @@ import {Row,Col} from 'antd';
 const Forms = (props) => {
   const {t} =useTranslation();
   const [formFilter,setFormFilter]= useState(null);
-  let formUser = [{id:1,name:'Test 1',path:'/form',answered:false},{id:2,name:'Test 2',path:'/form',answered:false},
-  {id:3,name:'Test 3',path:'/form',answered:true},{id:4,name:'Test 4',path:'/form',answered:true},{id:5,name:'Test 5',path:'/form',answered:false}]
+  let formUser = [{id:1,name:'Test 1',path:'/form',answered:false},{id:2,name:'Test 2',path:'/form',answered:true},
+  {id:3,name:'Test 3',path:'/form',answered:true},{id:4,name:'Test 4',path:'/form',answered:true},{id:5,name:'Test 5',path:'/form',answered:true}]
   const FormViewer = ({ formFilter }) => {
     return (
       <Row gutter={[20, 20]}>
         {formFilter?.map((params, index) =>
-            <Col key={index} xs={24} sm={24} md={12} lg={8}>
+            <Col key={index} xs={24} sm={24} md={24} lg={24}>
          
               <Card
                 {...params}

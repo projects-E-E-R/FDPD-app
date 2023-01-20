@@ -7,6 +7,7 @@ import Header from './Header/Header';
 const Section = (props) => {
   const {
     title,
+    titleCenter,
     children,
     icon,
     infoText,
@@ -19,7 +20,7 @@ const Section = (props) => {
 
   return (
     <SectionStyle shadow={shadow}>
-    <Header icon={icon} title={title} infoText={infoText} tools={tools} />
+    <Header icon={icon} title={title} titleCenter={titleCenter} infoText={infoText} tools={tools} />
       <SectionBody loading={loading}>
        {children}
       </SectionBody>
