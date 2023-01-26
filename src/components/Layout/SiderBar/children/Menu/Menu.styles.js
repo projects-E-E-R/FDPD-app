@@ -52,7 +52,7 @@ const StyledMenu = styled.div`
   }
   .menu-item-avatar {
     font-size:4rem;
-    color: ${({ theme }) => theme.avatar.primary.color};
+    color: ${({ theme }) => theme?.avatar?.primary?.color};
   }
   .menu-item-avatar-section {
     font-size:1.5rem;

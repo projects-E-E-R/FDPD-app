@@ -51,6 +51,14 @@ i18n
             charging: 'Cargando información...'
           },
           user:{
+            first_name: "Nombre",
+            last_name: "Apellido",
+            full_name: "Nombre completo",
+            rut: "Rut",
+            career: "Carrera",
+            gender: "Género",
+            email: "Correo",
+            password: "Contraseña",
             male: "Masculino",
             female: "Femenino"
           }
