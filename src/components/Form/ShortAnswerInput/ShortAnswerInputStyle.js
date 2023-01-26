@@ -25,6 +25,8 @@ export const QuestionContainer = styled.div`
   align-items:left;
 `;
 export const StyleImageContent = styled.div`
- max-width:100%;
- min-width:100%;
+ max-width:50%;
+ min-width:50%;
+ max-height:50%;
+ min-height:50%;
 `;

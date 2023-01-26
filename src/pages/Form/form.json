@@ -68,6 +68,8 @@
       "label": "Indique cuánto está de acuerdo con las afirmaciones abajo.*",
       "type": "LINEAR",
       "id": "2081366320",
+      "sub_section": "self_efficacy",
+      "sub_section_id": 1,
       "section":3,
       "legend": { "labelFirst": "Soy bueno/a programando" , "columns":[
                   { "id":1,
@@ -101,6 +103,8 @@
       "type": "LINEAR",
       "id": "2081366321",
       "section":3,
+      "sub_section": "self_efficacy",
+      "sub_section_id": 1,
       "legend": { "labelFirst": "Si encuentro un problema al escribir un programa, no me rendiré hasta que se resuelva." },
       "options": [
         { "label": "1" },
@@ -116,6 +120,8 @@
       "type": "LINEAR",
       "id": "2081366322",
       "section":3,
+      "sub_section": "self_efficacy",
+      "sub_section_id": 1,
       "legend": { "labelFirst": "Confío en que tengo la capacidad de aprender a programar." },
       "options": [
         { "label": "1" },
@@ -144,6 +150,8 @@
       "type": "LINEAR",
       "id": "2081366324",
       "section":3,
+      "sub_section": "self_efficacy",
+      "sub_section_id": 1,
       "legend": { "labelFirst": "Puedo resolver problemas de programación de forma independiente." },
       "options": [
         { "label": "1" },
@@ -158,6 +166,8 @@
       "type": "LINEAR",
       "id": "2081366325",
       "section":3,
+      "sub_section": "self_efficacy",
+      "sub_section_id": 1,
       "legend": { "labelFirst": "Tengo muchas ganas de aprender a programar" },
       "options": [
         { "label": "1" },
@@ -167,12 +177,30 @@
         { "label": "5" }
       ],
       "required": true
-    },    {
-      "label": "",
+    },{
+      "label": "Indique cuánto está de acuerdo con las afirmaciones abajo.*",
       "type": "LINEAR",
       "id": "2081366326",
       "section":3,
-      "legend": { "labelFirst": "Creo que la programación facilita la vida humana." },
+      "sub_section": "program_utility",
+      "sub_section_id": 2,
+      "legend": { "labelFirst": "Creo que la programación facilita la vida humana." ,"columns":[
+        { "id":1,
+          "title":"Estoy en desacuerdo"
+        },
+        { "id":2,
+        "title":"Estoy moderadamente en desacuerdo"
+        },
+        { "id":3,
+        "title":"No estoy de acuerdo ni en desacuerdo"
+        },
+        { "id":4,
+        "title":"Estoy moderadamente de acuerdo"
+        },
+        { "id":5,
+        "title":"Estoy de acuerdo"
+        }
+      ] },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -186,6 +214,8 @@
       "type": "LINEAR",
       "id": "2081366327",
       "section":3,
+      "sub_section": "program_utility",
+      "sub_section_id": 2,
       "legend": { "labelFirst": "Sé que la programación me ayudará a resolver problemas en la vida." },
       "options": [
         { "label": "1" },
@@ -200,6 +230,8 @@
       "type": "LINEAR",
       "id": "2081366328",
       "section":3,
+      "sub_section": "program_utility",
+      "sub_section_id": 2,
       "legend": { "labelFirst": "Aprender a programar es muy útil." },
       "options": [
         { "label": "1" },
@@ -214,6 +246,8 @@
       "type": "LINEAR",
       "id": "2081366329",
       "section":3,
+      "sub_section": "program_utility",
+      "sub_section_id": 2,
       "legend": { "labelFirst": "Creo que la programación me puede ayudar en mis futuros estudios y exámenes" },
       "options": [
         { "label": "1" },
@@ -228,6 +262,8 @@
       "type": "LINEAR",
       "id": "2081366330",
       "section":3,
+      "sub_section": "program_utility",
+      "sub_section_id": 2,
       "legend": { "labelFirst": "Creo que la programación puede ayudar a aprender otras materias en la universidad" },
       "options": [
         { "label": "1" },
@@ -242,7 +278,25 @@
       "type": "LINEAR",
       "id": "2081366331",
       "section":3,
-      "legend": { "labelFirst": "Si la gente dice que soy bueno/a programando me hará feliz." },
+      "sub_section": "social_needs",
+      "sub_section_id": 3,
+      "legend": { "labelFirst": "Si la gente dice que soy bueno/a programando me hará feliz.","columns":[
+        { "id":1,
+          "title":"Estoy en desacuerdo"
+        },
+        { "id":2,
+        "title":"Estoy moderadamente en desacuerdo"
+        },
+        { "id":3,
+        "title":"No estoy de acuerdo ni en desacuerdo"
+        },
+        { "id":4,
+        "title":"Estoy moderadamente de acuerdo"
+        },
+        { "id":5,
+        "title":"Estoy de acuerdo"
+        }
+      ] },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -256,6 +310,8 @@
       "type": "LINEAR",
       "id": "2081366332",
       "section":3,
+      "sub_section": "social_needs",
+      "sub_section_id": 3,
       "legend": { "labelFirst": "Mis padres piensan que la programación es una de las materias más importantes." },
       "options": [
         { "label": "1" },
@@ -270,6 +326,8 @@
       "type": "LINEAR",
       "id": "2081366333",
       "section":3,
+      "sub_section": "social_needs",
+      "sub_section_id": 3,
       "legend": { "labelFirst": "Mis padres me animan mucho a aprender a programar." },
       "options": [
         { "label": "1" },
@@ -284,6 +342,8 @@
       "type": "LINEAR",
       "id": "2081366334",
       "section":3,
+      "sub_section": "social_needs",
+      "sub_section_id": 3,
       "legend": { "labelFirst": "Quiero ser amigo de compañeros que sepan programar." },
       "options": [
         { "label": "1" },
@@ -298,6 +358,8 @@
       "type": "LINEAR",
       "id": "2081366335",
       "section":3,
+      "sub_section": "social_needs",
+      "sub_section_id": 3,
       "legend": { "labelFirst": "Mi profesor/a cree que puedo sacar buenas notas en programación" },
       "options": [
         { "label": "1" },
@@ -312,6 +374,8 @@
       "type": "LINEAR",
       "id": "2081366336",
       "section":3,
+      "sub_section": "social_needs",
+      "sub_section_id": 3,
       "legend": { "labelFirst": "Me gusta aprender a programar con otras personas" },
       "options": [
         { "label": "1" },
@@ -326,7 +390,26 @@
       "type": "LINEAR",
       "id": "2081366337",
       "section":3,
-      "legend": { "labelFirst": "Creo que a los/las estudiantes que pueden programar les gusta usar productos electrónicos." },
+      "sub_section": "perceptions_of_programmers",
+      "sub_section_id": 4,
+      "legend": { "labelFirst": "Creo que a los/las estudiantes que pueden programar les gusta usar productos electrónicos.",
+      "columns":[
+        { "id":1,
+          "title":"Estoy en desacuerdo"
+        },
+        { "id":2,
+        "title":"Estoy moderadamente en desacuerdo"
+        },
+        { "id":3,
+        "title":"No estoy de acuerdo ni en desacuerdo"
+        },
+        { "id":4,
+        "title":"Estoy moderadamente de acuerdo"
+        },
+        { "id":5,
+        "title":"Estoy de acuerdo"
+        }
+      ] },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -340,6 +423,8 @@
       "type": "LINEAR",
       "id": "2081366338",
       "section":3,
+      "sub_section": "perceptions_of_programmers",
+      "sub_section_id": 4,
       "legend": { "labelFirst": "Creo que los/las estudiantes que pueden programar son más inteligentes." },
       "options": [
         { "label": "1" },
@@ -354,6 +439,8 @@
       "type": "LINEAR",
       "id": "2081366330",
       "section":3,
+      "sub_section": "perceptions_of_programmers",
+      "sub_section_id": 4,
       "legend": { "labelFirst": "Creo que los/las estudiantes que son buenos/as programando son más introvertidos y comparten menos con amigos." },
       "options": [
         { "label": "1" },
@@ -369,6 +456,8 @@
       "type": "LINEAR",
       "id": "2081366340",
       "section":3,
+      "sub_section": "perceptions_of_programmers",
+      "sub_section_id": 4,
       "legend": { "labelFirst": "Creo que los/las estudiantes que pueden programar son alegres." },
       "options": [
         { "label": "1" },
@@ -383,6 +472,8 @@
       "type": "LINEAR",
       "id": "2081366341",
       "section":3,
+      "sub_section": "perceptions_of_programmers",
+      "sub_section_id": 4,
       "legend": { "labelFirst": "Creo que los/las estudiantes que pueden codificar son buenos/as en STEM (ciencia, tecnología, ingeniería y matemáticas)." },
       "options": [
         { "label": "1" },
@@ -397,7 +488,25 @@
       "type": "LINEAR",
       "id": "2081366342",
       "section":3,
-      "legend": { "labelFirst": "Sigo las novedades en programación." },
+      "sub_section": "interest",
+      "sub_section_id": 5,
+      "legend": { "labelFirst": "Sigo las novedades en programación.","columns":[
+        { "id":1,
+          "title":"Estoy en desacuerdo"
+        },
+        { "id":2,
+        "title":"Estoy moderadamente en desacuerdo"
+        },
+        { "id":3,
+        "title":"No estoy de acuerdo ni en desacuerdo"
+        },
+        { "id":4,
+        "title":"Estoy moderadamente de acuerdo"
+        },
+        { "id":5,
+        "title":"Estoy de acuerdo"
+        }
+      ] },
       "options": [
         { "label": "1" },
         { "label": "2" },
@@ -411,6 +520,8 @@
       "type": "LINEAR",
       "id": "2081366343",
       "section":3,
+      "sub_section": "interest",
+      "sub_section_id": 5,
       "legend": { "labelFirst": "Cuando comencé a escribir programas, me sentí muy emocionado/a." },
       "options": [
         { "label": "1" },
@@ -425,6 +536,8 @@
       "type": "LINEAR",
       "id": "2081366344",
       "section":3,
+      "sub_section": "interest",
+      "sub_section_id": 5,
       "legend": { "labelFirst": "Resolver problemas de programación es divertido" },
       "options": [
         { "label": "1" },
@@ -439,6 +552,8 @@
       "type": "LINEAR",
       "id": "2081366345",
       "section":3,
+      "sub_section": "interest",
+      "sub_section_id": 5,
       "legend": { "labelFirst": "Aprender a programar me traerá mucha felicidad." },
       "options": [
         { "label": "1" },
@@ -453,6 +568,8 @@
       "type": "LINEAR",
       "id": "2081366346",
       "section":3,
+      "sub_section": "interest",
+      "sub_section_id": 5,
       "legend": { "labelFirst": "Deseo participar en trabajos relacionados con la programación en el futuro." },
       "options": [
         { "label": "1" },
@@ -473,31 +590,131 @@
       {"id":2,"title":"Illustración de una pila de un computador","image":"https://drive.google.com/uc?export=view&id=1ZPz0MtEae_g4lO4_gIIc2uu7YA56upAM"},
       {"id":3,"title":"¿Cómo debe introducirse el siguiente cálculo? 4*(8+3)-2?"}
     ]
+    },
+    {
+      "label": "2. Estafa por correo electrónico.",
+      "id": "2081366348",
+      "type": "RADIO",
+      "section":4,
+      "required": true,
+      "items":[
+      {"id":1,"title":"Eduardo está buscando una nueva casa para vivir. Ha buscado en Internet y ha encontrado un departamento perfecto a buen precio. Envió un correo electrónico a Francisco, que vende el departamento, y recibió una rápida respuesta: Hola Gracias por su interés en mi piso Aunque no estoy en la ciudad. Puedo enviarle la llave del departamento para que pueda inspeccionarlo, pero necesito un depósito de seguridad de $5.000,. de antemano para mostrar mi honradez, adjunto una copia de mi RUT. Saludos, Francis Eduardo no sabe qué hacer y te pide ayuda."},
+      {"id":2,"title":"¿Cuál sería su mejor consejo?",
+      "options": true}
+      ],
+      "options": [
+        { "label": "Perfecto. Si te gusta el piso, puedes quedarte con la llave de inmediato.", "custom": false },
+        { "label": "No pagues la fianza, hay muchas posibilidades de que sea un fraude por correo electrónico.", "custom": false },
+        { "label": "Pagar la fianza, ir a ver el piso y decidir más tarde.", "custom": false },
+        { "label": "Paga la fianza. Con el DNI siempre puedes ir a la policía si no te devuelven la fianza.", "custom": false }
+      ]
+    },
+    {
+      "label": "3. No lo encontrarás.",
+      "id": "2081366349",
+      "type": "RADIO",
+      "section":4,
+      "required": true,
+      "items":[
+      {"id":1,"title":"Alejandro y Berta se envían mensajes utilizando la siguiente secuencia de transformaciones en cada palabra."},
+      {"id":2,"title":"Secuencia de transformaciones en cada palabra","image":"https://drive.google.com/uc?export=view&id=1u07qJqbV-g2IGEo2Q05XZgqJwGLGfMdR"},
+      {"id":3,"title":"Por ejemplo, la palabra 'ALPACA' se transforma en 'BQMBBD'.Berta recibió el mensaje codificado 'FGDPM' de Alejandro. ¿Qué quería decir Alejandro?","options":true}
+      ],
+      "options": [
+        { "label": "AGUA", "custom": false },
+        { "label": "CIELO", "custom": false },
+        { "label": "CUELLO", "custom": false },
+        { "label": "CARTA", "custom": false }
+      ]
+    },
+    {
+      "label": "4. Tutorial para alpacas",
+      "id": "2081366350",
+      "type": "RADIO",
+      "section":4,
+      "required": true,
+      "items":[
+      {"id":1,"title":"La profesora de la escuela de alpacas quiere dar algún material a sus alumnos. Encontró un portal con un libro escaneado que explica en su portada que debe ser distribuido según una 'Licencia Creative Commons' (CC-BY-ND). Esto permite a todo el mundo compartir, copiar y redistribuir el material de forma gratuita en cualquier medio o formato para cualquier propósito, incluso comercial, siempre que se dé el crédito correspondiente. La licencia también especifica que si uno remezcla, traduce o construye sobre el libro, el libro modificado no puede ser distribuido."},
+      {"id":2,"title":"¿Cuál de estas acciones no está permitida bajo los términos de esta licencia?", "options":true}
+      ],
+      "options": [
+        { "label": "Vender las copias de las copias del libro.", "custom": false },
+        { "label": "Traducir el libro y quedarse con la copia traducida.", "custom": false },
+        { "label": "Dar a los alumnos la traducción de un capítulo del libro.", "custom": false },
+        { "label": "Poner una copia del libro escaneado en la página web de la escuela.", "custom": false }
+      ]
+    },
+    {
+      "label": "A.El Chamán.",
+      "id": "2081366351",
+      "type": "SHORT_ANSWER",
+      "section":4,
+      "required": true,
+      "items":[{"id":1,"title":"Un chamán puede convertir objetos en otros nuevos objetos.  Puede convertir.  Dos canelos en una moneda de plata.  Una moneda de plata y dos canelos en un piñón.  Un piñón y un canelo en una flecha.  Una moneda de plata, un piñón y una flecha en un huemul.  Cuando un objeto se convierte en otro, desaparece inmediatamente."},
+      {"id":2,"title":"","image":"https://drive.google.com/uc?export=view&id=1I9-etK6f7wFqikAlv7UD19ojENe6noMK"},
+      {"id":3,"title":"¿Cuántos canelos necesita el chaman para crear un huemul?"}
+    ]
+    },
+    {
+      "label": "B. Cadenas de palabras",
+      "id": "2081366352",
+      "type": "RADIO",
+      "section":4,
+      "required": true,
+      "items":[
+      {"id":1,"title":"Para sus deberes, Tomas tenía que escribir palabras en tarjetas y unirlas con gomas elásticas.  La profesora le dijo que uniera dos palabras que se diferenciaran exactamente en una letra.  Tomas lo hizo, como puedes ver en la imagen de la derecha.  Cuando Tomas volvió de su descanso, se llevó una sorpresa.  Pedro, su hermano pequeño, había borrado todas las palabras."},
+      {"id":2,"title":"","image":"https://drive.google.com/uc?export=view&id=1rCFBATHg1oPtUa8xQxO6b-MrgVJUsrFv"},
+      {"id":3,"title":"Además, las tarjetas estaban completamente mezcladas, como puedes ver en la imagen de la izquierda. Lo importante es que las gomas elásticas seguían unidas como antes. Tomas estaba seguro de poder volver a colocar las palabras en el lugar correcto. ¿Cuál de las siguientes imágenes contiene las palabras exactamente en el lugar correcto?", "options":true},
+      {"id":2,"title":"","image":"https://drive.google.com/uc?export=view&id=1tU87-ugwXnWG32ysG2IZbXy-_7vif0J5"},
+      {"id":2,"title":"Opción A","image":"https://drive.google.com/uc?export=view&id=1Z7aJVDHiID0xPyCl0L_SNhCIH9oThb1u"},
+      {"id":2,"title":"Opción B","image":"https://drive.google.com/uc?export=view&id=1XD4pnnxTNIRyapM5BK4lqwjyzA-8Sfxa"},
+      {"id":2,"title":"Opción C","image":"https://drive.google.com/uc?export=view&id=12nxhUa982X6miEdrQHLC-PbmqqLdpviT"},
+      {"id":2,"title":"Opción D","image":"https://drive.google.com/uc?export=view&id=1dIvxgOG9TJP7_apTFRSDrvpfoW2OaJ9M"}
+    ],
+      "options": [
+        { "label": "Opción A", "custom": false },
+        { "label": "Opción B", "custom": false },
+        { "label": "Opción C", "custom": false },
+        { "label": "Opción D", "custom": false }
+      ]
     }
-
   ],
   "total_section":4,
-  "section_content":[
+  "section_content": [
     {
-      "id":0,
-      "title":"¿La actitud hacia la programación predice el pensamiento computacional?"
+      "id": 1,
+      "title": "¿La actitud hacia la programación predice el pensamiento computacional?",
+      "score_for_each_question": "0",
+      "order": "1",
+      "sub_section":0
     },
     {
-      "id":1,
-      "title":"Información Demográfica"
+      "id": 2,
+      "title": "Información Demográfica",
+      "score_for_each_question": "0",
+      "order": "2",
+      "sub_section":0
     },
     {
-      "id":2,
-      "title":"Actitud Hacia la Programación"
+      "id": 3,
+      "title": "Actitud Hacia la Programación",
+      "score_for_each_question": "0",
+      "sub_section":5,
+      "order": "3"
     },
     {
-      "id":3,
-      "title":"Pensamiento Computacional"
+      "id": 4,
+      "title": "Pensamiento Computacional",
+      "score_for_each_question": "0",
+      "sub_section":0,
+      "order": "4"
     }
   ],
   "fieldsOrder": { "2081366314":0,"2081366315":1,"2081366316":2,"2081366317":3,"2081366318":4,"2081366319":5,"2081366320":6,"2081366321":7  ,"2081366322":8  ,"2081366323":9  ,"2081366324":10  ,"2081366325":11  ,"2081366326":12  ,"2081366327":13  ,"2081366328":14,"2081366329":15  ,"2081366330":16
   ,"2081366331":17  ,"2081366332":18,"2081366333":19  ,"2081366334":20,"2081366335":21,"2081366336":22,"2081366337":23,"2081366338":24,"2081366339":25,"2081366340":26,
-  "2081366341":27,"2081366342":28,"2081366343":29,"2081366344":30,"2081366345":31,"2081366346":32,"2081366347":33
+  "2081366341":27,"2081366342":28,"2081366343":29,"2081366344":30,"2081366345":31,
+  "2081366346":32,"2081366347":33,"2081366348":34,"2081366349":35,"2081366350":36,
+  "2081366351":37,"2081366352":38
   }
 }
 

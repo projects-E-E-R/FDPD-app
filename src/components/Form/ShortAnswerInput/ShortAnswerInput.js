@@ -9,7 +9,7 @@ export default function ShortAnswerInput({ id,field }) {
       items ? 
       <>
         {  items?.map((element,index) => {
-            return  <Question  title={''} shadow loading={false} initSection={false}>
+            return  <Question  title={index == 0 ? label : ''} shadow loading={false} initSection={false}>
                       {element?.title}
                       {element?.image ?<QuestionContainer key={index}>   <StyleImageContent as={Image} width={"100%"} src={element?.image}> </StyleImageContent>
                       </QuestionContainer> : null }

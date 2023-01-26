@@ -18,6 +18,7 @@ const FormWrapper = (props) => {
   const [formQuestion,setFormQuestion]= useState(null);
   const [sectionForm,setSectionForm]= useState(1);
   const [sectionFormMax,setSectionFormMax]= useState(1);
+  const [sub_section_count,setSub_section_count ] = useState(0);
   const [sections,setSections]= useState(null);
   const [permissionToSend,setPermissionToSend]= useState(false);
   const methods = useGoogleForm({ form });
@@ -45,7 +46,7 @@ const FormWrapper = (props) => {
             if(sectionForm == section){
               switch (field?.type) {
               case "RADIO":
-                questionInput = <RadioInput id={id} />;
+                questionInput = <RadioInput id={id} field={field} />;
                 break;
               case "SHORT_ANSWER":
                 questionInput = <ShortAnswerInput id={id} field={field}/>;
@@ -63,7 +64,7 @@ const FormWrapper = (props) => {
             return (
               field?.items ? <>{questionInput}</> 
               :
-              <Question command={field?.type =="LINEAR" ? true : false} title={field?.label} shadow loading={false} initSection={false}>
+              <Question command={field?.type =="LINEAR" || field?.type =="RADIO" ? true : false} title={field?.label} shadow loading={false} initSection={false}>
               <QuestionContainer key={id}>
                 {questionInput}
               </QuestionContainer>
@@ -80,8 +81,13 @@ const FormWrapper = (props) => {
       console.log(">>> Here is the data", data);
       //console.log(data['2081366331']);
 
-    }else{
-      setSectionForm(sectionForm+1);
+    } else {
+      if(sub_section_count == 0){
+        setSectionForm(sectionForm+1);
+        setSub_section_count(0);   
+      } else {
+        setSub_section_count(sub_section_coun+1);      
+      }
     }
     //await methods.submitToGoogleForms(data);
     //alert("Form submitted with success!");
@@ -101,7 +107,7 @@ const FormWrapper = (props) => {
     <StyledForm>
     <Layout.Content>
     <Section  title={''}  loading={false} shadow>
-      {sectionForm == 1 ? 
+    {sectionForm == 1 ? 
           <Question titleCenter title={formQuestion?.name} shadow loading={false} initSection={true}>
             <p style={{fontSize:15}}>
             ¡Hola!
