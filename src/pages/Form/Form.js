@@ -67,7 +67,7 @@ const FormWrapper = (props) => {
             return (
               field?.items ? <>{questionInput}</> 
               :
-              <Question command={field?.type =="LINEAR" || field?.type =="RADIO" ? true : false} title={field?.label} shadow loading={false} initSection={false}>
+              <Question command={field?.type =="LINEAR" ? true : false} title={field?.label} shadow loading={false} initSection={false}>
               <QuestionContainer key={id}>
                 {questionInput}
               </QuestionContainer>
@@ -82,7 +82,7 @@ const FormWrapper = (props) => {
   const onSubmit = async (data) => {
     if(changeSubSection){
       const sectionView = sections?.find((e)=> e?.id == sectionForm);
-      if(sectionView?.sub_section > 0 && sub_section_count <= sectionView?.sub_section){
+      if(sectionView?.sub_section > 0 && sub_section_count < sectionView?.sub_section){
         setSub_section_count(sub_section_count+1); 
       } else {
         setSectionForm(sectionForm+1);
@@ -102,16 +102,6 @@ const FormWrapper = (props) => {
 
     //await methods.submitToGoogleForms(data);
     //alert("Form submitted with success!");
-  };
-  const onChangesubSection = async () => {
-      if(sections[sectionForm]?.sub_section > 0 && sub_section_count <= sections[sectionForm]?.sub_section){
-        console.log(sub_section_count)
-        setSub_section_count(sub_section_count+1); 
-      } else {
-        setSectionForm(sectionForm+1);
-        setSub_section_count(0);
-      } 
-    
   };
   useEffect(()=>{
     if(sections){
