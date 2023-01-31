@@ -1,9 +1,22 @@
 {
   "fields": [
     {
+      "label": "¿Está de acuerdo en participar de la encuesta?",
+      "type": "RADIO",
+      "id": "2081366315",
+      "section":1,
+      "sub_section_id": 1,
+      "options": [
+        { "label": "Si", "custom": false },
+        { "label": "No", "custom": false }
+      ],
+      "required": true
+    },
+    {
       "label": "Que carrera estudia?",
       "type": "RADIO",
       "id": "2081366314",
+      "sub_section_id": 1,
       "section":1,
       "options": [
         { "label": "Ingeniería Civil Industrial", "custom": false },
@@ -17,21 +30,11 @@
       "required": true
     },
     {
-      "label": "¿Está de acuerdo en participar de la encuesta?",
-      "type": "RADIO",
-      "id": "2081366315",
-      "section":1,
-      "options": [
-        { "label": "Si", "custom": false },
-        { "label": "No", "custom": false }
-      ],
-      "required": true
-    },
-    {
       "label": "Indique su género*",
       "type": "RADIO",
       "id": "2081366316",
       "section":2,
+      "sub_section_id": 1,
       "options": [
         { "label": "Hombre", "custom": false },
         { "label": "Mujer", "custom": false },
@@ -44,6 +47,7 @@
       "type": "RADIO",
       "id": "2081366317",
       "section":2,
+      "sub_section_id": 1,
       "options": [
         { "label": "No tengo ninguna experiencia de programación", "custom": false },
         { "label": "Sí, tengo experiencia de programación", "custom": false }
@@ -55,14 +59,16 @@
       "type": "SHORT_ANSWER",
       "id": "2081366318",
       "section":2,
-      "required": true
+      "required": true,
+      "sub_section_id": 1
     },
     {
       "label": "Indique cuánto tiempo (en meses) ha estudiado programación previamente*",
       "type": "SHORT_ANSWER",
       "id": "2081366319",
       "section":2,
-      "required": true
+      "required": true,
+      "sub_section_id": 1
     },
     {
       "label": "Indique cuánto está de acuerdo con las afirmaciones abajo.*",
@@ -585,6 +591,7 @@
       "id": "2081366347",
       "type": "SHORT_ANSWER",
       "section":4,
+      "sub_section_id": 1,
       "required": true,
       "items":[{"id":1,"title":"Una pila de un computador se carga con cajas de una cinta transportadora. \n Las cajas están marcadas con un número o un operador (+, -, *, o /). La pila del computador se carga hasta que la caja superior es una caja marcada con un operador. Este operador se utiliza entonces en las dos cajas inferiores. A continuación, las tres casillas se funden en una sola y se marcan con el resultado del cálculo. En la pila del computador, los cálculos se introducen de forma diferente a una calculadora normal. Por ejemplo, los siguientes cálculos deben introducirse de esta manera:.- 2+3 debe introducirse como 2 3 + .-10-2 debe introducirse como 10 2 .-5*2+3 debe introducirse como 5 2 * 3 +.- 5+2*3 debe introducirse como 5 2 3 * +.- (8+2)*(3+4) debe introducirse como 8 2 + 3 4 + *"},
       {"id":2,"title":"Illustración de una pila de un computador","image":"https://drive.google.com/uc?export=view&id=1ZPz0MtEae_g4lO4_gIIc2uu7YA56upAM"},
@@ -596,6 +603,7 @@
       "id": "2081366348",
       "type": "RADIO",
       "section":4,
+      "sub_section_id": 1,
       "required": true,
       "items":[
       {"id":1,"title":"Eduardo está buscando una nueva casa para vivir. Ha buscado en Internet y ha encontrado un departamento perfecto a buen precio. Envió un correo electrónico a Francisco, que vende el departamento, y recibió una rápida respuesta: Hola Gracias por su interés en mi piso Aunque no estoy en la ciudad. Puedo enviarle la llave del departamento para que pueda inspeccionarlo, pero necesito un depósito de seguridad de $5.000,. de antemano para mostrar mi honradez, adjunto una copia de mi RUT. Saludos, Francis Eduardo no sabe qué hacer y te pide ayuda."},
@@ -614,6 +622,7 @@
       "id": "2081366349",
       "type": "RADIO",
       "section":4,
+      "sub_section_id": 1,
       "required": true,
       "items":[
       {"id":1,"title":"Alejandro y Berta se envían mensajes utilizando la siguiente secuencia de transformaciones en cada palabra."},
@@ -632,6 +641,7 @@
       "id": "2081366350",
       "type": "RADIO",
       "section":4,
+      "sub_section_id": 1,
       "required": true,
       "items":[
       {"id":1,"title":"La profesora de la escuela de alpacas quiere dar algún material a sus alumnos. Encontró un portal con un libro escaneado que explica en su portada que debe ser distribuido según una 'Licencia Creative Commons' (CC-BY-ND). Esto permite a todo el mundo compartir, copiar y redistribuir el material de forma gratuita en cualquier medio o formato para cualquier propósito, incluso comercial, siempre que se dé el crédito correspondiente. La licencia también especifica que si uno remezcla, traduce o construye sobre el libro, el libro modificado no puede ser distribuido."},
@@ -649,6 +659,7 @@
       "id": "2081366351",
       "type": "SHORT_ANSWER",
       "section":4,
+      "sub_section_id": 1,
       "required": true,
       "items":[{"id":1,"title":"Un chamán puede convertir objetos en otros nuevos objetos.  Puede convertir.  Dos canelos en una moneda de plata.  Una moneda de plata y dos canelos en un piñón.  Un piñón y un canelo en una flecha.  Una moneda de plata, un piñón y una flecha en un huemul.  Cuando un objeto se convierte en otro, desaparece inmediatamente."},
       {"id":2,"title":"","image":"https://drive.google.com/uc?export=view&id=1I9-etK6f7wFqikAlv7UD19ojENe6noMK"},
@@ -660,6 +671,7 @@
       "id": "2081366352",
       "type": "RADIO",
       "section":4,
+      "sub_section_id": 1,
       "required": true,
       "items":[
       {"id":1,"title":"Para sus deberes, Tomas tenía que escribir palabras en tarjetas y unirlas con gomas elásticas.  La profesora le dijo que uniera dos palabras que se diferenciaran exactamente en una letra.  Tomas lo hizo, como puedes ver en la imagen de la derecha.  Cuando Tomas volvió de su descanso, se llevó una sorpresa.  Pedro, su hermano pequeño, había borrado todas las palabras."},
@@ -710,7 +722,7 @@
       "order": "4"
     }
   ],
-  "fieldsOrder": { "2081366314":0,"2081366315":1,"2081366316":2,"2081366317":3,"2081366318":4,"2081366319":5,"2081366320":6,"2081366321":7  ,"2081366322":8  ,"2081366323":9  ,"2081366324":10  ,"2081366325":11  ,"2081366326":12  ,"2081366327":13  ,"2081366328":14,"2081366329":15  ,"2081366330":16
+  "fieldsOrder": { "2081366315":0,"2081366314":1,"2081366316":2,"2081366317":3,"2081366318":4,"2081366319":5,"2081366320":6,"2081366321":7  ,"2081366322":8  ,"2081366323":9  ,"2081366324":10  ,"2081366325":11  ,"2081366326":12  ,"2081366327":13  ,"2081366328":14,"2081366329":15  ,"2081366330":16
   ,"2081366331":17  ,"2081366332":18,"2081366333":19  ,"2081366334":20,"2081366335":21,"2081366336":22,"2081366337":23,"2081366338":24,"2081366339":25,"2081366340":26,
   "2081366341":27,"2081366342":28,"2081366343":29,"2081366344":30,"2081366345":31,
   "2081366346":32,"2081366347":33,"2081366348":34,"2081366349":35,"2081366350":36,
