@@ -18,9 +18,10 @@ const FormWrapper = (props) => {
   const [formQuestion,setFormQuestion]= useState(null);
   const [sectionForm,setSectionForm]= useState(1);
   const [sectionFormMax,setSectionFormMax]= useState(1);
-  const [sub_section_count,setSub_section_count ] = useState(0);
+  const [sub_section_count,setSub_section_count ] = useState(1);
   const [sections,setSections]= useState(null);
   const [permissionToSend,setPermissionToSend]= useState(false);
+  const [changeSubSection,setChangeSubSection]= useState(false);
   const methods = useGoogleForm({ form });
 
 
@@ -40,23 +41,25 @@ const FormWrapper = (props) => {
     
       <div>
         {   
-          sectionForm ? form?.fields?.map((field) => {
-            const { id,section } = field;
+          sectionForm || sub_section_count ? form?.fields?.map((field) => {
+            const { id,section,sub_section_id } = field;
             let questionInput = null;
             if(sectionForm == section){
-              switch (field?.type) {
-              case "RADIO":
-                questionInput = <RadioInput id={id} field={field} />;
-                break;
-              case "SHORT_ANSWER":
-                questionInput = <ShortAnswerInput id={id} field={field}/>;
-                break;
-              case "LINEAR":
-              questionInput = <LinearGrid id={id} />;
-                break;
-              default:
-                return null;
-            }
+              if(sub_section_id == sub_section_count){     
+                  switch (field?.type) {
+                  case "RADIO":
+                    questionInput = <RadioInput id={id} field={field} />;
+                    break;
+                  case "SHORT_ANSWER":
+                    questionInput = <ShortAnswerInput id={id} field={field}/>;
+                    break;
+                  case "LINEAR":
+                  questionInput = <LinearGrid id={id} />;
+                    break;
+                  default:
+                    return null;
+                }
+              }
             }
             if (!questionInput) {
               return null;
@@ -77,21 +80,50 @@ const FormWrapper = (props) => {
   };
 
   const onSubmit = async (data) => {
-    if(sectionForm == sectionFormMax){
-      console.log(">>> Here is the data", data);
-      //console.log(data['2081366331']);
-
-    } else {
-      if(sub_section_count == 0){
-        setSectionForm(sectionForm+1);
-        setSub_section_count(0);   
+    if(changeSubSection){
+      const sectionView = sections?.find((e)=> e?.id == sectionForm);
+      if(sectionView?.sub_section > 0 && sub_section_count <= sectionView?.sub_section){
+        setSub_section_count(sub_section_count+1); 
       } else {
-        setSub_section_count(sub_section_coun+1);      
+        setSectionForm(sectionForm+1);
+        setSub_section_count(1);
+      } 
+    }else{
+      if(sectionForm == sectionFormMax){
+        console.log(">>> Here is the data", data);
+        //console.log(data['2081366331']);
+  
+      } else {
+  
+          setSectionForm(sectionForm+1);
+          setSub_section_count(1);
       }
     }
+
     //await methods.submitToGoogleForms(data);
     //alert("Form submitted with success!");
   };
+  const onChangesubSection = async () => {
+      if(sections[sectionForm]?.sub_section > 0 && sub_section_count <= sections[sectionForm]?.sub_section){
+        console.log(sub_section_count)
+        setSub_section_count(sub_section_count+1); 
+      } else {
+        setSectionForm(sectionForm+1);
+        setSub_section_count(0);
+      } 
+    
+  };
+  useEffect(()=>{
+    if(sections){
+      const sectionView = sections?.find((e)=>e?.id == sectionForm);
+      if(sectionView?.sub_section > 0){
+        setChangeSubSection(true);
+      }else{
+        setChangeSubSection(false);
+      }
+    }
+  },[sectionForm])
+  useEffect
   useEffect(()=>{
     setFormQuestion(history.location.state);
   },[]);
@@ -148,7 +180,7 @@ const FormWrapper = (props) => {
               style={{position:'absolute',right:-25,bottom:1,top:-30,width:100,height:50,fontSize:16}}
               >
               {  permissionToSend ?   t('common.send') :  t('common.next')}
-            </Button>   
+          </Button>   
     </Question>
     </Layout.Content>
 
