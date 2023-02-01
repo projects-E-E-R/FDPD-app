@@ -127,7 +127,7 @@ const FormWrapper = (props) => {
 
   return (
     <StyledForm>
-    <Layout.Content>
+    <Layout.Content  style={{width:'70%'}}>
     <Section  title={''}  loading={false} shadow>
     {sectionForm == 1 ? 
           <Question titleCenter title={formQuestion?.name} shadow loading={false} initSection={true}>
