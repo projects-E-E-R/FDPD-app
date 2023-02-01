@@ -11,7 +11,7 @@ import RadioInput from 'components/Form/RadioInput/RadioInput';
 import ShortAnswerInput from 'components/Form/ShortAnswerInput/ShortAnswerInput';
 import LinearGrid from 'components/Form/LinearGrid/LinearGrid'
 import Button from 'ui/Button/Button';
-
+import useStoreForm from './Store/useStoreForm';
 const FormWrapper = (props) => {
     const {history} = props;
   const {t} =useTranslation();
@@ -22,6 +22,10 @@ const FormWrapper = (props) => {
   const [sections,setSections]= useState(null);
   const [permissionToSend,setPermissionToSend]= useState(false);
   const [changeSubSection,setChangeSubSection]= useState(false);
+  const[timerSection,setTimerSection] = useState(0);
+  const[subscription,setSubscription] = useState(null);
+  const {setTimer,subscribeTimer,setTimeForResponse,timeForResponse} = 
+  useStoreForm(({setTimer,subscribeTimer,setTimeForResponse,timeForResponse})=>({setTimer,subscribeTimer,setTimeForResponse,timeForResponse}));
   const methods = useGoogleForm({ form });
 
 
@@ -90,6 +94,10 @@ const FormWrapper = (props) => {
       } 
     }else{
       if(sectionForm == sectionFormMax){
+        if(subscription){
+          subscription.unsubscribe();
+        }
+        console.log(timeForResponse);
         console.log(">>> Here is the data", data);
         //console.log(data['2081366331']);
   
@@ -106,13 +114,29 @@ const FormWrapper = (props) => {
   useEffect(()=>{
     if(sections){
       const sectionView = sections?.find((e)=>e?.id == sectionForm);
+      setTimer();
       if(sectionView?.sub_section > 0){
         setChangeSubSection(true);
       }else{
         setChangeSubSection(false);
       }
     }
-  },[sectionForm])
+  },[sectionForm]);
+
+  useEffect(()=>{
+    if(subscribeTimer){
+      if(subscription){
+        setTimeForResponse(timeForResponse,timerSection,sections,sectionForm);
+        subscription.unsubscribe();
+      }
+      const subscribe = subscribeTimer.subscribe((val) => {
+        //console.log(val);
+        setTimerSection(val);
+      });
+      setSubscription(subscribe);
+    }
+  },[subscribeTimer]);
+
   useEffect
   useEffect(()=>{
     setFormQuestion(history.location.state);
