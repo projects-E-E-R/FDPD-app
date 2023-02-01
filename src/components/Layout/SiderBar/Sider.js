@@ -8,11 +8,15 @@ import { useHistory } from 'react-router-dom';
 import CollapsibleTool from './children/CollapsibleTool/CollapsibleTool';
 import Menu from './children/Menu/Menu';
 import LogOut from './children/LogOut/LogOut';
+import useAccountStore from 'store/common/account';
+
 const Sider = (props) => {
   const {
     collapsed,
     setCollapsed
   } = props;
+
+  const {isAdmin} = useAccountStore();
 
   const toggleStatus = () => setCollapsed(!collapsed);
 
@@ -51,28 +55,42 @@ const Sider = (props) => {
             </Avatar>
           </div> 
           <div className="menu-item-content-user">
-          <h1 className='menu-item-content-user-welcome'>Bienvenido</h1>
+            <h1 className='menu-item-content-user-welcome'>Bienvenido</h1>
           </div>
           <Divider/>
-          <Menu.Item key={1}
-           onClick={()=>history.push('/')}
-          className="menu-item"
-          icon={<UserOutlined className="menu-item-avatar-section"/>}>
-          
-            <h2 className='ant-menu-submenu-title'>Mi perfil</h2>
-          </Menu.Item>
-          <Menu.Item key={2}
-          onClick={()=>history.push('/forms')}
-          className="menu-item"
-          icon={<FormOutlined className="menu-item-avatar-section"/>}>
-            <h2 className='ant-menu-submenu-title'>Mis Encuestas</h2>
-          </Menu.Item>
-          <Menu.Item key={3}
-          onClick={()=>history.push('/')}
-          className="menu-item"
-          icon={<HistoryOutlined className="menu-item-avatar-section"/>}>
-            <h2 className='ant-menu-submenu-title'>Mi Historial</h2>
-          </Menu.Item>   
+          {
+            isAdmin ? 
+            <>
+              <Menu.Item key={1}
+                onClick={()=>history.push('/users')}
+                className="menu-item"
+                icon={<UserOutlined className="menu-item-avatar-section"/>}>
+                  <h2 className='ant-menu-submenu-title'>Usuarios</h2>
+              </Menu.Item>
+            </> :
+            <>
+              <Menu.Item key={1}
+                onClick={()=>history.push('/')}
+                className="menu-item"
+                icon={<UserOutlined className="menu-item-avatar-section"/>}>
+                  <h2 className='ant-menu-submenu-title'>Mi perfil</h2>
+              </Menu.Item>
+              
+              <Menu.Item key={2}
+                onClick={()=>history.push('/forms')}
+                className="menu-item"
+                icon={<FormOutlined className="menu-item-avatar-section"/>}>
+                  <h2 className='ant-menu-submenu-title'>Mis Encuestas</h2>
+              </Menu.Item>
+              
+              <Menu.Item key={3}
+                onClick={()=>history.push('/')}
+                className="menu-item"
+                icon={<HistoryOutlined className="menu-item-avatar-section"/>}>
+                  <h2 className='ant-menu-submenu-title'>Mi Historial</h2>
+              </Menu.Item>   
+            </>
+          }
         </Menu>
       </div>
       <LogOut/>

@@ -52,6 +52,18 @@ i18n
             next:'Siguiente',
             back:'Atrás',
             send:'Enviar'
+          },
+          user:{
+            first_name: "Nombre",
+            last_name: "Apellido",
+            full_name: "Nombre completo",
+            rut: "Rut",
+            career: "Carrera",
+            gender: "Género",
+            email: "Correo",
+            password: "Contraseña",
+            male: "Masculino",
+            female: "Femenino"
           }
       }
      },

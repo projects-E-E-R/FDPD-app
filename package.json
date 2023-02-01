@@ -36,6 +36,7 @@
     "react": "^17.0.2",
     "react-data-export": "0.6.0",
     "react-dom": "^17.0.2",
+    "react-highlight-words": "^0.20.0",
     "react-google-forms-hooks": "^1.2.4",
     "react-hook-form": "^7.25.1",
     "react-i18next": "11.13.0",
