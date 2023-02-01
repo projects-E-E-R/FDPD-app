@@ -48,7 +48,9 @@ i18n
             date: 'Fecha',
             wait: 'Espere',
             pleaseWait: 'Espere un momento...',
-            charging: 'Cargando información...'
+            charging: 'Cargando información...',
+            exportFile: "Exportar archivo",
+            refresh: "Recargar datos"
           },
           user:{
             first_name: "Nombre",

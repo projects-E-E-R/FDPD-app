@@ -8,6 +8,7 @@ import { getCurrentYear } from 'utils/datetime';
 import { getDataReport } from '../UploadFile/Components/DocumentExample/service';
 import { StyledRegisteredUsers } from './StyledRegisteredUsers.styles';
 import Highlighter from 'react-highlight-words';
+import useUsersStore from 'pages/Users/store';
 
 const RegisteredUsers = (props) => {
     const {  videoSource } = props;
@@ -15,10 +16,12 @@ const RegisteredUsers = (props) => {
     const [dataSource, setDataSource] = useState(null)
     const [careerFilter, setCareerFilter] = useState([])
     const [dataReport, setDataReport] = useState(null)
-    
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
+
+    const { requestData: fetchUsersData, usersData, loading: usersLoading, ...usersState } = useUsersStore();
+
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setSearchText(selectedKeys[0]);
@@ -38,6 +41,7 @@ const RegisteredUsers = (props) => {
                 career: item.career,
                 gender: t(`user.${item.gender}`),
                 email: item.email,
+                key: `user${item.user_id}`
             }
         })
 
@@ -126,7 +130,7 @@ const RegisteredUsers = (props) => {
       password: "123456"
     },
     {
-      user_id: 15,
+      user_id: 17,
       first_name: "Nicolas",
       last_name: "Garcia",
       full_name: "Nicolas Garcia",
@@ -139,7 +143,7 @@ const RegisteredUsers = (props) => {
       password: "clave123"
     },
     {
-      user_id: 15,
+      user_id: 18,
       first_name: "Dionisio",
       last_name: "Olivares",
       full_name: "Dionisio Olivares",
@@ -165,7 +169,7 @@ const RegisteredUsers = (props) => {
       password: "clave123"
     },
     {
-      user_id: 15,
+      user_id: 19,
       first_name: "Maria",
       last_name: "Flores",
       full_name: "Maria Flores",
@@ -179,7 +183,7 @@ const RegisteredUsers = (props) => {
     }
 ]
 
-    useEffect(() => {
+    /* useEffect(() => {
         const data = getDataModel(users)
         setDataSource(data)
 
@@ -190,7 +194,13 @@ const RegisteredUsers = (props) => {
             console.log(careerFilterData)
         setCareerFilter(careerFilterData)
 
-    }, [])
+    }, []) */
+
+    useEffect(() => {
+      const data = getDataModel(usersData)
+      setDataSource(data)
+
+  }, [usersData])
 
     /////////////////////
 
@@ -339,7 +349,7 @@ const RegisteredUsers = (props) => {
   return (
       <StyledRegisteredUsers>
           <div className="info">
-           <Table dataSource={dataSource} columns={columns} />
+           <Table dataSource={dataSource} columns={columns}/>
           </div>
       </StyledRegisteredUsers>
   );

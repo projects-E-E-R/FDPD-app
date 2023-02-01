@@ -69,34 +69,34 @@ const DocumentExample = () => {
         [
             { value: 'Nombre_1', },
             { value: 'Apellido_1', },
-            { value: 'Rut_1', },
+            { value: '1.111.111-1', },
             { value: 'Carrera_1', },
-            { value: 'Genero_1', },
-            { value: 'Correo_1', },
+            { value: 'Masculino', },
+            { value: 'correo_1@ce.ucn.cl', },
         ],
         [
             { value: 'Nombre_2', },
             { value: 'Apellido_2', },
-            { value: 'Rut_2', },
+            { value: '1.111.111-1', },
             { value: 'Carrera_2', },
-            { value: 'Genero_2', },
-            { value: 'Correo_2', },
+            { value: 'Femenino', },
+            { value: 'correo_2@ucn.cl', },
         ],
         [
             { value: 'Nombre_3', },
             { value: 'Apellido_3', },
-            { value: 'Rut_3', },
+            { value: '1.111.111-1', },
             { value: 'Carrera_3', },
-            { value: 'Genero_3', },
-            { value: 'Correo_3', },
+            { value: 'Masculino', },
+            { value: 'correo_3@alumnos.ucn.cl', },
         ],
         [
             { value: 'Nombre_4', },
             { value: 'Apellido_4', },
-            { value: 'Rut_4', },
+            { value: '1.111.111-1', },
             { value: 'Carrera_4', },
-            { value: 'Genero_4', },
-            { value: 'Correo_4', },
+            { value: 'Femenino', },
+            { value: 'correo_4@gmail.com', },
         ]
     ]
 
@@ -116,8 +116,7 @@ const DocumentExample = () => {
                     filename={`file`}
                     element={
                     <div
-                        className="button-example"
-                        $capitalize>
+                        className="button-example">
                     <DownloadOutlined style={{ fontSize: '20px' }} /> Formato
                 </div>
 }
