@@ -26,7 +26,7 @@ function App() {
         <Network />
         <Switch>
           {
-            !token ?
+              token ?
               isAdmin ? (
               <Layout>
                 {/* <Route exact path="/" component={Login} /> */}
@@ -38,7 +38,7 @@ function App() {
                 <Route path="/form" component={Form} />
                 <Route path="/forms" component={Forms} />
               </Layout>
-            : null
+            :   null
           }
           <Route exact path="/" component={<Login/>} />
           <Redirect to="/" />
