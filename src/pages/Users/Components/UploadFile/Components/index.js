@@ -8,8 +8,8 @@ import Button from 'ui/Button/Button';
 import useStoreUploadExcel from './store';
 
 const TransformToJson = () => {
-  const {requestData,response,error} = useStoreUploadExcel(({requestData,response,error})=>({requestData,response,error}));
-  const clearInputFile = (f)=>{
+  const {requestData, response, error} = useStoreUploadExcel(({requestData, response, error})=>({requestData, response, error}));
+  const clearInputFile = (f) => {
     if(f.value){
         try{
             f.value = ''; //for IE11, latest Chrome/Firefox/Opera...
@@ -24,7 +24,7 @@ const TransformToJson = () => {
             parentNode.insertBefore(f,ref);
         }
     }
-}
+  }
 
 const career_data = [
   {
@@ -80,6 +80,7 @@ const readUploadFile = (e) => {
                   return {
                     first_name: row["Nombre"],
                     last_name: row["Apellido"],
+                    full_name: row["Nombre"] + " " + row["Apellido"],
                     rut: row["Rut"],
                     career_id: career?.id,
                     gender_id: gender?.id,

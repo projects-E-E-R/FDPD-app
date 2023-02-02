@@ -12,5 +12,9 @@ export const SEND_EXCEL = 'http://localhost:8080/v1/user/create'
   export const SIGN_OUT_API = process.env.REACT_APP_SIGN_OUT_API;
   
   /* USERS */
-  export const GET_USERS = process.env.REACT_APP_GET_USERS_PATH || '/user/get';
+  export const GET_USERS = '/user/get';
+  export const UPDATE_USER = '/user/update';
+  export const UPDATE_USER_PASSWORD = '/user/update/password';
+  export const GET_CAREERS = '/info/career';
+  export const GET_GENDERS = '/info/gender';
 

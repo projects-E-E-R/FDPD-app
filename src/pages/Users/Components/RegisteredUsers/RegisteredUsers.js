@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { LockOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Input, Menu, Space, Table } from 'antd';
+import { Button, Form, Input, InputNumber, Menu, message, Popconfirm, Select, Space, Table, Typography } from 'antd';
 import ExcelExport from 'components/Excel/ExcelExport/ExcelExport';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,18 +9,81 @@ import { getDataReport } from '../UploadFile/Components/DocumentExample/service'
 import { StyledRegisteredUsers } from './StyledRegisteredUsers.styles';
 import Highlighter from 'react-highlight-words';
 import useUsersStore from 'pages/Users/store';
+import { useCareersStore } from 'store/common/career';
+import { useGendersStore } from 'store/common/gender';
 
 const RegisteredUsers = (props) => {
     const {  videoSource } = props;
     const { t } = useTranslation();
     const [dataSource, setDataSource] = useState(null)
     const [careerFilter, setCareerFilter] = useState([])
-    const [dataReport, setDataReport] = useState(null)
+    const [careerOptions, setCareerOptions] = useState(null)
+    const [genderOptions, setGenderOptions] = useState(null)
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
+    const [form] = Form.useForm();
+    const [editingKey, setEditingKey] = useState('');
+    const isEditing = (record) => record.key === editingKey;
+    
+    const { requestData: fetchUsersData, requestUpdateData, requestResetPassword, usersData, loading: usersLoading, ...usersState } = useUsersStore();
+    const { requestData: fetchCareerData, getCarrerIDByName, careerData, loading: careerLoading, ...careerState } = useCareersStore();
+    const { requestData: fetchGenderData, getGenderIDByName, genderData, loading: genderLoading, ...genderState } = useGendersStore();
 
-    const { requestData: fetchUsersData, usersData, loading: usersLoading, ...usersState } = useUsersStore();
+
+    const edit = (record) => {
+      form.setFieldsValue({
+        first_name: '',
+        last_name: '',
+        rut: '',
+        career: '',
+        gender: '',
+        email: '',
+        ...record,
+      });
+      setEditingKey(record.key);
+    };
+    
+    const resetPassword = (record) => {
+      const newPassword = record?.rut?.replaceAll(".","")?.split("-")
+      requestResetPassword(record.email, newPassword[0])
+
+    };
+
+    const cancel = () => {
+      setEditingKey('');
+    };
+    const save = async (key) => {
+      try {
+        const row = await form.validateFields();
+        const newData = [...dataSource];
+        const index = newData.findIndex((item) => key === item.key);
+        if (index > -1) {
+          const item = newData[index];
+          newData.splice(index, 1, {
+            ...item,
+            ...row,
+          });
+
+          const updatedData = newData[index]
+          console.log("new data: ", updatedData)
+
+          const career_id = getCarrerIDByName(careerOptions, updatedData?.career)
+          const gender_id = getGenderIDByName(genderOptions, updatedData?.gender)
+
+          requestUpdateData({...updatedData, career_id: career_id, gender_id: gender_id})
+          setDataSource(newData);
+          setEditingKey('');
+        } else {
+          newData.push(row);
+          setDataSource(newData);
+          setEditingKey('');
+        }
+      } catch (errInfo) {
+        console.log('Validate Failed:', errInfo);
+      }
+    };
+
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -33,8 +96,9 @@ const RegisteredUsers = (props) => {
     };
 
     const getDataModel = (data) => {
-        const dataSource = data?.map((item) => {
+      const dataSource = data?.map((item) => {
             return {
+                user_id: item.user_id,
                 first_name: item.first_name,
                 last_name: item.last_name,
                 rut: item.rut,
@@ -48,159 +112,20 @@ const RegisteredUsers = (props) => {
         return dataSource;
     }
 
-    const dataTable = [
-    {
-      user_id: 16,
-      first_name: "Sebastian Sebastian Sebastian",
-      last_name: "Sanchez",
-      full_name: "Sebastian Sanchez",
-      career_id: 1,
-      rut: "19.239.594-1",
-      career: "Ingeniería Civil en Computación e Informática",
-      gender: "male",
-      gender_id: 1,
-      email: "ssp013@alumnos.ucn.cl",
-      password: "123456"
-    },
-    {
-      user_id: 15,
-      first_name: "Nicolas",
-      last_name: "Garcia",
-      full_name: "Nicolas Garcia",
-      career_id: 1,
-      rut: "19.239.594-1",
-      career: "Ingeniería Civil en Computación e Informática",
-      gender: "male",
-      gender_id: 1,
-      email: "nicolas.garcia@alumnos.ucn.cl",
-      password: "clave123"
-    },
-    {
-      user_id: 15,
-      first_name: "Dionisio",
-      last_name: "Olivares",
-      full_name: "Dionisio Olivares",
-      career_id: 1,
-      rut: "20.236.276-1",
-      career: "Ingeniería Civil en Computación e Informática",
-      gender: "male",
-      gender_id: 1,
-      email: "dionisio.olivares@alumnos.ucn.cl",
-      password: "clave123"
-    },
-    {
-      user_id: 15,
-      first_name: "Juan",
-      last_name: "Perez",
-      full_name: "Juan Perez",
-      career_id: 1,
-      rut: "18.543.343-1",
-      career: "Ingeniería Civil Industrial",
-      gender: "male",
-      gender_id: 1,
-      email: "juan.perez@alumnos.ucn.cl",
-      password: "clave123"
-    },
-    {
-      user_id: 15,
-      first_name: "Maria",
-      last_name: "Flores",
-      full_name: "Maria Flores",
-      career_id: 1,
-      rut: "19.939.123-9",
-      career: "Ingeniería Civil Industrial",
-      gender: "female",
-      gender_id: 1,
-      email: "maria.flores@alumnos.ucn.cl",
-      password: "clave123"
-    }
-]
-    const users = [
-    {
-      user_id: 16,
-      first_name: "Sebastian",
-      last_name: "Sanchez",
-      full_name: "Sebastian Sanchez",
-      career_id: 1,
-      rut: "19.239.594-1",
-      career: "Ingeniería Civil en Computación e Informática",
-      gender: "male",
-      gender_id: 1,
-      email: "ssp013@alumnos.ucn.cl",
-      password: "123456"
-    },
-    {
-      user_id: 17,
-      first_name: "Nicolas",
-      last_name: "Garcia",
-      full_name: "Nicolas Garcia",
-      career_id: 1,
-      rut: "19.239.594-1",
-      career: "Ingeniería Civil en Computación e Informática",
-      gender: "male",
-      gender_id: 1,
-      email: "nicolas.garcia@alumnos.ucn.cl",
-      password: "clave123"
-    },
-    {
-      user_id: 18,
-      first_name: "Dionisio",
-      last_name: "Olivares",
-      full_name: "Dionisio Olivares",
-      career_id: 1,
-      rut: "20.236.276-1",
-      career: "Ingeniería Civil en Computación e Informática",
-      gender: "male",
-      gender_id: 1,
-      email: "dionisio.olivares@alumnos.ucn.cl",
-      password: "clave123"
-    },
-    {
-      user_id: 15,
-      first_name: "Juan",
-      last_name: "Perez",
-      full_name: "Juan Perez",
-      career_id: 1,
-      rut: "18.543.343-1",
-      career: "Ingeniería Civil Industrial",
-      gender: "male",
-      gender_id: 1,
-      email: "juan.perez@alumnos.ucn.cl",
-      password: "clave123"
-    },
-    {
-      user_id: 19,
-      first_name: "Maria",
-      last_name: "Flores",
-      full_name: "Maria Flores",
-      career_id: 1,
-      rut: "19.939.123-9",
-      career: "Ingeniería Civil Industrial",
-      gender: "female",
-      gender_id: 1,
-      email: "maria.flores@alumnos.ucn.cl",
-      password: "clave123"
-    }
-]
-
-    /* useEffect(() => {
-        const data = getDataModel(users)
-        setDataSource(data)
-
-        const careerFilterData = dataSource?.map((user) => {
-                return  { text:  user['career'] , value: user['career'] }
-            })
-
-            console.log(careerFilterData)
-        setCareerFilter(careerFilterData)
-
-    }, []) */
-
     useEffect(() => {
       const data = getDataModel(usersData)
       setDataSource(data)
 
   }, [usersData])
+    useEffect(() => {
+      console.log(careerData)
+      setCareerOptions(careerData)
+  }, [careerData])
+  
+  useEffect(() => {
+      console.log(genderData)
+      setGenderOptions(genderData)
+  }, [genderData])
 
     /////////////////////
 
@@ -289,12 +214,49 @@ const RegisteredUsers = (props) => {
             text
           ),
       });
+
+    const EditableCell = ({
+        editing,
+        dataIndex,
+        title,
+        inputType,
+        record,
+        index,
+        children,
+        ...restProps
+      }) => {
+        const inputNode = inputType === 'select' ? <Select options={dataIndex === 'career' ? careerOptions : genderOptions}/> : <Input />;
+        return (
+          <td {...restProps}>
+            {editing ? (
+              <Form.Item
+                name={dataIndex}
+                style={{
+                  margin: 0,
+                }}
+                rules={[
+                  {
+                    required: true,
+                    message: `Please Input ${title}!`,
+                  },
+                ]}
+              >
+                {inputNode}
+              </Form.Item>
+            ) : (
+              children
+            )}
+          </td>
+        );
+      };
       
     const columns = [
     {
         title: 'Nombre',
         dataIndex: 'first_name',
         key: 'first_name',
+        editable: true,
+        width: 150,
         sorter: (a, b) => a.first_name.localeCompare(b.first_name),
         ...getColumnSearchProps('first_name')
     },
@@ -302,6 +264,8 @@ const RegisteredUsers = (props) => {
         title: 'Apellido',
         dataIndex: 'last_name',
         key: 'last_name',
+        editable: true,
+        width: 150,
         sorter: (a, b) => a.last_name.localeCompare(b.last_name),
         ...getColumnSearchProps('last_name')
     },
@@ -309,6 +273,8 @@ const RegisteredUsers = (props) => {
         title: 'RUT',
         dataIndex: 'rut',
         key: 'rut',
+        editable: true,
+        width: 150,
         sorter: (a, b) => a.rut.localeCompare(b.rut),
         ...getColumnSearchProps('rut')
     },
@@ -316,10 +282,9 @@ const RegisteredUsers = (props) => {
         title: 'Carrera',
         dataIndex: 'career',
         key: 'career',
+        editable: true,
+        width: 230,
         sorter: (a, b) => a.career.localeCompare(b.career),
-        /* filters: [... new Set(dataSource?.map((user) => {
-            return  { text:  user['career'] , value: user['career'] }
-        }))] */
         filters: ([... new Set(dataSource?.map((user) => {
                     return  user['career']
                 }))]).map((career) => {
@@ -331,6 +296,8 @@ const RegisteredUsers = (props) => {
         title: 'Género',
         dataIndex: 'gender',
         key: 'gender',
+        editable: true,
+        width: 50,
         filters: [
       { text:  t(`user.male`) , value: t(`user.male`) },
       { text:  t(`user.female`) , value: t(`user.female`)},
@@ -342,14 +309,88 @@ const RegisteredUsers = (props) => {
         title: 'Correo',
         dataIndex: 'email',
         key: 'email',
-
+        editable: true,
+    },
+    {
+      title: 'Herramientas',
+      dataIndex: 'operation',
+      width: 150,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <span>
+            <Typography.Link
+              onClick={() => save(record.key)}
+              style={{
+                marginRight: 8,
+                color:"green",
+              }}
+            >
+              Guardar
+            </Typography.Link>
+            <Popconfirm title="Perderás los cambios" onConfirm={cancel}>
+              <a style={{ color:"red" }}>
+                Cancelar
+              </a>
+            </Popconfirm>
+          </span>
+        ) : (
+          <Space>
+            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+              Editar
+            </Typography.Link>
+            <Typography.Link 
+            style={ editingKey == '' ? {
+              color:"orange",
+            } : {}}
+            disabled={editingKey !== ''} onClick={() => resetPassword(record)}>
+              Resetear contraseña
+            </Typography.Link>
+          </Space>
+        );
+      },
     },
     ];
+
+    const mergedColumns = columns.map((col) => {
+      if (!col.editable) {
+        return col;
+      }
+      return {
+        ...col,
+        onCell: (record) => ({
+          record,
+          inputType: col.dataIndex === 'career' || col.dataIndex === 'gender' ? 'select' : 'text',
+          dataIndex: col.dataIndex,
+          title: col.title,
+          editing: isEditing(record),
+        }),
+      };
+    });
   
   return (
       <StyledRegisteredUsers>
           <div className="info">
-           <Table dataSource={dataSource} columns={columns}/>
+          <Form form={form} component={false}>
+            <Table
+              components={{
+                body: {
+                  cell: EditableCell,
+                },
+              }}
+              size="small"
+              bordered
+              rowKey="id"
+              scroll={{ x: 400 }}
+              dataSource={dataSource} 
+              columns={mergedColumns}
+              rowClassName="editable-row"
+              pagination={{
+                onChange: cancel,
+              }}
+            />
+          </Form>
+          {/*  <Table dataSource={dataSource} columns={columns}/> */}
           </div>
       </StyledRegisteredUsers>
   );

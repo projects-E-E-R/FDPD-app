@@ -1,5 +1,7 @@
+import { message } from 'antd';
+import { getData, PUT } from 'services/common/http';
 import { getUersAsObservable } from 'services/common/users';
-import { BASE_URL, GET_USERS } from 'settings/constants';
+import { BASE_URL, GET_USERS, UPDATE_USER, UPDATE_USER_PASSWORD } from 'settings/constants';
 import { getUnix } from 'utils/datetime';
 
 export const usersStoreConfig = (set) => ({
@@ -70,6 +72,112 @@ export const usersStoreConfig = (set) => ({
         set({ loading: false });
       }
     });
+  },
+  requestUpdateData: (userData) => {
+    set({ loading: true });
+    console.log("update data: ",userData)
+    getData(BASE_URL + UPDATE_USER, PUT, {
+      data: {
+        ...userData, 
+        full_name: userData?.first_name + " " + userData?.last_name
+    }
+    })()
+      .subscribe({
+        next: (result) => {
+          if(result?.error){
+            set({
+              error: result?.error.message ?? result?.error?.title,
+              loading: false,
+              value: undefined,
+              response: null
+            });
+          }
+          else if (result?.data) {
+            set({
+              response: result?.data,
+              loading: false
+            });
+            message.success(`Datos actualizados exitosamente`);
+          } else if (result?.status == 400) {
+            message.error(`Ha ocurrido un error`);
+            set({
+              error: result?.messages,
+              loading: false,
+              value: undefined,
+              response: null
+            });
+          }else if (result?.code == 'Error') {
+            set({
+              error: result?.error.message ?? result?.error?.title,
+              loading: false,
+              value: undefined,
+              response: null
+            });
+          }
+        },
+        error: ({ error }) => {
+          set({
+            error: error,
+            loading: false,
+            value: undefined
+          });
+        },
+        complete: () => {
+          set({ loading: false });
+        }
+      });
+  },
+  requestResetPassword: (userEmail, password) => {
+    set({ loading: true });
+    getData(BASE_URL + UPDATE_USER_PASSWORD, PUT, {
+      data: {
+        email: userEmail,
+        password: password,
+    }
+    })()
+      .subscribe({
+        next: (result) => {
+          if(result?.error){
+            set({
+              error: result?.error.message ?? result?.error?.title,
+              loading: false,
+              value: undefined,
+              response: null
+            });
+          }
+          else if (result?.data) {
+            message.success(`Contraseña de ${userEmail} reestablecida exitosamente`);
+            set({
+              response: result?.data,
+              loading: false
+            });
+          } else if (result?.status == 400) {
+            set({
+              error: result?.messages,
+              loading: false,
+              value: undefined,
+              response: null
+            });
+          }else if (result?.code == 'Error') {
+            set({
+              error: result?.error.message ?? result?.error?.title,
+              loading: false,
+              value: undefined,
+              response: null
+            });
+          }
+        },
+        error: ({ error }) => {
+          set({
+            error: error,
+            loading: false,
+            value: undefined
+          });
+        },
+        complete: () => {
+          set({ loading: false });
+        }
+      });
   },
   value: undefined
 });
