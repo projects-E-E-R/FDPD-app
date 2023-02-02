@@ -10,9 +10,13 @@ import Section from 'components/Section/Section';
 import { AlertOutlined } from '@ant-design/icons';
 import  Card from 'ui/Card/Card';
 import {Row,Col} from 'antd';
+import useStoreForms from './Store';
+import {getFormReMap} from './Services';
+import { GET } from 'services/common/http';
 const Forms = (props) => {
   const {t} =useTranslation();
   const [formFilter,setFormFilter]= useState(null);
+  const {requestForm,valueForms} = useStoreForms(({requestForm,valueForms})=>({requestForm,valueForms}));
   let formUser = [{id:1,name:'Test 1',path:'/form',answered:false},{id:2,name:'Test 2',path:'/form',answered:true},
   {id:3,name:'Test 3',path:'/form',answered:true},{id:4,name:'Test 4',path:'/form',answered:true},{id:5,name:'Test 5',path:'/form',answered:true}]
   const FormViewer = ({ formFilter }) => {
@@ -30,9 +34,19 @@ const Forms = (props) => {
     );
   };
 
+  /* Get FORMS user */
   useEffect(() => {
-    setFormFilter(formUser.filter((form)=> form.answered == false))
+    if(valueForms == undefined){
+      requestForm(null,GET);
+    }
   }, []);
+
+  useEffect(() => {
+    if(valueForms){
+      setFormFilter(getFormReMap(valueForms).filter((form)=> form.answered == false));
+    }
+    
+  }, [valueForms]);
   useEffect(() => {
     document.title = 'Mis encuestas';
   }, []);

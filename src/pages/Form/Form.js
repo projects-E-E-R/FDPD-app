@@ -20,6 +20,7 @@ const FormWrapper = (props) => {
   const [sectionFormMax,setSectionFormMax]= useState(1);
   const [sub_section_count,setSub_section_count ] = useState(1);
   const [sections,setSections]= useState(null);
+  const [fields,setFields]= useState(null);
   const [permissionToSend,setPermissionToSend]= useState(false);
   const [changeSubSection,setChangeSubSection]= useState(false);
   const[timerSection,setTimerSection] = useState(0);
@@ -38,9 +39,11 @@ const FormWrapper = (props) => {
     }
     },[sectionForm]);
     useEffect(()=>{
+      console.log(form);
       setSectionFormMax(total_section);
       setSections(section_content);
-    },[])
+      setFields(fields);
+    },[]);
     return (
     
       <div>
@@ -137,7 +140,6 @@ const FormWrapper = (props) => {
     }
   },[subscribeTimer]);
 
-  useEffect
   useEffect(()=>{
     setFormQuestion(history.location.state);
   },[]);
