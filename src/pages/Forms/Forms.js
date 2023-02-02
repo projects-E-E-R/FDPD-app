@@ -17,8 +17,6 @@ const Forms = (props) => {
   const {t} =useTranslation();
   const [formFilter,setFormFilter]= useState(null);
   const {requestForm,valueForms} = useStoreForms(({requestForm,valueForms})=>({requestForm,valueForms}));
-  let formUser = [{id:1,name:'Test 1',path:'/form',answered:false},{id:2,name:'Test 2',path:'/form',answered:true},
-  {id:3,name:'Test 3',path:'/form',answered:true},{id:4,name:'Test 4',path:'/form',answered:true},{id:5,name:'Test 5',path:'/form',answered:true}]
   const FormViewer = ({ formFilter }) => {
     return (
       <Row gutter={[20, 20]}>

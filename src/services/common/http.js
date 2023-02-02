@@ -10,9 +10,6 @@ export const PATCH = 'patch';
 
 /**
  * Handle the data request
- * @param {Array<number>} vehicleIds Array of vehicles ids
- * @param {moment.Moment} from from datetime
- * @param {moment.Moment} to to datetime
  * @returns Observable
  */
 export const getData =
@@ -39,9 +36,6 @@ export const getData =
 
 /**
  * Handle the data request
- * @param {Array<number>} vehicleIds Array of vehicles ids
- * @param {moment.Moment} from from datetime
- * @param {moment.Moment} to to datetime
  * @returns Observable
  */
 export const getMultiData = (urlConfig) => (params) => {

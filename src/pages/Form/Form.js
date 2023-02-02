@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect,useState,useCallback } from 'react';
+import { GET_SECTIONS_FORM,GET_QUESTIONS_SECTION_FORM } from 'settings/constants';
+import { GET } from 'services/common/http';
 import { GoogleFormProvider, useGoogleForm} from 'react-google-forms-hooks';
-import {StyledForm,Form,QuestionContainer} from './Form.styles';
+import {StyledForm,Form,QuestionContainer,StyleImageContent} from './Form.styles';
 import { useTranslation } from 'react-i18next';
 import Layout from 'components/Layout/Layout';
 import Section from 'components/Section/Section';
@@ -12,6 +14,8 @@ import ShortAnswerInput from 'components/Form/ShortAnswerInput/ShortAnswerInput'
 import LinearGrid from 'components/Form/LinearGrid/LinearGrid'
 import Button from 'ui/Button/Button';
 import useStoreForm from './Store/useStoreForm';
+import useStoreDataForm from './Store/storeDataForm';
+import CompleteSection from 'components/CompleteSection';
 const FormWrapper = (props) => {
     const {history} = props;
   const {t} =useTranslation();
@@ -25,8 +29,23 @@ const FormWrapper = (props) => {
   const [changeSubSection,setChangeSubSection]= useState(false);
   const[timerSection,setTimerSection] = useState(0);
   const[subscription,setSubscription] = useState(null);
-  const {setTimer,subscribeTimer,setTimeForResponse,timeForResponse} = 
-  useStoreForm(({setTimer,subscribeTimer,setTimeForResponse,timeForResponse})=>({setTimer,subscribeTimer,setTimeForResponse,timeForResponse}));
+
+  const {
+    setTimer,subscribeTimer,
+    setTimeForResponse,
+    timeForResponse,
+    formComplete,
+    setFormComplete
+    } = 
+    useStoreForm(({
+      setTimer,subscribeTimer,
+      setTimeForResponse,timeForResponse,
+      formComplete,setFormComplete}) => ({
+      setTimer,subscribeTimer,setTimeForResponse,
+      timeForResponse,formComplete,setFormComplete
+      }));
+  const {requestSection,valueSections,requestQuestions} = 
+  useStoreDataForm(({requestSection,valueSections,requestQuestions}) => ({requestSection,valueSections,requestQuestions}));
   const methods = useGoogleForm({ form });
 
 
@@ -39,7 +58,7 @@ const FormWrapper = (props) => {
     }
     },[sectionForm]);
     useEffect(()=>{
-      console.log(form);
+      //console.log(form);
       setSectionFormMax(total_section);
       setSections(section_content);
       setFields(fields);
@@ -100,12 +119,13 @@ const FormWrapper = (props) => {
         if(subscription){
           subscription.unsubscribe();
         }
+        setFormComplete(true);
+        sendResponse(form,data,timeForResponse);
         console.log(timeForResponse);
         console.log(">>> Here is the data", data);
         //console.log(data['2081366331']);
   
       } else {
-  
           setSectionForm(sectionForm+1);
           setSub_section_count(1);
       }
@@ -143,9 +163,19 @@ const FormWrapper = (props) => {
   useEffect(()=>{
     setFormQuestion(history.location.state);
   },[]);
-
+  
+  useEffect(()=>{
+    if(valueSections){
+      console.log(valueSections);
+      valueSections?.map(({id})=>{
+        requestQuestions(GET_QUESTIONS_SECTION_FORM,id,GET);
+      })
+    }
+ 
+  },[valueSections]);
   useEffect(()=>{
     if(formQuestion){
+      requestSection(GET_SECTIONS_FORM,formQuestion?.id,GET);
       document.title = formQuestion?.name;
     }
   },[formQuestion]);
@@ -154,52 +184,60 @@ const FormWrapper = (props) => {
   return (
     <StyledForm>
     <Layout.Content  style={{width:'70%'}}>
-    <Section  title={''}  loading={false} shadow>
-    {sectionForm == 1 ? 
-          <Question titleCenter title={formQuestion?.name} shadow loading={false} initSection={true}>
-            <p style={{fontSize:15}}>
-            ¡Hola!
-            Esta encuesta es direccionada a los/las estudiantes de ingeniaría de la Universidad Católica del Norte (UCN) en su primera asignatura de programación.<br/>
-            Esta encuesta hace parte del proyecto “¿La actitud hacia la programación predice el pensamiento computacional? Análisis de las diferencias de género y
-            la experiencia en programación”, que tiene por objetivo medir la correlación entre la actitud hacia la programación y las habilidades de pensamiento computacional.
-            Los resultados servirán de base para mejorar continuamente las clases de programación y podrán ser publicados en eventos y jornales académicos.<br/>
-            La participación en esta encuesta es completamente anónima y voluntarias. Los/las participantes pueden desistir de su participación a cualquier momento.<br/>
-            Esta encuesta se divide en tres secciones:<br/>
-            1. Información Demográfica (Tiempo estimado para responder: 5 minutos)<br/>
-            2. Actitud hacia la Programación (Tiempo estimado para responder: 20 minutos)<br/>
-            3. Test de Pensamiento Computacional (Responder el máximo de preguntas posible hasta 50 minutos).<br/>
-            Los responsables por este proyecto son los/las académica(o)s:
-            <br/>
-            Isotilia Costa Melo, Escuela de Ingeniería de Coquimbo<br/>
-            Ariel Areyuna, Escuela de Ingeniería de Coquimbo<br/>
-            Carolina Rojas, Departamento de Ingeniería Industrial, Antofagasta<br/>
-            Paulo Alves Junior, Escuela de Ingeniería de Coquimbo<br/>
-            Ítalo Donoso, Departamento de Ingeniería de Sistemas y Computación<br/>
-            Si tiene más preguntas y dudas, puede escribir un correo para <a href="mailto:Isotilia.costa@ce.ucn.cl">Isotilia.costa@ce.ucn.cl</a>
-            </p>
-          </Question> : 
-          <Question titleCenter title={sections[sectionForm-1]?.title} shadow loading={false} initSection={true}>
+    {
+      !formComplete ? (
+        <CompleteSection history={history} {...props}/>
+      ) : (
+        <>
+          <Section  title={''}  loading={false} shadow>
+          {sectionForm == 1 ? 
+                <Question titleCenter title={formQuestion?.name} shadow loading={false} initSection={true}>
+                  <p style={{fontSize:15}}>
+                  ¡Hola!
+                  Esta encuesta es direccionada a los/las estudiantes de ingeniaría de la Universidad Católica del Norte (UCN) en su primera asignatura de programación.<br/>
+                  Esta encuesta hace parte del proyecto “¿La actitud hacia la programación predice el pensamiento computacional? Análisis de las diferencias de género y
+                  la experiencia en programación”, que tiene por objetivo medir la correlación entre la actitud hacia la programación y las habilidades de pensamiento computacional.
+                  Los resultados servirán de base para mejorar continuamente las clases de programación y podrán ser publicados en eventos y jornales académicos.<br/>
+                  La participación en esta encuesta es completamente anónima y voluntarias. Los/las participantes pueden desistir de su participación a cualquier momento.<br/>
+                  Esta encuesta se divide en tres secciones:<br/>
+                  1. Información Demográfica (Tiempo estimado para responder: 5 minutos)<br/>
+                  2. Actitud hacia la Programación (Tiempo estimado para responder: 20 minutos)<br/>
+                  3. Test de Pensamiento Computacional (Responder el máximo de preguntas posible hasta 50 minutos).<br/>
+                  Los responsables por este proyecto son los/las académica(o)s:
+                  <br/>
+                  Isotilia Costa Melo, Escuela de Ingeniería de Coquimbo<br/>
+                  Ariel Areyuna, Escuela de Ingeniería de Coquimbo<br/>
+                  Carolina Rojas, Departamento de Ingeniería Industrial, Antofagasta<br/>
+                  Paulo Alves Junior, Escuela de Ingeniería de Coquimbo<br/>
+                  Ítalo Donoso, Departamento de Ingeniería de Sistemas y Computación<br/>
+                  Si tiene más preguntas y dudas, puede escribir un correo para <a href="mailto:Isotilia.costa@ce.ucn.cl">Isotilia.costa@ce.ucn.cl</a>
+                  </p>
+                </Question> : 
+                <Question titleCenter title={sections[sectionForm-1]?.title} shadow loading={false} initSection={true}>
+                </Question>
+            }
+            <GoogleFormProvider {...methods}>
+                <Questions/>
+            </GoogleFormProvider>
+          </Section>
+          <Question command title={''}>
+                <Button
+                    $capitalize
+                    loading={false}
+                    disabled={false}
+                    type="submit"
+                    color="primary"
+                    onClick={methods.handleSubmit(onSubmit)}
+                    style={{position:'absolute',right:-25,bottom:1,top:-30,width:100,height:50,fontSize:16}}
+                    >
+                    {  permissionToSend ?   t('common.send') :  t('common.next')}
+                </Button>   
           </Question>
-      }
-      <GoogleFormProvider {...methods}>
-          <Questions/>
-      </GoogleFormProvider>
-    </Section>
-    <Question command title={''}>
-          <Button
-              $capitalize
-              loading={false}
-              disabled={false}
-              type="submit"
-              color="primary"
-              onClick={methods.handleSubmit(onSubmit)}
-              style={{position:'absolute',right:-25,bottom:1,top:-30,width:100,height:50,fontSize:16}}
-              >
-              {  permissionToSend ?   t('common.send') :  t('common.next')}
-          </Button>   
-    </Question>
-    </Layout.Content>
+        </>
+      )
+    }
 
+    </Layout.Content>
     </StyledForm>
   );
 };
