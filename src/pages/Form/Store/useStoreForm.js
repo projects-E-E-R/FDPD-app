@@ -13,7 +13,13 @@ const useStoreForm= create((set) => ({
     set({subscribeTimer:source});
   },
   formComplete:false,
-  setFormComplete: (formComplete) => set({ formComplete })
+  setFormComplete: (formComplete) => set({ formComplete }),
+  cleanAllStoreForm:()=>
+  set({
+    subscribeTimer:null,
+    formComplete:false,
+    timeForResponse: []
+  })
 }));
 
 export default useStoreForm;

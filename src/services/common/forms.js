@@ -4,7 +4,7 @@ import { GET_FORMS,GET_SECTIONS_FORM,GET_QUESTIONS_SECTION_FORM } from 'settings
 import { GET, getData,getMultiData } from './http';
 
 export const getFormsAsObservable = (props)=>{
-    const{url,including,type,config} = props;
+    const{url,including,type,config} = props;  
     const source$ = getData(url || GET_FORMS,type,config)({params:{including}}).pipe(map((x)=>{
         return {
             ...x,data:x.data || []

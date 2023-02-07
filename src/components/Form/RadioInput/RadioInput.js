@@ -4,10 +4,13 @@ import {Image} from 'antd';
 import { useRadioInput } from "react-google-forms-hooks";
 import {Container,CheckboxContainer,ErrorLabel,QuestionContainer,StyleImageContent} from './RadioInputStyle';
 
-const RadioInput = ({id})=> {
-  const { options, customOption, error,items,label } = useRadioInput(id);
+const RadioInput = ({id,field})=> {
+
+  const { options, customOption, error,items,label } =  useRadioInput(id);
+
+
   return (
-    items ? (<>
+    items   ? (<>
       {
         items?.map((element,index)=>{
           return <Question title={index == 0 ? label : ''} shadow loading={false} initSection={false} key={index}>
@@ -42,13 +45,13 @@ const RadioInput = ({id})=> {
           </Question>
         })
       }
-    </>) : (
+    </>) : options  ? (
     <Container>
-      {options.map((o) => (
-        <CheckboxContainer key={o.id}>
-          <input type="radio" id={o.id} {...o.registerOption()} />
-          <label htmlFor={o.id}>{o.label}</label>
-        </CheckboxContainer>
+      { options?.map((o,index) => (
+            <CheckboxContainer key={index}>
+              <input type="radio" id={index} {...o.registerOption()} />
+              <label htmlFor={index}>{o.label}</label>
+            </CheckboxContainer>
       ))}
       {customOption && (
         <CheckboxContainer>
@@ -67,7 +70,7 @@ const RadioInput = ({id})=> {
       )
       }
       <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>
-    </Container>)
+    </Container>) : null
   );
 }
 export default RadioInput;

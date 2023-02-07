@@ -13,6 +13,8 @@ export const SIGN_OUT_API = process.env.REACT_APP_SIGN_OUT_API;
 export const GET_FORMS = process.env.REACT_APP_GET_FORMS || 'http://localhost:8080/v1/form/get';
 export const GET_SECTIONS_FORM = process.env.REACT_APP_GET_SECTIONS_FORM  || 'http://localhost:8080/v1/form/section/';
 export const GET_QUESTIONS_SECTION_FORM = process.env.REACT_APP_GET_QUESTIONS_SECTION_FORM  || 'http://localhost:8080/v1/form/questions/';
+export const GET_DETAIL_FORM = process.env.REACT_APP_GET_DETAIL_FORM  || 'http://localhost:8080/v1/form/';
+export const SEND_ANSWERS = process.env.REACT_APP_SEND_ANSWERS  || 'http://localhost:8080/v1/answers/input';
 
 /* USERS */
 export const GET_USERS = '/user/get';

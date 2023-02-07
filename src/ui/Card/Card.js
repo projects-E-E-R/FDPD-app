@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import {Card as SCard,Avatar,Rate} from 'antd';
 import {StyledCard} from './Card.styles';
 import Button from 'ui/Button/Button';
@@ -7,11 +7,18 @@ import {UnorderedListOutlined} from '@ant-design/icons';
 import { useHistory } from 'react-router';
 const Card = (props) => {
   const history = useHistory();
-  const{id,name}=props;
+  const{id,name,request,constant,loading,value}=props;
   const {t}=useTranslation();
   const onClickHandler = (props) =>{
-    history.push(props?.path,props);
+    if(request && constant){
+      request(constant,props?.id);
+    }
   }
+  useEffect(()=>{
+    if(value && props?.id == value?.form_id){
+      history.push(props?.path,value);
+    }
+  },[value])
   return (
     <StyledCard size="medium" as={SCard} {...props} key={id}>
       <div className="container" onClick={() =>onClickHandler(props)}>
