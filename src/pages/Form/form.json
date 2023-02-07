@@ -1,4 +1,5 @@
 {
+  "form_id": 1,
   "fields": [
     {
       "label": "¿Está de acuerdo en participar de la encuesta?",
@@ -7,8 +8,8 @@
       "section":1,
       "sub_section_id": 1,
       "options": [
-        { "label": "Si", "custom": false },
-        { "label": "No", "custom": false }
+        { "id":1,"label": "Si", "custom": false },
+        { "id":2,"label": "No", "custom": false }
       ],
       "required": true
     },
@@ -19,13 +20,13 @@
       "sub_section_id": 1,
       "section":1,
       "options": [
-        { "label": "Ingeniería Civil Industrial", "custom": false },
-        { "label": "Ingeniería Civil Informatica", "custom": false },
-        { "label": "Ingeniería Civil Minas", "custom": false },
-        { "label": "Ingeniería Civil Química", "custom": false },
-        { "label": "Ingeniería Civil", "custom": false },
-        { "label": "Ingeniería Civil Metalúrgica", "custom": false },
-        { "label": "Ingeniería Civil Ambiental", "custom": false }
+        { "id":1,"label": "Ingeniería Civil Industrial", "custom": false },
+        { "id":2, "label": "Ingeniería Civil Informatica", "custom": false },
+        { "id":3, "label": "Ingeniería Civil Minas", "custom": false },
+        { "id":4,"label": "Ingeniería Civil Química", "custom": false },
+        { "id":5,"label": "Ingeniería Civil", "custom": false },
+        { "id":6,"label": "Ingeniería Civil Metalúrgica", "custom": false },
+        { "id":7,"label": "Ingeniería Civil Ambiental", "custom": false }
       ],
       "required": true
     },
@@ -36,9 +37,9 @@
       "section":2,
       "sub_section_id": 1,
       "options": [
-        { "label": "Hombre", "custom": false },
-        { "label": "Mujer", "custom": false },
-        { "label": "No lo quiero identificar", "custom": false }
+        { "id":1,"label": "Hombre", "custom": false },
+        {"id":2,"label": "Mujer", "custom": false },
+        {"id":3, "label": "No lo quiero identificar", "custom": false }
       ],
       "required": true
     },
@@ -49,8 +50,8 @@
       "section":2,
       "sub_section_id": 1,
       "options": [
-        { "label": "No tengo ninguna experiencia de programación", "custom": false },
-        { "label": "Sí, tengo experiencia de programación", "custom": false }
+        { "id":1,"label": "No tengo ninguna experiencia de programación", "custom": false },
+        { "id":2,"label": "Sí, tengo experiencia de programación", "custom": false }
       ],
       "required": true
     },
@@ -648,10 +649,10 @@
       {"id":2,"title":"¿Cuál de estas acciones no está permitida bajo los términos de esta licencia?", "options":true}
       ],
       "options": [
-        { "label": "Vender las copias de las copias del libro.", "custom": false },
-        { "label": "Traducir el libro y quedarse con la copia traducida.", "custom": false },
-        { "label": "Dar a los alumnos la traducción de un capítulo del libro.", "custom": false },
-        { "label": "Poner una copia del libro escaneado en la página web de la escuela.", "custom": false }
+        { "id":1,"label": "Vender las copias de las copias del libro.", "custom": false },
+        {  "id":2,"label": "Traducir el libro y quedarse con la copia traducida.", "custom": false },
+        {  "id":3,"label": "Dar a los alumnos la traducción de un capítulo del libro.", "custom": false },
+        {  "id":4,"label": "Poner una copia del libro escaneado en la página web de la escuela.", "custom": false }
       ]
     },
     {
@@ -684,10 +685,10 @@
       {"id":2,"title":"Opción D","image":"https://drive.google.com/uc?export=view&id=1dIvxgOG9TJP7_apTFRSDrvpfoW2OaJ9M"}
     ],
       "options": [
-        { "label": "Opción A", "custom": false },
-        { "label": "Opción B", "custom": false },
-        { "label": "Opción C", "custom": false },
-        { "label": "Opción D", "custom": false }
+        { "id":1,"label": "Opción A", "custom": false },
+        { "id":2,"label": "Opción B", "custom": false },
+        { "id":3,"label": "Opción C", "custom": false },
+        { "id":4,"label": "Opción D", "custom": false }
       ]
     }
   ],

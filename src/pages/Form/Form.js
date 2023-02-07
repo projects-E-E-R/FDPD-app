@@ -1,14 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect,useState,useCallback } from 'react';
-import { GET_SECTIONS_FORM,GET_QUESTIONS_SECTION_FORM } from 'settings/constants';
-import { GET } from 'services/common/http';
+import React, { useEffect,useState,useCallback,useRef } from 'react';
 import { GoogleFormProvider, useGoogleForm} from 'react-google-forms-hooks';
 import {StyledForm,Form,QuestionContainer,StyleImageContent} from './Form.styles';
 import { useTranslation } from 'react-i18next';
 import Layout from 'components/Layout/Layout';
 import Section from 'components/Section/Section';
 import Question from 'components/Question/Question';
-import form from "./form.json";
 import RadioInput from 'components/Form/RadioInput/RadioInput';
 import ShortAnswerInput from 'components/Form/ShortAnswerInput/ShortAnswerInput';
 import LinearGrid from 'components/Form/LinearGrid/LinearGrid'
@@ -16,8 +13,11 @@ import Button from 'ui/Button/Button';
 import useStoreForm from './Store/useStoreForm';
 import useStoreDataForm from './Store/storeDataForm';
 import CompleteSection from 'components/CompleteSection';
+import useAccountStore from 'store/common/account';
+import {sendResponse} from './services';
 const FormWrapper = (props) => {
-    const {history} = props;
+  const {history,location} = props;
+  const {state : form} = location;
   const {t} =useTranslation();
   const [formQuestion,setFormQuestion]= useState(null);
   const [sectionForm,setSectionForm]= useState(1);
@@ -29,28 +29,30 @@ const FormWrapper = (props) => {
   const [changeSubSection,setChangeSubSection]= useState(false);
   const[timerSection,setTimerSection] = useState(0);
   const[subscription,setSubscription] = useState(null);
-
+  const {idUser} = useAccountStore(({idUser})=>({idUser}))
   const {
     setTimer,subscribeTimer,
     setTimeForResponse,
     timeForResponse,
     formComplete,
-    setFormComplete
+    setFormComplete,cleanAllStoreForm
     } = 
     useStoreForm(({
       setTimer,subscribeTimer,
       setTimeForResponse,timeForResponse,
-      formComplete,setFormComplete}) => ({
+      formComplete,setFormComplete,cleanAllStoreForm}) => ({
       setTimer,subscribeTimer,setTimeForResponse,
-      timeForResponse,formComplete,setFormComplete
+      timeForResponse,formComplete,setFormComplete,cleanAllStoreForm
       }));
-  const {requestSection,valueSections,requestQuestions} = 
-  useStoreDataForm(({requestSection,valueSections,requestQuestions}) => ({requestSection,valueSections,requestQuestions}));
-  const methods = useGoogleForm({ form });
+  const {requestGetDetail,loading : loadingForm,valueDetailForm,cleanAll}  = 
+  useStoreDataForm(({requestGetDetail,loading,valueDetailForm,cleanAll}) => ({
+    requestGetDetail,loading,valueDetailForm,cleanAll
+  }));
+  
 
 
-  const Questions = () => {
-    const { total_section,section_content } = form;
+  const Questions = (form) => {
+    const { total_section,section_content,fields } = form?.form;
 
     useEffect( () => {
     if(total_section == sectionForm){
@@ -67,11 +69,11 @@ const FormWrapper = (props) => {
     
       <div>
         {   
-          sectionForm || sub_section_count ? form?.fields?.map((field) => {
+          sectionForm || sub_section_count ? fields?.map((field) => {
             const { id,section,sub_section_id } = field;
             let questionInput = null;
             if(sectionForm == section){
-              if(sub_section_id == sub_section_count){     
+              if(sub_section_id == sub_section_count){   
                   switch (field?.type) {
                   case "RADIO":
                     questionInput = <RadioInput id={id} field={field} />;
@@ -117,10 +119,11 @@ const FormWrapper = (props) => {
     }else{
       if(sectionForm == sectionFormMax){
         if(subscription){
+          setTimeForResponse(timeForResponse,timerSection,sections,sectionForm+1);
           subscription.unsubscribe();
         }
         setFormComplete(true);
-        sendResponse(form,data,timeForResponse);
+        sendResponse(form,data,timeForResponse,idUser);
         console.log(timeForResponse);
         console.log(">>> Here is the data", data);
         //console.log(data['2081366331']);
@@ -131,7 +134,7 @@ const FormWrapper = (props) => {
       }
     }
 
-    //await methods.submitToGoogleForms(data);
+    //await methodsGoogleForm?.submitToGoogleForms(data);
     //alert("Form submitted with success!");
   };
   useEffect(()=>{
@@ -163,33 +166,32 @@ const FormWrapper = (props) => {
   useEffect(()=>{
     setFormQuestion(history.location.state);
   },[]);
-  
-  useEffect(()=>{
-    if(valueSections){
-      console.log(valueSections);
-      valueSections?.map(({id})=>{
-        requestQuestions(GET_QUESTIONS_SECTION_FORM,id,GET);
-      })
+/*   useEffect(()=>{
+    if(form){
+
     }
- 
-  },[valueSections]);
+  },[form]) */
   useEffect(()=>{
     if(formQuestion){
-      requestSection(GET_SECTIONS_FORM,formQuestion?.id,GET);
+      //requestGetDetail(GET_DETAIL_FORM,formQuestion?.id,GET);
       document.title = formQuestion?.name;
     }
   },[formQuestion]);
 
-
+ let methods = useGoogleForm({form});
+ useEffect(()=>{
+  console.log(form);
+  console.log(methods);
+},[]);
   return (
     <StyledForm>
     <Layout.Content  style={{width:'70%'}}>
     {
-      !formComplete ? (
-        <CompleteSection history={history} {...props}/>
+      formComplete ? (
+        <CompleteSection cleanAllStoreForm={cleanAllStoreForm} history={history} cleanAll={cleanAll} {...props}/>
       ) : (
         <>
-          <Section  title={''}  loading={false} shadow>
+          <Section  title={''}  loading={loadingForm} shadow>
           {sectionForm == 1 ? 
                 <Question titleCenter title={formQuestion?.name} shadow loading={false} initSection={true}>
                   <p style={{fontSize:15}}>
@@ -216,9 +218,14 @@ const FormWrapper = (props) => {
                 <Question titleCenter title={sections[sectionForm-1]?.title} shadow loading={false} initSection={true}>
                 </Question>
             }
-            <GoogleFormProvider {...methods}>
-                <Questions/>
+          {
+            methods && form && (
+              <GoogleFormProvider {...methods}>
+                <Questions form={form}/>
             </GoogleFormProvider>
+            )
+          }
+
           </Section>
           <Question command title={''}>
                 <Button

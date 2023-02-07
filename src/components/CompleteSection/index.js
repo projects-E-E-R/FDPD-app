@@ -5,9 +5,11 @@ import Section from 'components/Section/Section';
 import Button from 'ui/Button/Button';
 
 const CompleteSection = (props) => {
-    const {history} = props;
+    const {history,cleanAll,cleanAllStoreForm} = props;
     const handleSubmit = () => {
-        history.push('/');
+        cleanAll();
+        cleanAllStoreForm();
+        history.goBack('/');
     }
   return (
     <>       

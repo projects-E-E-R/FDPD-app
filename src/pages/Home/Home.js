@@ -13,17 +13,26 @@ import {Row,Col,Space} from 'antd';
 import useStoreForms from '../Forms/Store';
 import {getFormReMap} from '../Forms/Services';
 import { GET } from 'services/common/http';
+import {GET_DETAIL_FORM} from 'settings/constants';
+import useStoreDataForm from '../Form/Store/storeDataForm';
 const Home = (props) => {
   const {t} =useTranslation();
   const [formFilter,setFormFilter]= useState(null);
   const {requestForm,valueForms} = useStoreForms(({requestForm,valueForms})=>({requestForm,valueForms}));
+  const {requestGetDetail,loading : loadingForm,valueDetailForm}  = 
+  useStoreDataForm(({requestGetDetail,loading,valueDetailForm}) => ({
+    requestGetDetail,loading,valueDetailForm
+  }));
   const FormViewer = ({ formFilter }) => {
     return (
       <Row gutter={[20, 20]}>
         {formFilter?.map((params, index) =>
             <Col key={index} xs={24} sm={24} md={12} lg={24}>
-         
               <Card
+                request={requestGetDetail}
+                value={valueDetailForm}
+                loading={loadingForm}
+                constant={GET_DETAIL_FORM}
                 {...params}
               /> 
             </Col> 
@@ -55,7 +64,7 @@ const Home = (props) => {
   return (
     <StyledHome>
     <Layout.Content>
-    <Section  title={'Bienvenidos al portal de encuestas UCN'} titleCenter={true} loading={false} shadow>
+    <Section  title={'Bienvenidos al portal de encuestas UCN'} titleCenter={true} loading={loadingForm} shadow>
       <h3>
       <br/>
         Hola <b>alumno</b>, este es una plataforma para poder medir el nivel de diversos aspectos tantos de la programacion como de otras asignaturas.<br/>
@@ -64,7 +73,7 @@ const Home = (props) => {
       <br/>
       </h3>
     </Section>
-    <Section  title={'Encuestas por responder'}  icon={<AlertOutlined />} loading={false} shadow>
+    <Section  title={'Encuestas por responder'}  icon={<AlertOutlined />} loading={loadingForm} shadow>
     <FormViewer formFilter={formFilter}/>
 
     </Section>
