@@ -185,7 +185,7 @@ const FormWrapper = (props) => {
     <StyledForm>
     <Layout.Content  style={{width:'70%'}}>
     {
-      !formComplete ? (
+      formComplete ? (
         <CompleteSection history={history} {...props}/>
       ) : (
         <>

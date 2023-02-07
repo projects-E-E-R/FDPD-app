@@ -18,12 +18,12 @@ const useStoreUploadExcel = create((set) => ({
   loading: false,
   onChange: (selection) => set({ value: selection, changedAt: getUnix() }),
   response: null,
-  requestData: (titleExcel,wicardCodes) => {
+  requestData: (titleExcel,userData) => {
     set({ loading: true });
     getData(SEND_EXCEL, POST, {
       data: {
         title: titleExcel,
-        wicard_codes:wicardCodes
+        users: userData
       }
     })()
       .pipe(

@@ -11,6 +11,7 @@ import Forms from 'pages/Forms/Forms';
 import Layout from 'components/Layout/Layout';
 import useAccountStore from 'store/common/account';
 import Users from 'pages/Users/Users';
+import FormReview from 'pages/FormReview/FormReview';
 function App() {
   const [theme] = useTheme();
   const [lang] = useLang();
@@ -27,9 +28,11 @@ function App() {
         <Switch>
          {token ? <Layout>
          {
-          !isAdmin ? 
+          isAdmin ? 
             <>
             <Route path="/users" component={Users} />
+            <Route path="/form-review" component={Forms} />
+            <Route path="/form" component={Form} />
             <Redirect to="/" />
             </> : 
             <>
@@ -38,7 +41,6 @@ function App() {
             <Route path="/forms" component={Forms} />
             <Redirect to="/" />
             </>
-            
          }
            
           </Layout> : null 

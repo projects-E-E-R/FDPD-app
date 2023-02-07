@@ -51,7 +51,9 @@ i18n
             charging: 'Cargando información...',
             next:'Siguiente',
             back:'Atrás',
-            send:'Enviar'
+            send:'Enviar',
+            exportFile: "Exportar archivo",
+            refresh: "Recargar datos"
           },
           user:{
             first_name: "Nombre",

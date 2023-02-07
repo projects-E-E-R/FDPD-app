@@ -59,13 +59,19 @@ const Sider = (props) => {
           </div>
           <Divider/>
           {
-            !isAdmin ? 
+            isAdmin ? 
             <>
               <Menu.Item key={1}
                 onClick={()=>history.push('/users')}
                 className="menu-item"
                 icon={<UserOutlined className="menu-item-avatar-section"/>}>
                   <h2 className='ant-menu-submenu-title'>Usuarios</h2>
+              </Menu.Item>
+              <Menu.Item key={2}
+                onClick={()=>history.push('/form-review')}
+                className="menu-item"
+                icon={<FormOutlined className="menu-item-avatar-section"/>}>
+                  <h2 className='ant-menu-submenu-title'>Revisar formularios</h2>
               </Menu.Item>
             </> :
             <>

@@ -84,7 +84,7 @@ export const getDataReport = (
           value: user?.career,
         },
         {
-          value: user?.gender,
+          value: t(`user.${user?.gender}`),
         },
         {
           value: user?.email,
