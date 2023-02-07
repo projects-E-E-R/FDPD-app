@@ -8,7 +8,7 @@
   export const VIDEOS_SRC_URL = process.env.REACT_APP_VIDEOS_SRC_URL;
 
   /* LOGIN */
-  export const SIGN_IN_API = process.env.REACT_APP_SIGN_IN_API;
+  export const SIGN_IN_API = 'http://localhost:8080/v1/user/auth';/* process.env.REACT_APP_SIGN_IN_API; */
   export const SIGN_OUT_API = process.env.REACT_APP_SIGN_OUT_API;
 /* GET FORMS */
 export const GET_FORMS = process.env.REACT_APP_GET_FORMS || 'http://localhost:8080/v1/form/get';

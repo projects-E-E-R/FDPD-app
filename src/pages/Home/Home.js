@@ -64,7 +64,7 @@ const Home = (props) => {
   return (
     <StyledHome>
     <Layout.Content>
-    <Section  title={'Bienvenidos al portal de encuestas UCN'} titleCenter={true} loading={loadingForm} shadow>
+    <Section  title={'Bienvenidos al portal de encuestas UCN'} titleCenter={true} shadow>
       <h3>
       <br/>
         Hola <b>alumno</b>, este es una plataforma para poder medir el nivel de diversos aspectos tantos de la programacion como de otras asignaturas.<br/>

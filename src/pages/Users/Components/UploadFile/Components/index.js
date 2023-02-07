@@ -35,17 +35,11 @@ const readUploadFile = (e) => {
             const worksheet = workbook.Sheets[sheetName];
             const headers = ["id", "Código", "Fecha de uso","Canjeado por"];
             const json = xlsx.utils.sheet_to_json(worksheet, { header: headers});
-            //console.log(json);
             if(json?.length>0){
               //message.success(`Archivo subido exitosamente`);
-              //console.log(json);
               let title = '';
               let wicardCodes = json?.map((row,index)=>{
                 if(index!=0 && index!=1){
-/*                   console.log(row["Canjeado por"])
-                  console.log(row["Código"])
-                  console.log(row["Fecha de uso"])
-                  console.log(row["id"])  */
                   return {
                     id:row["id"],
                     code:row["Código"],

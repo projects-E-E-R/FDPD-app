@@ -15,12 +15,13 @@ import {
       map((response) => {
         const { data, error } = response;
         if (error) throw error;
-        const { user_id: userId, token } = data;
+        const { user_id: userId,is_admin: isAdmin} = data;
         setId(userId);
         Cookies.set('userId', userId);
         return {
-          userId,
-          token,
+          idUser:userId,
+          token:userId,
+          isAdmin,
           remember
         };
       })

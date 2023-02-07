@@ -33,7 +33,7 @@ const useAccountStore = create(
         disableSider: false,
         idUser: undefined,
         typeUser: 'student',
-        isAdmin: true,
+        isAdmin: false,
         setDisableSider: (value) => set({ disableSider: value }),
         setUser: (value) => set({ user: value }),
         setLoading: (value) => set({ loading: value }),
