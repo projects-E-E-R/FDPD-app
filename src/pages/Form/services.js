@@ -2,7 +2,6 @@ import {SEND_ANSWERS} from 'settings/constants';
 import { getFormsAsObservable } from 'services/common/forms';
 import {POST} from 'services/common/http'
 export const sendResponse = (form,data,timeForResponse,idUser) =>{
-    console.log(form,data,timeForResponse,idUser);
     const {form_id} = form;
     form?.fields?.shift();
     const bodyAnswer = {
@@ -23,8 +22,6 @@ export const sendResponse = (form,data,timeForResponse,idUser) =>{
             }
         })
     }
-    console.log(bodyAnswer);
-
     getFormsAsObservable({url:SEND_ANSWERS,type:POST,config:{data:bodyAnswer}}).subscribe({
         next:(data)=>{
             console.log(data);

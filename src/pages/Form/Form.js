@@ -60,7 +60,6 @@ const FormWrapper = (props) => {
     }
     },[sectionForm]);
     useEffect(()=>{
-      //console.log(form);
       setSectionFormMax(total_section);
       setSections(section_content);
       setFields(fields);
@@ -124,9 +123,6 @@ const FormWrapper = (props) => {
         }
         setFormComplete(true);
         sendResponse(form,data,timeForResponse,idUser);
-        console.log(timeForResponse);
-        console.log(">>> Here is the data", data);
-        //console.log(data['2081366331']);
   
       } else {
           setSectionForm(sectionForm+1);
@@ -156,7 +152,6 @@ const FormWrapper = (props) => {
         subscription.unsubscribe();
       }
       const subscribe = subscribeTimer.subscribe((val) => {
-        //console.log(val);
         setTimerSection(val);
       });
       setSubscription(subscribe);
@@ -179,10 +174,6 @@ const FormWrapper = (props) => {
   },[formQuestion]);
 
  let methods = useGoogleForm({form});
- useEffect(()=>{
-  console.log(form);
-  console.log(methods);
-},[]);
   return (
     <StyledForm>
     <Layout.Content  style={{width:'70%'}}>

@@ -61,17 +61,16 @@ const readUploadFile = (e) => {
             const workbook = xlsx.read(data, { type: "array" });
             const sheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[sheetName];
-            const headers = ["Nombre",	"Apellido",	"Rut",	"Carrera",	"Género",	"Correo"];
+            const headers = ["Nombre",	"Apellido",	"Rut", "Carrera",	"Género",	"Correo"];
             const json = xlsx.utils.sheet_to_json(worksheet, { header: headers});
-            console.log(json);
             if(json?.length>0){
               let title = '';
               let usersData = json?.map((row,index)=>{
                 if(index!=0){
-                  const career_name = "ICCi"
-                  //const career_name = row["Carrera"]
-                  const gender_name = "MascUliNo"
-                  //const gender_name = row["Género"]
+                  //const career_name = "ICCi"
+                  const career_name = row["Carrera"]
+                  //const gender_name = "MascUliNo"
+                  const gender_name = row["Género"]
 
                   const career = career_data.find(career => (career_name?.toUpperCase()?.match(career.name?.toUpperCase()) || career_name?.toUpperCase()?.match(career.short_name?.toUpperCase())))
                   

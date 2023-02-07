@@ -13,29 +13,14 @@ import Button from 'ui/Button/Button';
 const { confirm } = Modal;
 
 const LogOut = () => {
-  const history = useHistory();
   const { t } = useTranslation();
-  const { clearAll, logout } = useAccountStore();
+  const { clearAll } = useAccountStore();
   const showMessage = useCallback(() => {
-    logout().subscribe({
-      next: ({ error }) => {
-        if (error) {
-          message.error(error?.title);
-          clearAll();
-          history.push('/');
-        } else {
-          message.loading(t('common.pleaseWait'), 1.5).then(() => {
-            message.success(t('login.success'), 1);
-            clearAll();
-          });
-        }
-      },
-      error: () => {
+      message.loading(t('common.pleaseWait'), 1.5).then(() => {
         message.success(t('login.success'), 1);
         clearAll();
-        history.push('/');
-      }
-    });
+        window.location.reload();
+      });
   }, [t]);
 
   const showConfirmation = useCallback(() => {
