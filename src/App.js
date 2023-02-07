@@ -14,7 +14,7 @@ import Users from 'pages/Users/Users';
 function App() {
   const [theme] = useTheme();
   const [lang] = useLang();
-  const {token, isAdmin, typeUser} = useAccountStore();
+  const {token, isAdmin} = useAccountStore();
   
   return (
     <ThemeProvider theme={theme}>

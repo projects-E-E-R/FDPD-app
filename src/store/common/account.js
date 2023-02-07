@@ -1,11 +1,9 @@
 import Cookies from 'js-cookie';
 import { BehaviorSubject, map, mergeMap } from 'rxjs';
 import {
-  authenticateUser,
-  revokeToken
+  authenticateUser
 } from '../../services/account';
 import {
-  getToken,
   removeToken,
   setToken as tokenCookies
 } from '../../services/token';
@@ -19,11 +17,6 @@ const useAccountStore = create(
   persist(
     (set) => {
       return {
-        user: undefined,
-        name: undefined,
-        shortName: undefined,
-        firstName: undefined,
-        lastName: undefined,
         timezone: undefined,
         email: undefined,
         remember: undefined,
@@ -32,15 +25,12 @@ const useAccountStore = create(
         token: undefined,
         disableSider: false,
         idUser: undefined,
-        typeUser: 'student',
         isAdmin: false,
         setDisableSider: (value) => set({ disableSider: value }),
-        setUser: (value) => set({ user: value }),
         setLoading: (value) => set({ loading: value }),
         setToken: (value) => set({ token: value }),
         setError: (error) => set({ error }),
         setIdUser: (value) => set({ idUser: value }),
-        setTypeUser: (value) => set({ typeUser: value }),
         authenticate: ({ username, password, remember }) => {
           set({ loading: true, error: null });
           authenticateUser({ username, password, remember })
@@ -63,19 +53,10 @@ const useAccountStore = create(
               complete: () => set({ loading: false })
             });
         },
-        logout: () => {
-          const token = getToken();
-          return revokeToken(token);
-        },
         clearAll: () => {
           removeToken();
           localStorage.clear();
           set({
-            user: undefined,
-            name: undefined,
-            shortName: undefined,
-            firstName: null,
-            lastName: null,
             timezone: undefined,
             email: undefined,
             remember: undefined,
@@ -83,8 +64,8 @@ const useAccountStore = create(
             error: null,
             token: undefined,
             disableSider: false,
-            allowedApp: undefined,
-            idUser: undefined
+            idUser: undefined,
+            isAdmin: false,
           });
           session$.next(null);
         }
