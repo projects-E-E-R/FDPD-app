@@ -9,18 +9,14 @@ const useSettingsStore = create(
       theme: 'default',
       decimal: 2,
       timezone: 'America/Santiago',
-      fuelUnit: 'lts',
       sidebarMenuOutlinedVisibility: undefined,
-      visibilityPassForgot: false,
       setVisibility: (value) => set({ visibility: value }),
       setLang: (value) => set({ lang: value }),
       setTheme: (value) => set({ theme: value }),
       setDecimal: (value) => set({ decimal: value }),
       setTimezone: (value) => set({ timezone: value }),
-      setFuelUnit: (value) => set({ fuelUnit: value }),
       setSidebarMenuOutlinedVisibility: (value) =>
-        set({ sidebarMenuOutlinedVisibility: value }),
-      setVisibilityPassForgot: (value) => set({ visibilityPassForgot: value })
+        set({ sidebarMenuOutlinedVisibility: value })
     }),
     {
       name: 'config',

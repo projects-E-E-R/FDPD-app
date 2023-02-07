@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import {
-    SIGN_IN_API,SIGN_OUT_API
+    SIGN_IN_API
   } from '../settings/constants';
-  import { GET, getData, POST } from './common/http';
-  import { map, take, withLatestFrom } from 'rxjs';
-  import { getToken, setId } from './token';
+  import {  getData, POST } from './common/http';
+  import { map, take } from 'rxjs';
+  import {  setId } from './token';
   import Cookies from 'js-cookie';
   
   export const authenticateUser = (params) => {
@@ -26,9 +26,4 @@ import {
         };
       })
     );
-  };
-
-  export const revokeToken = (token) => {
-    const requestSignOut = getData(SIGN_OUT_API, POST);
-    return requestSignOut({ data: { token } }).pipe(take(1));
   };

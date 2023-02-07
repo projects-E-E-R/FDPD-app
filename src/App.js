@@ -15,7 +15,7 @@ import FormReview from 'pages/FormReview/FormReview';
 function App() {
   const [theme] = useTheme();
   const [lang] = useLang();
-  const {token, isAdmin, typeUser} = useAccountStore();
+  const {token, isAdmin} = useAccountStore();
   
   return (
     <ThemeProvider theme={theme}>
