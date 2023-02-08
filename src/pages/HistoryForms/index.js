@@ -3,20 +3,17 @@ import React, { useEffect,useState } from 'react';
 import {
   StyledForm
 } from './Forms.styles';
-import Widget from 'components/Widget/Widget';
-import { useTranslation } from 'react-i18next';
 import Layout from 'components/Layout/Layout';
 import Section from 'components/Section/Section';
 import { AlertOutlined } from '@ant-design/icons';
 import  Card from 'ui/Card/Card';
 import {Row,Col} from 'antd';
-import useStoreForms from './Store';
+import useStoreHistory from './Store';
 import {getFormReMap} from './Services';
 import { GET } from 'services/common/http';
-const Forms = (props) => {
-  const {t} =useTranslation();
+const HistoryForms = () => {
   const [formFilter,setFormFilter]= useState(null);
-  const {requestForm,valueForms} = useStoreForms(({requestForm,valueForms})=>({requestForm,valueForms}));
+  const {requestForm,valueForms} = useStoreHistory(({requestForm,valueForms})=>({requestForm,valueForms}));
   const FormViewer = ({ formFilter }) => {
     return (
       <Row gutter={[20, 20]}>
@@ -35,6 +32,7 @@ const Forms = (props) => {
   /* Get FORMS user */
   useEffect(() => {
     if(valueForms == undefined){
+      console.log('solo Una');
       requestForm(null,GET);
     }
   }, [valueForms]);
@@ -46,7 +44,7 @@ const Forms = (props) => {
     
   }, [valueForms]);
   useEffect(() => {
-    document.title = 'Mis encuestas';
+    document.title = 'Mi Historial';
   }, []);
 
 
@@ -64,4 +62,4 @@ const Forms = (props) => {
   );
 };
 
-export default Forms;
+export default HistoryForms;

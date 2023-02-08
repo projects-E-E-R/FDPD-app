@@ -8,6 +8,7 @@ import { useLang } from 'hooks/langHook';
 import Login from 'pages/Login';
 import Form from 'pages/Form/Form';
 import Forms from 'pages/Forms/Forms';
+import HistoryForms from 'pages/HistoryForms/index';
 import Layout from 'components/Layout/Layout';
 import useAccountStore from 'store/common/account';
 import Users from 'pages/Users/Users';
@@ -35,6 +36,7 @@ function App() {
             <Route exact path="/" component={Login} />
             <Route path="/form" component={Form} />
             <Route path="/forms" component={Forms} />
+            <Route path="/history" component={HistoryForms} />
             <Redirect to="/" />
             </>
          }

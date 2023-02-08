@@ -45,7 +45,7 @@ const Home = (props) => {
     if(valueForms == undefined){
       requestForm(null,GET);
     }
-  }, []);
+  }, [valueForms]);
 
   useEffect(() => {
     if(valueForms){

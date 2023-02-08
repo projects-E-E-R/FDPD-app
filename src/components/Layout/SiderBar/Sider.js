@@ -90,7 +90,7 @@ const Sider = (props) => {
               </Menu.Item>
               
               <Menu.Item key={3}
-                onClick={()=>history.push('/')}
+                onClick={()=>history.push('/history')}
                 className="menu-item"
                 icon={<HistoryOutlined className="menu-item-avatar-section"/>}>
                   <h2 className='ant-menu-submenu-title'>Mi Historial</h2>

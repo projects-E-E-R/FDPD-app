@@ -21,7 +21,7 @@ const FormReview = (props) => {
         if(valueForms == undefined){
         requestForm(null,GET);
         }
-    }, []);
+    }, [valueForms]);
 
     useEffect(() => {
         if(valueForms){
