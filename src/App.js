@@ -30,21 +30,21 @@ function App() {
             <Route path="/users" component={Users} />
             <Route path="/form-review" component={Forms} />
             <Route path="/form" component={Form} />
-            <Redirect to="/" />
+            <Redirect to="/index.html" />
             </> : 
             <>
             <Route exact path="/" component={Login} />
             <Route path="/form" component={Form} />
             <Route path="/forms" component={Forms} />
             <Route path="/history" component={HistoryForms} />
-            <Redirect to="/" />
+            <Redirect to="/index.html" />
             </>
          }
            
           </Layout> : null 
           }
-          <Route exact path="/" component={Login} />
-          <Redirect to="/" />
+          <Route exact path="/index.html" component={Login} />
+          <Redirect to="/index.html" />
         </Switch>
       </ConfigProvider>
     </ThemeProvider>
