@@ -33,7 +33,7 @@ function App() {
             <Redirect to="/index.html" />
             </> : 
             <>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/index.html" component={Login} />
             <Route path="/form" component={Form} />
             <Route path="/forms" component={Forms} />
             <Route path="/history" component={HistoryForms} />
