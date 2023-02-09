@@ -1,17 +1,18 @@
 import create from 'zustand';
 import { getFormsAsObservable } from 'services/common/forms';
+import {GET_HISTORY_FORMS_FROM_USER} from 'settings/constants';
 export const useStoreHistory =  create((set) => ({
-    valueForms:undefined,
+    valueFormsHistory:undefined,
     loading:false,
     error:null,
     complete:null,
-    requestForm:(url,type)=>{
+    requestForm:(idUser,type)=>{
         set({loading:true});
-        getFormsAsObservable({url,type}).subscribe({
+        getFormsAsObservable({url:GET_HISTORY_FORMS_FROM_USER+'/'+idUser,type}).subscribe({
             next:(data)=>{
                 set({loading:false});
                 if (data?.data?.forms?.length > 0) {
-                set({valueForms:data?.data?.forms});
+                set({valueFormsHistory:data?.data?.forms});
                 } else if (data?.error) {
                   set({error:data?.error?.title})
                 }

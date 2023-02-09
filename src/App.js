@@ -12,6 +12,7 @@ import HistoryForms from 'pages/HistoryForms/index';
 import Layout from 'components/Layout/Layout';
 import useAccountStore from 'store/common/account';
 import Users from 'pages/Users/Users';
+import Profile from  'pages/Profile'
 import FormReview from 'pages/FormReview/FormReview';
 function App() {
   const [theme] = useTheme();
@@ -25,7 +26,7 @@ function App() {
         <Switch>
          {token ? <Layout>
          {
-          isAdmin ? 
+          !isAdmin ? 
             <>
             <Route path="/users" component={Users} />
             <Route path="/form-review" component={Forms} />
@@ -37,6 +38,7 @@ function App() {
             <Route path="/form" component={Form} />
             <Route path="/forms" component={Forms} />
             <Route path="/history" component={HistoryForms} />
+            <Route path="/profile" component={Profile} />
             <Redirect to="/index.html" />
             </>
          }

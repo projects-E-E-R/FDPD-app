@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import {Card as SCard,Avatar,Rate} from 'antd';
+import {Card as SCard,Avatar,Space} from 'antd';
 import {StyledCard} from './Card.styles';
 import Button from 'ui/Button/Button';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +7,7 @@ import {UnorderedListOutlined} from '@ant-design/icons';
 import { useHistory } from 'react-router';
 const Card = (props) => {
   const history = useHistory();
-  const{id,name,request,constant,loading,value}=props;
+  const{id,name,request,constant,loading,formDate,value}=props;
   const {t}=useTranslation();
   const onClickHandler = (props) =>{
     if(request && constant){
@@ -34,6 +34,15 @@ const Card = (props) => {
             <div className="bottom">
                 <div className="name">{name}</div>
             </div>
+            {
+              formDate ? 
+              <div className="bottom">
+              <Space>
+                <div className="name">{'Fecha :'}</div>
+                <div className="name">{formDate}</div>
+              </Space>
+              </div> : null
+            }
       </div>
    </StyledCard>
   );
