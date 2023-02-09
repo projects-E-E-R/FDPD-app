@@ -59,7 +59,7 @@ const Sider = (props) => {
           </div>
           <Divider/>
           {
-            !isAdmin ? 
+            isAdmin ? 
             <>
               <Menu.Item key={1}
                 onClick={()=>history.push('/users')}
