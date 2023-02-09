@@ -26,7 +26,7 @@ function App() {
         <Switch>
          {token ? <Layout>
          {
-          !isAdmin ? 
+          isAdmin ? 
             <>
             <Route path="/users" component={Users} />
             <Route path="/form-review" component={Forms} />
