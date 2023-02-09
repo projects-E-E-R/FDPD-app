@@ -68,7 +68,7 @@ const Sider = (props) => {
                   <h2 className='ant-menu-submenu-title'>Usuarios</h2>
               </Menu.Item>
               <Menu.Item key={2}
-                onClick={()=>history.push('/form-review')}
+                onClick={()=>history.push('/review')}
                 className="menu-item"
                 icon={<FormOutlined className="menu-item-avatar-section"/>}>
                   <h2 className='ant-menu-submenu-title'>Revisar formularios</h2>

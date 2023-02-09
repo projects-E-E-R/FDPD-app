@@ -7,10 +7,11 @@ import {UnorderedListOutlined} from '@ant-design/icons';
 import { useHistory } from 'react-router';
 const Card = (props) => {
   const history = useHistory();
-  const{id,name,request,constant,loading,value}=props;
+  const{id,name, detail, request, constant, loading, value}=props;
   const {t}=useTranslation();
+  
   const onClickHandler = (props) =>{
-    if(request && constant){
+    if(request){
       request(constant,props?.id);
     }
   }
@@ -21,7 +22,7 @@ const Card = (props) => {
   },[value])
   return (
     <StyledCard size="medium" as={SCard} {...props} key={id}>
-      <div className="container" onClick={() =>onClickHandler(props)}>
+      <div className="container" onClick={() => onClickHandler(props)}>
             <div className="top">
               <div className="icon">
                   <Avatar
@@ -32,7 +33,13 @@ const Card = (props) => {
               </div>
             </div>
             <div className="bottom">
-                <div className="name">{name}</div>
+                <div className="name">{name?.toUpperCase()}</div>
+                {
+                  detail? 
+                  
+                    <div className="name">: <b>{detail?.toUpperCase()}</b></div>
+                   : <> </>
+                }
             </div>
       </div>
    </StyledCard>

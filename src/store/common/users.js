@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { getData, PUT } from 'services/common/http';
-import { getUersAsObservable } from 'services/common/users';
+import { getUsersAsObservable as getUsersAsObservable } from 'services/common/users';
 import { BASE_URL, GET_USERS, UPDATE_USER, UPDATE_USER_PASSWORD } from 'settings/constants';
 import { getUnix } from 'utils/datetime';
 
@@ -15,7 +15,7 @@ export const usersStoreConfig = (set) => ({
   requestData: () => {
     set({ loading: true });
     console.log(BASE_URL + GET_USERS)
-    getUersAsObservable({
+    getUsersAsObservable({
       url: BASE_URL + GET_USERS
     }).subscribe({
       next: (result) => {

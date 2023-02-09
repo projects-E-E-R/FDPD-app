@@ -5,6 +5,6 @@ export const getData = getMultiData([
   { url: GET_USERS, type: GET }
 ]);
 /* data is obtained as an observable, to later be able to register and be able to analyze the data of the integrations*/
-export const getUersAsObservable = () => {
+export const getUsersAsObservable = () => {
   return getData();
 };

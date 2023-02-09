@@ -22,3 +22,7 @@ export const UPDATE_USER = '/user/update';
 export const UPDATE_USER_PASSWORD = '/user/update/password';
 export const GET_CAREERS = '/info/career';
 export const GET_GENDERS = '/info/gender';
+
+/* RESPONSES */
+export const GET_FORM_RESPONSES = '/answers/form/:formID';
+export const GET_USERS_RESPONSE = '/answers/user/:userID/:formID';

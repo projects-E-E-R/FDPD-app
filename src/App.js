@@ -12,6 +12,8 @@ import Layout from 'components/Layout/Layout';
 import useAccountStore from 'store/common/account';
 import Users from 'pages/Users/Users';
 import FormReview from 'pages/FormReview/FormReview';
+import UserResponse from 'pages/FormReview/components/UserResponse/UserRespone';
+import FormResponses from 'pages/FormReview/components/FormResponses/FormResponses';
 function App() {
   const [theme] = useTheme();
   const [lang] = useLang();
@@ -26,16 +28,18 @@ function App() {
          {
           isAdmin ? 
             <>
-            <Route path="/users" component={Users} />
-            <Route path="/form-review" component={Forms} />
-            <Route path="/form" component={Form} />
-            <Redirect to="/" />
-            </> : 
-            <>
-            <Route exact path="/" component={Login} />
-            <Route path="/form" component={Form} />
-            <Route path="/forms" component={Forms} />
-            <Redirect to="/" />
+              <Route path="/users" component={Users} />
+              <Route path="/review" component={FormReview} />
+              <Route path="/responses" component={FormResponses} />
+              <Route path="/userResponses" component={UserResponse} />
+              <Route path="/form" component={Form} />
+              <Redirect to="/" />
+              </> : 
+              <>
+              <Route exact path="/" component={Login} />
+              <Route path="/form" component={Form} />
+              <Route path="/forms" component={Forms} />
+              <Redirect to="/" />
             </>
          }
            
