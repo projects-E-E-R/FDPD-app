@@ -67,20 +67,16 @@ const Profile = () => {
     );
   }
 
+  useEffect(()=>{
+    document.title = 'Mi perfil';
+  },[]);
   return (
     <StyledForm>
     <Layout.Content>
     <Section  title='' shadow>
-
-    <ViewerProfile/>
-
+      <ViewerProfile/>
     </Section>
-    
     </Layout.Content>
-{/*     <h1>{career}</h1>
-  <h1>{gender == 'male' ? 'Masculino': gender == 'female' ?  'Femenino': 'Otro'}</h1>
-  <h1>{rut}</h1>
-  <h1>{email}</h1> */}
     </StyledForm>
   );
 };

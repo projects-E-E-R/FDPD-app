@@ -53,7 +53,7 @@ const Forms = (props) => {
   return (
     <StyledForm>
     <Layout.Content>
-    <Section  title={'Mis encuestas'}  icon={<AlertOutlined />} loading={false} shadow>
+    <Section  title={'Mis encuestas por responder'}  icon={<AlertOutlined />} loading={false} shadow>
     <FormViewer formFilter={formFilter}/>
 
     </Section>
