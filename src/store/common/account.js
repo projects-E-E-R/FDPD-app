@@ -18,7 +18,6 @@ const useAccountStore = create(
     (set) => {
       return {
         timezone: undefined,
-        email: undefined,
         remember: undefined,
         loading: false,
         error: null,
@@ -26,6 +25,15 @@ const useAccountStore = create(
         disableSider: false,
         idUser: undefined,
         isAdmin: false,
+        career:undefined,
+        careerId:undefined,
+        email: undefined,
+        firstName:undefined,
+        fullName:undefined,
+        gender:undefined,
+        genderId:undefined,
+        lastName:undefined,
+        rut:undefined,
         setDisableSider: (value) => set({ disableSider: value }),
         setLoading: (value) => set({ loading: value }),
         setToken: (value) => set({ token: value }),
@@ -58,7 +66,6 @@ const useAccountStore = create(
           localStorage.clear();
           set({
             timezone: undefined,
-            email: undefined,
             remember: undefined,
             loading: false,
             error: null,
@@ -66,6 +73,15 @@ const useAccountStore = create(
             disableSider: false,
             idUser: undefined,
             isAdmin: false,
+            career:undefined,
+            careerId:undefined,
+            email: undefined,
+            firstName:undefined,
+            fullName:undefined,
+            gender:undefined,
+            genderId:undefined,
+            lastName:undefined,
+            rut:undefined,
           });
           session$.next(null);
         }

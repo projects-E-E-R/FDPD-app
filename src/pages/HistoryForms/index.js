@@ -3,20 +3,19 @@ import React, { useEffect,useState } from 'react';
 import {
   StyledForm
 } from './Forms.styles';
-import Widget from 'components/Widget/Widget';
-import { useTranslation } from 'react-i18next';
 import Layout from 'components/Layout/Layout';
 import Section from 'components/Section/Section';
-import { AlertOutlined } from '@ant-design/icons';
+import { FormOutlined } from '@ant-design/icons';
 import  Card from 'ui/Card/Card';
 import {Row,Col} from 'antd';
-import useStoreForms from './Store';
+import useStoreHistory from './Store';
 import {getFormReMap} from './Services';
 import { GET } from 'services/common/http';
-const Forms = (props) => {
-  const {t} =useTranslation();
+import useAccountStore from 'store/common/account';
+const HistoryForms = () => {
   const [formFilter,setFormFilter]= useState(null);
-  const {requestForm,valueForms} = useStoreForms(({requestForm,valueForms})=>({requestForm,valueForms}));
+  const {requestForm,valueFormsHistory} = useStoreHistory(({requestForm,valueFormsHistory})=>({requestForm,valueFormsHistory}));
+  const{idUser} =useAccountStore (({idUser})=>({idUser}));
   const FormViewer = ({ formFilter }) => {
     return (
       <Row gutter={[20, 20]}>
@@ -32,28 +31,28 @@ const Forms = (props) => {
     );
   };
 
-  /* Get FORMS user */
+  /* Get History_FORMS user */
   useEffect(() => {
-    if(valueForms == undefined){
-      requestForm(null,GET);
+    if(valueFormsHistory == undefined){
+      requestForm(idUser,GET);
     }
-  }, [valueForms]);
+  }, []);
 
   useEffect(() => {
-    if(valueForms){
-      setFormFilter(getFormReMap(valueForms).filter((form)=> form.answered == false));
+    if(valueFormsHistory){
+      setFormFilter(getFormReMap(valueFormsHistory));
     }
     
-  }, [valueForms]);
+  }, [valueFormsHistory]);
   useEffect(() => {
-    document.title = 'Mis encuestas';
+    document.title = 'Mi Historial';
   }, []);
 
 
   return (
     <StyledForm>
     <Layout.Content>
-    <Section  title={'Mis encuestas por responder'}  icon={<AlertOutlined />} loading={false} shadow>
+    <Section  title={'Mis encuestas respondidas'}  icon={<FormOutlined />} loading={false} shadow>
     <FormViewer formFilter={formFilter}/>
 
     </Section>
@@ -64,4 +63,4 @@ const Forms = (props) => {
   );
 };
 
-export default Forms;
+export default HistoryForms;

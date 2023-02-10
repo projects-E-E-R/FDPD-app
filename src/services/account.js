@@ -15,13 +15,23 @@ import {
       map((response) => {
         const { data, error } = response;
         if (error) throw error;
-        const { user_id: userId,is_admin: isAdmin} = data;
+        const { user_id: userId,is_admin: isAdmin,career,
+          career_id:careerId,email,first_name:firstName,full_name:fullName,
+          gender,gender_id:genderId,last_name:lastName,RUT:rut
+        } = data;
         setId(userId);
         Cookies.set('userId', userId);
         return {
           idUser:userId,
           token:userId,
           isAdmin,
+          career,
+          careerId,
+          email,
+          firstName,fullName,gender,
+          genderId,
+          lastName,
+          rut,
           remember
         };
       })

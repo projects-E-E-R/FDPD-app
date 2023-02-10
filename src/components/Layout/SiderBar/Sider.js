@@ -76,7 +76,7 @@ const Sider = (props) => {
             </> :
             <>
               <Menu.Item key={1}
-                onClick={()=>history.push('/')}
+                onClick={()=>history.push('/profile')}
                 className="menu-item"
                 icon={<UserOutlined className="menu-item-avatar-section"/>}>
                   <h2 className='ant-menu-submenu-title'>Mi perfil</h2>
@@ -90,7 +90,7 @@ const Sider = (props) => {
               </Menu.Item>
               
               <Menu.Item key={3}
-                onClick={()=>history.push('/')}
+                onClick={()=>history.push('/history')}
                 className="menu-item"
                 icon={<HistoryOutlined className="menu-item-avatar-section"/>}>
                   <h2 className='ant-menu-submenu-title'>Mi Historial</h2>

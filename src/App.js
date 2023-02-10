@@ -8,9 +8,11 @@ import { useLang } from 'hooks/langHook';
 import Login from 'pages/Login';
 import Form from 'pages/Form/Form';
 import Forms from 'pages/Forms/Forms';
+import HistoryForms from 'pages/HistoryForms/index';
 import Layout from 'components/Layout/Layout';
 import useAccountStore from 'store/common/account';
 import Users from 'pages/Users/Users';
+import Profile from  'pages/Profile'
 import FormReview from 'pages/FormReview/FormReview';
 import UserResponse from 'pages/FormReview/components/UserResponse/UserRespone';
 import FormResponses from 'pages/FormReview/components/FormResponses/FormResponses';
@@ -28,25 +30,27 @@ function App() {
          {
           isAdmin ? 
             <>
-              <Route path="/users" component={Users} />
-              <Route path="/review" component={FormReview} />
-              <Route path="/responses" component={FormResponses} />
-              <Route path="/userResponses" component={UserResponse} />
-              <Route path="/form" component={Form} />
-              <Redirect to="/" />
-              </> : 
-              <>
-              <Route exact path="/" component={Login} />
-              <Route path="/form" component={Form} />
-              <Route path="/forms" component={Forms} />
-              <Redirect to="/" />
+            <Route path="/users" component={Users} />
+            <Route path="/review" component={FormReview} />
+            <Route path="/responses" component={FormResponses} />
+            <Route path="/userResponses" component={UserResponse} />
+            <Route path="/form" component={Form} />
+            <Redirect to="/index.html" />
+            </> : 
+            <>
+            <Route exact path="/index.html" component={Login} />
+            <Route path="/form" component={Form} />
+            <Route path="/forms" component={Forms} />
+            <Route path="/history" component={HistoryForms} />
+            <Route path="/profile" component={Profile} />
+            <Redirect to="/index.html" />
             </>
          }
            
           </Layout> : null 
           }
-          <Route exact path="/" component={Login} />
-          <Redirect to="/" />
+          <Route exact path="/index.html" component={Login} />
+          <Redirect to="/index.html" />
         </Switch>
       </ConfigProvider>
     </ThemeProvider>
