@@ -9,7 +9,7 @@ import Layout from 'components/Layout/Layout';
 import Section from 'components/Section/Section';
 import { AlertOutlined } from '@ant-design/icons';
 import  Card from 'ui/Card/Card';
-import {Row,Col} from 'antd';
+import {Row,Col, Empty} from 'antd';
 import useStoreForms from './Store';
 import {getFormReMap} from './Services';
 import { GET } from 'services/common/http';
@@ -22,7 +22,7 @@ const FormReview = (props) => {
   const history = useHistory();
   const [formFilter,setFormFilter]= useState(null);
   const [redirect,setRedirect]= useState(false);
-  const {requestForm,valueForms, loading} = useStoreForms(({requestForm,valueForms})=>({requestForm,valueForms}));
+  const {requestForm,valueForms, loading} = useStoreForms();
   const {requestUserResponse,userResponseValue} = useStoreFormUserResponse();
   const {requestFormResponses,formResponseValue} = useStoreFormResponses();
 
@@ -78,7 +78,11 @@ const FormReview = (props) => {
     <StyledFormReview>
       <Layout.Content>
         <Section  title={'Mis encuestas'} icon={<AlertOutlined />} loading={loading} shadow>
-          <FormViewer formFilter={formFilter}/>
+          {
+            formFilter ? 
+            <FormViewer formFilter={formFilter}/> : 
+            <Empty></Empty>
+          }
         </Section>
       </Layout.Content>
     </StyledFormReview>

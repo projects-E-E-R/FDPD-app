@@ -14,7 +14,7 @@ export const useStoreFormUserResponse =  create((set) => ({
             next:(response)=>{
                 set({loading:false});
                 if (response?.data?.form_responses?.length > 0) {
-                set({userResponseValue:response?.data?.form_responses});
+                set({userResponseValue:response?.data});
                 } else if (response?.error) {
                   set({error:response?.error?.title})
                 }

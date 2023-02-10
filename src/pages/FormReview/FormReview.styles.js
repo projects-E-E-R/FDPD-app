@@ -8,4 +8,8 @@ export const StyledFormReview = styled.div`
         align-items:center;
         padding:0 2rem;
     }
+
+    .ant-input-number-disabled .ant-input-number-input {
+        text-align: center;
+    }
 `;

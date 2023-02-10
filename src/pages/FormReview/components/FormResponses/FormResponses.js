@@ -8,6 +8,7 @@ import useStoreFormUserResponse from '../UserResponse/store';
 import { StyledFormResponses } from './FormResponses.styles';
 import { useStoreFormResponses } from './store';
 import Layout from 'components/Layout/Layout';
+import { Button, Divider, Empty, InputNumber, List } from 'antd';
 
 
 const FormResponses = (props) => {
@@ -36,23 +37,39 @@ const FormResponses = (props) => {
     requestUserResponse(formID,userID)
     setRedirect(true)
   }
+  
+  const ResponseViewer = (params) => {
+    return <>
+      
+    </>
+  }
 
   return (
     <StyledFormResponses>
       <Layout.Content>
-        <Section  title={'Respuestas'} icon={<AlertOutlined />} loading={loading} shadow>
+        <Section  title={'Respuestas'} icon={<AlertOutlined />} loading={loadingFormResponses} shadow>
 
             {
-                formResponseValue?.map((response)=> {
-                    return <div style={{margin:20}} onClick={() => RequestUserResponses({userID: response?.student_id})}>
-                        <div>
-                            {response?.student_full_name}
-                        </div>
-                        <div>
-                            {response?.form_date}
-                        </div>
-                    </div>
-                })
+              formResponseValue ? 
+                <List
+                  itemLayout="horizontal"
+                  dataSource={formResponseValue}
+                  renderItem={(item) => (
+                    <List.Item>
+                      <List.Item.Meta
+                        /* avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />} */
+                        title={item.student_full_name}
+                        description={item.carrer_name}
+                      />
+                      <div>
+                      <Button onClick={() => RequestUserResponses({userID: item.student_id})}>Ver respuestas</Button>
+                      </div>
+                    </List.Item>
+                  )}
+                /> :
+                <>
+                  <Empty></Empty>
+                </>
             }
           
         </Section>
