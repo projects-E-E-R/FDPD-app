@@ -16,7 +16,7 @@ export const sendResponse = (form,data,timeForResponse,idUser) =>{
     let date = editDate[0] + 'T' + editDate[1] + '.000Z';
  
     const bodyAnswer = {
-        studedent_id:idUser,
+        student_id:idUser,
         form_id,
         date,
         form_responses:form?.fields?.map(({id,type,options})=>{
@@ -26,7 +26,14 @@ export const sendResponse = (form,data,timeForResponse,idUser) =>{
                     question_type:type,
                     question_id: parseInt(id),
                 }
-            }else{
+            }else if(type == 'LINEAR'){
+                return {
+                    answers_item_id:  getId(options,data[id]),
+                    question_type:type,
+                    question_id: parseInt(id),
+                }
+            }
+            else{
                 return {
                     answers_selection_id :type == 'RADIO' && options ? getId(options,data[id]) : parseInt(data[id]),
                     question_type:type,
