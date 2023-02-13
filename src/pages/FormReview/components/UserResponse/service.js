@@ -1,6 +1,5 @@
 export const getDataModel = ({data},{t}) => {
     const dataSource = []
-
     const sectionsID = []
     const sections = []
 
@@ -15,6 +14,7 @@ export const getDataModel = ({data},{t}) => {
             })
         }
     })
+
     sections?.forEach((item) => {
         data?.time_per_section?.forEach((item_time) => {
             if(item.id == item_time.section_id){
@@ -22,9 +22,6 @@ export const getDataModel = ({data},{t}) => {
             }
         })
     })
-
-    
-   
 
     sections.forEach((section) => {
         const dataResponse = []
@@ -34,6 +31,8 @@ export const getDataModel = ({data},{t}) => {
                     question: item.question,
                     answer: item.answer,
                     is_open_question: item.is_open_question,
+                    is_linear_question: item.AnswerInt > 0 ? true : false,
+                    linear_question_answer_scale: item.AnswerInt > 0 ? 20 * item.AnswerInt : undefined,
                     question_id: item.question_id,
                     answer_id: {
                         answers_selection_id: item?.answers_selection_id,
@@ -48,7 +47,6 @@ export const getDataModel = ({data},{t}) => {
                 dataResponse.push(dataResp)
             }  
         })
-
         dataResponse && dataSource.push(
             {
                 section_id: section.id,
@@ -58,12 +56,87 @@ export const getDataModel = ({data},{t}) => {
                 responses: dataResponse
             })
     })
-    
-  
     console.log(dataSource)
     return dataSource;
-  }
-
-const uniqueSection = (value, index, self) => {
-    return self.indexOf(value) === index;
 }
+
+export const getDataReport = (
+    { data },
+    { t, border, color }
+  ) => {
+    if (data) {
+  
+      const titleStyle = {
+        font: {
+          bold: true
+        },
+        fill: {
+          patternType: "solid",
+          fgColor: {
+            rgb: "FFCCEEFF"
+          }
+        }
+      }
+  
+      const columns = [
+        {
+          title: "Sección",
+          width: {
+            wpx: 200
+          },
+          style: titleStyle
+        },
+        {
+          title: "Pregunta",
+          width: {
+            wpx: 200
+          },
+          style: titleStyle
+        },
+        {
+          title: "Respuesta",
+          width: {
+            wpx: 200
+          },
+          style: titleStyle
+        },        
+      ]
+  
+      const data2 = []
+      data?.forEach((section) => {
+        section?.responses?.forEach((response) => {
+            const responsesData = [
+                {
+                    value: section.section_name,
+                },    
+                {
+                    value: response?.question,
+                },
+                {
+                    value: response?.answer,
+                },    
+            ]
+            data2.push(responsesData)
+        })
+      })
+      const dataUsers = [
+                [
+                    {value: "H1", style: {font: {sz: "24", bold: true}}},
+                    {value: "Bold", style: {font: {bold: true}}},
+                    {value: "Red", style: {fill: {patternType: "solid", fgColor: {rgb: "FFFF0000"}}}},
+                ],
+                [
+                    {value: "H2", style: {font: {sz: "18", bold: true}}},
+                    {value: "underline", style: {font: {underline: true}}},
+                    {value: "Blue", style: {fill: {patternType: "solid", fgColor: {rgb: "FF0000FF"}}}},
+                ],
+            ]
+  
+    const dataset = [{
+      columns: columns,
+      data: data2,
+    }]
+      console.log("data set: ",dataset);
+      return dataset;
+    }
+  };
