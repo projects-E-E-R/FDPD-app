@@ -4,7 +4,8 @@ import {ErrorLabel,Layout} from "./LinearGrid.style";
 import { Tooltip } from "antd";
 
 
-const LinearGrid = ({ id })=>{
+const LinearGrid = ({ id,field })=>{
+
   const { options, legend, error } = useLinearInput(id);
 
   return (

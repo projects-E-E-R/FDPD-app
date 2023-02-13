@@ -2,6 +2,7 @@ import create from 'zustand';
 import { getFormsAsObservable } from 'services/common/forms';
 export const useStoreDataForm =  create((set) => ({
     valueDetailForm:undefined,
+    columns:undefined,
     loading:false,
     error:null,
     complete:null,
@@ -13,31 +14,101 @@ export const useStoreDataForm =  create((set) => ({
             next:(data)=>{
                 set({loading:false});
                 if (data?.data?.fields) {
-                    let fieldsReMap = data?.data?.fields;    
-                    fieldsReMap.unshift({id:0,label:'',options:[],required:false,seection:1,sub_section_id:1,type:'RADIO'});     
+                    let fieldsReMapFirst = data?.data?.fields;   
+                    let sectionContent = data?.data?.section_content;     
+                    //fieldsReMapFirst.unshift({id:0,label:'',options:[],required:false,section:1,sub_section_id:1,type:'RADIO'});     
+                    let fieldsReMap = fieldsReMapFirst?.map((f)=>{
+                        if(f?.sub_section_id){
+                            return {...f, id: f?.id?.toString()};
+                        } else {
+                            return {
+                                ...f,
+                                sub_section_id:1, 
+                                id: f?.id?.toString()
+                            }
+                        }
+                    });                 
+                    /* Re map fields */
+                    let arraySection = [];
+                    let columnsState = undefined;
+                    sectionContent?.map((section)=>{
+                        let arraySubSection = [];
+                        fieldsReMap?.map((field)=>{
+                           if(field?.section == section?.id){
+                                if(field?.sub_section_id){
+                                    //0 1 2 3
+                                    let result = arraySubSection?.find((e)=>e?.id == field?.sub_section_id);
+                                    if(field?.legend?.columns){
+                                        columnsState= field?.legend?.columns;
+                                    }
+                                    if(result==undefined){
+                                        arraySubSection.push({id:field?.sub_section_id,section_id:section?.id})
+                                    } 
+                                }
+                           }
+                        });
+                        arraySection?.push(arraySubSection)
+                    })
+                    /* Obtengo el array de cuantas subsections tiene cada section */
+                    let SectionFields = [];
+                    arraySection?.map((subsections)=>{
+                        let arraySubsectionsDetailed = [];
+                        subsections?.map(({id,section_id})=>{
+                            let arrayFieldsForSubSections = [];
+                            fieldsReMap?.map((f)=>{
+                                if(f?.sub_section_id == id && section_id ==f?.section){
+                                    arrayFieldsForSubSections?.push(f);
+                                }
+                            })
+                            arraySubsectionsDetailed?.push(arrayFieldsForSubSections);
+                        })
+                        SectionFields?.push(arraySubsectionsDetailed)
+                    });
+                 
+                    let arraytoSend = [];
+                    let cont = 0;
+                    SectionFields?.map((subsection)=>{
+                        return subsection?.map((array)=>{
+                            return array?.map((field,index)=>{
+                                if(field?.legend){
+                                    if(field?.legend?.columns == undefined && index == 0){
+                                        arraytoSend?.push({
+                                            ...field,
+                                            id:field?.id,
+                                            position:cont,
+                                            legend:{
+                                                columns:columnsState,
+                                                labelFirst:field?.legend?.labelFirst
+                                            }
+                                        });
+                                        cont++;
+                                    } else {
+                                        arraytoSend?.push({...field,position:cont,id:field?.id});
+                                        cont++;
+                                    }
+                                } else {
+                                    arraytoSend?.push({...field,position:cont,id:field?.id});
+                                    cont++;
+                                }
+                            })
+                        });
+                    });            
                 set({valueDetailForm:
                     {
                         ...data?.data,
-                        fields: fieldsReMap?.map((f)=>{
-                            if(f?.sub_section_id){
-                                return {
-                                    ...f,
-                                    id: f?.id?.toString(),
-                                }
-                            }else{
-                                return {
-                                    ...f,
-                                    id: f?.id?.toString(),
-                                    sub_section_id:1
-                                }
+                        section_content:sectionContent?.map((section,index)=>{
+                            return {
+                                ...section,         
+                                sub_section: arraySection[index]?.length
                             }
                         }),
-                        fieldsOrder:data?.data?.fields_order?.reduce((acc,{id,position})=>{
+                        fields: arraytoSend,
+                        fieldsOrder: arraytoSend?.reduce((acc,{id,position})=>{      
                             return {
-                                ...acc,[id]:position       
+                                ...acc,[id]:position     
                             }
                         },[])
-                        }
+                    }
                 });
                 
                 } else if (data?.error) {

@@ -14,10 +14,12 @@ import useStoreForm from './Store/useStoreForm';
 import useStoreDataForm from './Store/storeDataForm';
 import CompleteSection from 'components/CompleteSection';
 import useAccountStore from 'store/common/account';
+import useStoreForms from '../Forms/Store';
 import {sendResponse} from './services';
+/* import form from './form.json'; */
 const FormWrapper = (props) => {
   const {history,location} = props;
-  const {state : form} = location;
+  const {state : form} = location; 
   const {t} =useTranslation();
   const [formQuestion,setFormQuestion]= useState(null);
   const [sectionForm,setSectionForm]= useState(1);
@@ -29,7 +31,8 @@ const FormWrapper = (props) => {
   const [changeSubSection,setChangeSubSection]= useState(false);
   const[timerSection,setTimerSection] = useState(0);
   const[subscription,setSubscription] = useState(null);
-  const {idUser} = useAccountStore(({idUser})=>({idUser}))
+  const {idUser} = useAccountStore(({idUser})=>({idUser}));
+  const {valueForms} = useStoreForms(({valueForms})=>({valueForms}));
   const {
     setTimer,subscribeTimer,
     setTimeForResponse,
@@ -44,12 +47,12 @@ const FormWrapper = (props) => {
       setTimer,subscribeTimer,setTimeForResponse,
       timeForResponse,formComplete,setFormComplete,cleanAllStoreForm
       }));
-  const {requestGetDetail,loading : loadingForm,valueDetailForm,cleanAll}  = 
-  useStoreDataForm(({requestGetDetail,loading,valueDetailForm,cleanAll}) => ({
-    requestGetDetail,loading,valueDetailForm,cleanAll
-  }));
+      const {requestGetDetail,loading : loadingForm,valueDetailForm,cleanAll}  = 
+      useStoreDataForm(({requestGetDetail,loading,valueDetailForm,cleanAll}) => ({
+        requestGetDetail,loading,valueDetailForm,cleanAll
+      }));
+      
   
-
 
   const Questions = (form) => {
     const { total_section,section_content,fields } = form?.form;
@@ -77,11 +80,11 @@ const FormWrapper = (props) => {
                   case "RADIO":
                     questionInput = <RadioInput id={id} field={field} />;
                     break;
-                  case "SHORT_ANSWER":
+                   case "SHORT_ANSWER":
                     questionInput = <ShortAnswerInput id={id} field={field}/>;
                     break;
                   case "LINEAR":
-                  questionInput = <LinearGrid id={id} />;
+                  questionInput = <LinearGrid id={id} field={field}/>;
                     break;
                   default:
                     return null;
@@ -129,15 +132,12 @@ const FormWrapper = (props) => {
           setSub_section_count(1);
       }
     }
-
-    //await methodsGoogleForm?.submitToGoogleForms(data);
-    //alert("Form submitted with success!");
   };
   useEffect(()=>{
     if(sections){
       const sectionView = sections?.find((e)=>e?.id == sectionForm);
       setTimer();
-      if(sectionView?.sub_section > 0){
+      if(sectionView?.sub_section > 1){
         setChangeSubSection(true);
       }else{
         setChangeSubSection(false);
@@ -159,7 +159,8 @@ const FormWrapper = (props) => {
   },[subscribeTimer]);
 
   useEffect(()=>{
-    setFormQuestion(history.location.state);
+    let result = valueForms?.find((e)=> e?.form_id == history.location.state?.form_id);
+    setFormQuestion(result?.form_title);
   },[]);
 /*   useEffect(()=>{
     if(form){
@@ -169,7 +170,7 @@ const FormWrapper = (props) => {
   useEffect(()=>{
     if(formQuestion){
       //requestGetDetail(GET_DETAIL_FORM,formQuestion?.id,GET);
-      document.title = formQuestion?.name;
+      document.title = formQuestion;
     }
   },[formQuestion]);
 
@@ -184,7 +185,7 @@ const FormWrapper = (props) => {
         <>
           <Section  title={''}  loading={loadingForm} shadow>
           {sectionForm == 1 ? 
-                <Question titleCenter title={formQuestion?.name} shadow loading={false} initSection={true}>
+                <Question titleCenter title={formQuestion} shadow loading={false} initSection={true}>
                   <p style={{fontSize:15}}>
                   ¡Hola!
                   Esta encuesta es direccionada a los/las estudiantes de ingeniaría de la Universidad Católica del Norte (UCN) en su primera asignatura de programación.<br/>
@@ -211,7 +212,7 @@ const FormWrapper = (props) => {
             }
           {
             methods && form && (
-              <GoogleFormProvider {...methods}>
+            <GoogleFormProvider {...methods}>
                 <Questions form={form}/>
             </GoogleFormProvider>
             )

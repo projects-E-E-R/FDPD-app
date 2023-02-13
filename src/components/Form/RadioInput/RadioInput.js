@@ -8,7 +8,6 @@ const RadioInput = ({id,field})=> {
 
   const { options, customOption, error,items,label } =  useRadioInput(id);
 
-
   return (
     items   ? (<>
       {
