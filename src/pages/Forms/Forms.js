@@ -3,8 +3,6 @@ import React, { useEffect,useState } from 'react';
 import {
   StyledForm
 } from './Forms.styles';
-import Widget from 'components/Widget/Widget';
-import { useTranslation } from 'react-i18next';
 import Layout from 'components/Layout/Layout';
 import Section from 'components/Section/Section';
 import { AlertOutlined } from '@ant-design/icons';
@@ -13,10 +11,15 @@ import {Row,Col} from 'antd';
 import useStoreForms from './Store';
 import {getFormReMap} from './Services';
 import { GET } from 'services/common/http';
-const Forms = (props) => {
-  const {t} =useTranslation();
+import {GET_DETAIL_FORM} from 'settings/constants';
+import useStoreDataForm from '../Form/Store/storeDataForm';
+const Forms = () => {
   const [formFilter,setFormFilter]= useState(null);
   const {requestForm,valueForms} = useStoreForms(({requestForm,valueForms})=>({requestForm,valueForms}));
+  const {requestGetDetail,loading : loadingForm,valueDetailForm}  = 
+  useStoreDataForm(({requestGetDetail,loading,valueDetailForm}) => ({
+    requestGetDetail,loading,valueDetailForm
+  }));
   const FormViewer = ({ formFilter }) => {
     return (
       <Row gutter={[20, 20]}>
@@ -24,6 +27,10 @@ const Forms = (props) => {
             <Col key={index} xs={24} sm={24} md={24} lg={24}>
          
               <Card
+                request={requestGetDetail}
+                value={valueDetailForm}
+                loading={loadingForm}
+                constant={GET_DETAIL_FORM}
                 {...params}
               /> 
             </Col> 
@@ -53,7 +60,7 @@ const Forms = (props) => {
   return (
     <StyledForm>
     <Layout.Content>
-    <Section  title={'Mis encuestas por responder'}  icon={<AlertOutlined />} loading={false} shadow>
+    <Section  title={'Mis encuestas por responder'}  icon={<AlertOutlined />} loading={loadingForm} shadow>
     <FormViewer formFilter={formFilter}/>
 
     </Section>

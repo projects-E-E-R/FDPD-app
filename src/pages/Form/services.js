@@ -6,7 +6,7 @@ const getId = (options,label)=>{
     let result = options?.find((e)=>e?.label == label);
     return parseInt(result?.id);
   }
-export const sendResponse = (form,data,timeForResponse,idUser) =>{
+export const sendResponse = (form,data,timeForResponse,idUser,setLoading) =>{
     const {form_id} = form;
     let todayDate = today();
     const dateUtc = toUtc(todayDate).format(
@@ -49,14 +49,18 @@ export const sendResponse = (form,data,timeForResponse,idUser) =>{
             }
         })
     }
+    setLoading(true);
     getFormsAsObservable({url:SEND_ANSWERS,type:POST,config:{data:bodyAnswer}}).subscribe({
         next:(data)=>{
+            setLoading(false);
             console.log(data);
         },
         error:({error})=>{
+            setLoading(false);
             console.log(error);
         },
         complete:(data)=>{
+            setLoading(false);
             console.log(data);
         }
     })

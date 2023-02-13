@@ -1,8 +1,10 @@
 import create from 'zustand';
 import { getFormsAsObservable } from 'services/common/forms';
-import {GET_HISTORY_FORMS_FROM_USER} from 'settings/constants';
+import { getUserReponseAsObservable } from 'services/common/userResponse';
+import {GET_HISTORY_FORMS_FROM_USER,BASE_URL, GET_USERS_RESPONSE } from 'settings/constants';
 export const useStoreHistory =  create((set) => ({
     valueFormsHistory:undefined,
+    userResponseValue:undefined,
     loading:false,
     error:null,
     complete:null,
@@ -22,6 +24,27 @@ export const useStoreHistory =  create((set) => ({
             },
             complete:(data)=>{
                 set({complete:data,loading:false});
+            }
+        })
+    },
+    requestUserResponse:(formID, userID)=>{
+        set({userResponseValue: undefined})
+        const url = BASE_URL + GET_USERS_RESPONSE.replace(':formID',formID).replace(':userID',userID)
+        set({loading:true});
+        getUserReponseAsObservable({url}).subscribe({
+            next:(response)=>{
+                set({loading:false});
+                if (response?.data?.form_responses?.length > 0) {
+                set({userResponseValue:response?.data});
+                } else if (response?.error) {
+                  set({error:response?.error?.title})
+                }
+            },
+            error:({error})=>{
+                set({error,loading:false});
+            },
+            complete:(response)=>{
+                set({complete:response,loading:false});
             }
         })
     }

@@ -16,6 +16,7 @@ import Profile from  'pages/Profile'
 import FormReview from 'pages/FormReview/FormReview';
 import UserResponse from 'pages/FormReview/components/UserResponse/UserRespone';
 import FormResponses from 'pages/FormReview/components/FormResponses/FormResponses';
+import UserResponseHistory from 'pages/HistoryForms/components/UserResponse/UserResponseHistory';
 function App() {
   const [theme] = useTheme();
   const [lang] = useLang();
@@ -43,6 +44,7 @@ function App() {
             <Route path="/forms" component={Forms} />
             <Route path="/history" component={HistoryForms} />
             <Route path="/profile" component={Profile} />
+            <Route path="/responsesHistory" component={UserResponseHistory}/>
             <Redirect to="/index.html" />
             </>
          }

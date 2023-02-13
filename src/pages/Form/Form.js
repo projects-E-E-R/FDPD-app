@@ -47,9 +47,9 @@ const FormWrapper = (props) => {
       setTimer,subscribeTimer,setTimeForResponse,
       timeForResponse,formComplete,setFormComplete,cleanAllStoreForm
       }));
-      const {requestGetDetail,loading : loadingForm,valueDetailForm,cleanAll}  = 
-      useStoreDataForm(({requestGetDetail,loading,valueDetailForm,cleanAll}) => ({
-        requestGetDetail,loading,valueDetailForm,cleanAll
+      const {requestGetDetail,loading : loadingForm,valueDetailForm,cleanAll,setLoading}  = 
+      useStoreDataForm(({requestGetDetail,loading,valueDetailForm,cleanAll,setLoading}) => ({
+        requestGetDetail,loading,valueDetailForm,cleanAll,setLoading
       }));
       
   
@@ -125,7 +125,7 @@ const FormWrapper = (props) => {
           subscription.unsubscribe();
         }
         setFormComplete(true);
-        sendResponse(form,data,timeForResponse,idUser);
+        sendResponse(form,data,timeForResponse,idUser,setLoading);
   
       } else {
           setSectionForm(sectionForm+1);
@@ -180,7 +180,7 @@ const FormWrapper = (props) => {
     <Layout.Content  style={{width:'70%'}}>
     {
       formComplete ? (
-        <CompleteSection cleanAllStoreForm={cleanAllStoreForm} history={history} cleanAll={cleanAll} {...props}/>
+        <CompleteSection cleanAllStoreForm={cleanAllStoreForm} history={history} cleanAll={cleanAll} loading={loadingForm} {...props}/>
       ) : (
         <>
           <Section  title={''}  loading={loadingForm} shadow>
