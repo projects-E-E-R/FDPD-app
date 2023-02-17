@@ -14,7 +14,9 @@ import { GET } from 'services/common/http';
 import useAccountStore from 'store/common/account';
 const HistoryForms = () => {
   const [formFilter,setFormFilter]= useState(null);
-  const {requestForm,valueFormsHistory} = useStoreHistory(({requestForm,valueFormsHistory})=>({requestForm,valueFormsHistory}));
+  const {
+    requestForm,valueFormsHistory,requestUserResponse,userResponseValue,loading:loadingHistory} = useStoreHistory(({requestForm,valueFormsHistory,requestUserResponse,userResponseValue,loading})=>({
+    requestForm,valueFormsHistory,requestUserResponse,userResponseValue,loading}));
   const{idUser} =useAccountStore (({idUser})=>({idUser}));
   const FormViewer = ({ formFilter }) => {
     return (
@@ -23,6 +25,8 @@ const HistoryForms = () => {
             <Col key={index} xs={24} sm={24} md={24} lg={24}>
          
               <Card
+                requestHistory={requestUserResponse}
+                idUser={idUser}
                 {...params}
               /> 
             </Col> 
@@ -30,6 +34,7 @@ const HistoryForms = () => {
       </Row>
     );
   };
+
 
   /* Get History_FORMS user */
   useEffect(() => {
@@ -52,7 +57,7 @@ const HistoryForms = () => {
   return (
     <StyledForm>
     <Layout.Content>
-    <Section  title={'Mis encuestas respondidas'}  icon={<FormOutlined />} loading={false} shadow>
+    <Section  title={'Mis encuestas respondidas'}  icon={<FormOutlined />} loading={loadingHistory} shadow>
     <FormViewer formFilter={formFilter}/>
 
     </Section>

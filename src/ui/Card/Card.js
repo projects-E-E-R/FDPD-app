@@ -7,12 +7,16 @@ import {UnorderedListOutlined} from '@ant-design/icons';
 import { useHistory } from 'react-router';
 const Card = (props) => {
   const history = useHistory();
-  const{id, name, detail, request,constant,loading,formDate,value}=props;
+  const{id, name, detail, request,constant,loading,formDate,value,requestHistory,idUser}=props;
   const {t}=useTranslation();
   
   const onClickHandler = (props) =>{
     if(request){
       request(constant,props?.id);
+    }
+    if(requestHistory){
+      requestHistory(props?.id,idUser);
+      history.push('/responsesHistory');
     }
   }
   useEffect(()=>{

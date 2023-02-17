@@ -9,7 +9,7 @@ const NotFound = () => {
   const history = useHistory();
 
   const onClickHandler = () => {
-    history.push('/index.html');
+    history.push('/');
   };
 
   return (

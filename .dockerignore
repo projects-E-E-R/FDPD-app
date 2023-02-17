@@ -1,0 +1,16 @@
+# Items that don't need to be in a Docker image.
+.cache
+.dockerignore
+.env.enc
+.eslintrc
+.git
+.prettierrc
+.vscode
+cloudbuild.dev.yaml
+Dockerfile
+k8s
+*.md
+
+# Artifacts that will be built during image creation.
+build
+node_modules

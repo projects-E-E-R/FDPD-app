@@ -5,15 +5,15 @@ import Section from 'components/Section/Section';
 import Button from 'ui/Button/Button';
 
 const CompleteSection = (props) => {
-    const {history,cleanAll,cleanAllStoreForm} = props;
+    const {history,cleanAll,cleanAllStoreForm,loading} = props;
     const handleSubmit = () => {
         cleanAll();
         cleanAllStoreForm();
-        history.goBack('/index.html');
+        history.goBack('/');
     }
   return (
     <>       
-        <Section  title={''}  loading={false} shadow>
+        <Section  title={''}  loading={loading} shadow>
         <StyledContent className='container'>
         <h1>Gracias por responder esta encuesta</h1> 
         <StyleImageContent 
@@ -25,7 +25,7 @@ const CompleteSection = (props) => {
          </StyleImageContent>
             <Button
             $capitalize
-            loading={false}
+            loading={loading}
             disabled={false}
             type="primary"
             color="primary"
