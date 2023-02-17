@@ -5,11 +5,20 @@ import {
 } from './Profile.styles';
 import Layout from 'components/Layout/Layout';
 import Section from 'components/Section/Section';
-import {Avatar,Row,Col} from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import {Avatar,Row,Col, Drawer, Button} from 'antd';
+import { LockOutlined, PlusOutlined, UserOutlined } from '@ant-design/icons';
 import useAccountStore from 'store/common/account';
+import UpdatePassword from './components/UpdatePassword/UpdatePassword';
 const Profile = () => {
-
+  const [openDrawer, setOpenDrawer] = useState(false);
+  
+  const ButtonUpdatePassword = () => {
+    return (
+      <Button type="link" onClick={() => setOpenDrawer(true)} icon={<LockOutlined />} style={{fontSize: 18}}>
+          Actualizar contraseña
+      </Button>
+    );
+  }
 
   const ViewerProfile = ()=>{
     const{career,fullName,gender,rut,email} =useAccountStore (({
@@ -72,11 +81,13 @@ const Profile = () => {
   },[]);
   return (
     <StyledForm>
-    <Layout.Content>
-    <Section  title='' shadow>
-      <ViewerProfile/>
-    </Section>
-    </Layout.Content>
+      <Layout.Content>
+        <UpdatePassword openDrawer={openDrawer} onCloseDrawer={() => setOpenDrawer(false)}></UpdatePassword>
+          <Section  title='' shadow>
+            <ViewerProfile/>
+          <ButtonUpdatePassword/>
+          </Section>
+      </Layout.Content>
     </StyledForm>
   );
 };

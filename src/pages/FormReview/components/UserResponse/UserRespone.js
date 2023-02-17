@@ -2,7 +2,7 @@
 import { AlertOutlined, CheckCircleOutlined, CloseCircleOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import Section from 'components/Section/Section';
 import { StyledFormReview } from 'pages/FormReview/FormReview.styles';
-import React, { useEffect,useState } from 'react';
+import React, { memo, useEffect,useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useStoreFormUserResponse from './store';
 import Layout from 'components/Layout/Layout';
@@ -18,13 +18,28 @@ const UserResponse = (props) => {
   const {t} = useTranslation();
   const [dataModel, setDataModel] = useState(null)
   const [dataReport, setDataReport] = useState(null)
+  const [scoresData, setScoresData] = useState([])
+  const [showButtonUpdateScore, setShowButtonUpdateScore] = useState(false)
   
-  const {requestUserResponse, userResponseValue, loading} = useStoreFormUserResponse();
+  const {requestUserResponse, requestSetScore, requestSetMultiScore, userResponseValue, form_id, user_id, loading} = useStoreFormUserResponse();
 
+  const onClickUpdateScore = () => {
+    console.log(scoresData)
+    requestSetMultiScore(form_id, user_id, scoresData, () => requestUserResponse(form_id, user_id))
+    setScoresData([])
+    setShowButtonUpdateScore(false)
+  }
   
+  const onClickCalcelScore = () => {
+    console.log(scoresData)
+    setScoresData([])
+    setShowButtonUpdateScore(false)
+  }
+
   useEffect(() => {
     document.title = 'Respuestas';
   }, []);
+
   
   useEffect(() => {
     const data = getDataModel({data: userResponseValue},{t})
@@ -65,15 +80,129 @@ const UserResponse = (props) => {
       </Badge.Ribbon>
     </div>
   }
+
+  const requestSetScoreFunc = ({form_id, question_id, student_id, score}) => {
+    console.log(`form ${form_id}, question: ${question_id}, user: ${student_id},  new score: ${score}`)
+    requestSetScore(form_id, student_id, question_id, score)
+  }
   
-  const ResponseDetail = (props) => {
-    const {question, answer, children} = props
+  const addNewScore = ({form_id, question_id, student_id, score}) => {
+    console.log(`form ${form_id}, question: ${question_id}, user: ${student_id},  new score: ${score}`)
+    setShowButtonUpdateScore(true)
+    /* setScoresData(scores => [...scores, {
+        question_id: question_id,
+        score: score
+      }]
+    ) */
+
+    scoresData.push({
+      form_id: form_id,
+      question_id: question_id,
+      student_id: user_id,
+      score: score
+    })
+
+    console.log(scoresData)
+    setShowButtonUpdateScore(true)
+   }
+
+   //useState array?
+   
+
+  const ResponseScore = (props) => {
+    const {response, section_score} = props
+    const [updatingScore, setUpdatingScore] = useState(false)
+    const [newScore, setNewScore] = useState(null)
+    const [scoreValue, setScoreValue] = useState(null)
+    const [score, setScore] = useState(null)
+
+    const onClickScore = () => {
+      setScoreValue(newScore)
+      setScore(newScore)
+      
+      /* setScores(scores => 
+        [...scores, [{
+          question_id: response.question_id,
+          score: newScore
+        }]
+      ]
+      )  */
+
+      addNewScore({
+        form_id: form_id,
+        question_id: response.question_id,
+        student_id: user_id,
+        score: newScore
+      })
+      setNewScore(null)
+      return null
+    }
+    
+   /*  const onClickScore = () => {
+      setNewScore(null)
+      setScoreValue(newScore)
+      setScore(newScore)
+      requestSetScoreFunc({
+        form_id: form_id,
+        question_id: response.question_id,
+        student_id: user_id,
+        score: newScore
+      })
+    }
+     */
+    const onChangeScore = (value) => {
+      setScoreValue(value)
+      setNewScore(value)
+    }
+
+    const resetScore = () => {
+      setNewScore(null)
+      setScoreValue(score)
+    }
+
+    useEffect(() => {
+      //const currentScore = response.is_correct ? response.score : 0
+      const currentScore = response.score
+
+      setScoreValue(currentScore)
+      setScore(currentScore)
+      
+      scoresData.forEach((scoreQuestion) => {
+        if(scoreQuestion.question_id == response.question_id) {
+          let updateScore = scoreQuestion.score
+          setScoreValue(updateScore)
+        } 
+      })
+      
+      
+    },[])
+
     return <>
-      <div>Pregunta: {question}</div>
-      <div>Respuesta: {answer}</div>
-      {children}
+      <div style={{display: "grid", justifyItems: "end"}}>
+        <div>
+          Puntaje: <InputNumber size="medium" 
+                      min={0} 
+                      max={section_score} 
+                      disabled={!response.is_open_question} 
+                      defaultValue={score}
+                      value={scoreValue}
+                      style={{ width: 'fit' }} 
+                      onChange={(value) => onChangeScore(value)}
+                      /> pts.
+        </div>
+        {
+          newScore != null ? 
+            <div style={{marginTop: 5}}>
+              <Button type='link' onClick={resetScore}>Cancelar</Button>
+              <Button type='link' onClick={onClickScore}>Guardar</Button>
+            </div> : 
+            <></>
+        }
+      </div>
     </>
   }
+
+  const ResponseScoreMemo = memo(ResponseScore);
 
   const ExportMenu = () => {
     return (
@@ -98,10 +227,26 @@ const UserResponse = (props) => {
   return (
     <StyledFormReview>
       <Layout.Content>
+        {
+          showButtonUpdateScore ? <div style={{position: 'fixed',
+            left: '50%',
+            bottom: '5%',
+            background: '#5f9ea030',
+            width: 'auto',
+            zIndex: 1,
+            borderRadius: '5px'}}>
+            <Button type='link' style={{color:"red"}} onClick={onClickCalcelScore}>Cancelar</Button>
+            <Button type='link' style={{color:"green"}} onClick={onClickUpdateScore}>Guardar</Button>
+          </div> : <></>
+        }
         <Section  title={'Respuestas del usuario'} icon={<AlertOutlined />} loading={loading} shadow tools={<ExportMenu/>}>
             {
               dataModel ?
-                dataModel?.map((section)=> {
+              <>
+                <div style={{direction: 'rtl'}}>
+                  <Title>Puntaje total: {dataModel?.score || 0} puntos</Title>
+                </div>
+                {dataModel?.sections?.map((section)=> {
                     return <div style={{margin:20}}>
                       <Divider></Divider>
                        <SectionDetail name={section?.section_name} duration={section.time_seconds}>
@@ -129,9 +274,9 @@ const UserResponse = (props) => {
                                   </div>
                                 }
                                 />
-                              <div >
-                                Puntaje: <InputNumber size="medium" min={0} max={section.score_for_each_question} disabled={!item.is_open_question} defaultValue={item.is_correct ? item.score : 0} style={{ width: 'fit' }} /> pts.
-                              </div>
+                                {
+                                  item.has_score ? <ResponseScoreMemo response={item} section_score={section.score_for_each_question}/> : <></>
+                                }
                              {/*  <Button onClick={decline} icon={<MinusOutlined />} />
                               <Button onClick={increase} icon={<PlusOutlined />} /> */}
                             </List.Item>
@@ -139,7 +284,8 @@ const UserResponse = (props) => {
                           />
                       </SectionDetail>
                     </div>
-                })
+                })}
+                </>
             : <Empty></Empty>}
           
         </Section>

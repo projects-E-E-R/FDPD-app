@@ -12,4 +12,8 @@ export const StyledFormReview = styled.div`
     .ant-input-number-disabled .ant-input-number-input {
         text-align: center;
     }
+
+    a, area, button, [role='button'], input:not([type='range']), label, select, summary, textarea {
+        text-align-last: center;
+    }
 `;

@@ -2,6 +2,7 @@ export const getDataModel = ({data},{t}) => {
     const dataSource = []
     const sectionsID = []
     const sections = []
+    let totalScore = 0
 
     data?.form_responses?.forEach((item) => {
         if (!sectionsID?.includes(item.section_id)){
@@ -30,8 +31,9 @@ export const getDataModel = ({data},{t}) => {
                 const dataResp = {
                     question: item.question,
                     answer: item.answer,
-                    is_open_question: item.is_open_question,
-                    is_linear_question: item.AnswerInt > 0 ? true : false,
+                    is_open_question: (item.is_open_question || item.question_type == 'SHORT_ANSWER'),
+                    is_linear_question: item.question_type == 'LINEAR',
+                    has_score: item.has_score,
                     linear_question_answer_scale: item.AnswerInt > 0 ? 20 * item.AnswerInt : undefined,
                     question_id: item.question_id,
                     answer_id: {
@@ -41,10 +43,13 @@ export const getDataModel = ({data},{t}) => {
                     },
                     section_id: item.section_id,
                     section_title: item.section_title,
-                    is_correct: item.is_correct,
-                    score: item.score_for_each_question,
+                    is_correct: item.has_score ? item.is_correct : undefined,
+                    score: item.question_type == 'SHORT_ANSWER' ? (item.assigne_score || item.score_for_each_question) : item.score_for_each_question,
                   }
                 dataResponse.push(dataResp)
+                if(dataResp.has_score){
+                  totalScore = totalScore + dataResp.score
+                }
             }  
         })
         dataResponse && dataSource.push(
@@ -57,7 +62,7 @@ export const getDataModel = ({data},{t}) => {
             })
     })
     console.log(dataSource)
-    return dataSource;
+    return {score: totalScore,sections: dataSource};
 }
 
 export const getDataReport = (
@@ -103,7 +108,7 @@ export const getDataReport = (
       ]
   
       const data2 = []
-      data?.forEach((section) => {
+      data?.sections?.forEach((section) => {
         section?.responses?.forEach((response) => {
             const responsesData = [
                 {
