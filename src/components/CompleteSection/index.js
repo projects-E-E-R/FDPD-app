@@ -9,7 +9,7 @@ const CompleteSection = (props) => {
     const handleSubmit = () => {
         cleanAll();
         cleanAllStoreForm();
-        history.goBack('/index.html');
+        history.goBack('/');
     }
   return (
     <>       
