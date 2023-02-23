@@ -1,7 +1,7 @@
 import React from "react";
 import { useLinearInput } from "react-google-forms-hooks";
 import {ErrorLabel,Layout} from "./LinearGrid.style";
-import { Tooltip } from "antd";
+import { Tooltip} from "antd";
 
 
 const LinearGrid = ({ id,field })=>{
@@ -30,7 +30,11 @@ const LinearGrid = ({ id,field })=>{
                           </Layout>      
                          <Layout>
                           <div class="column">
-                          <div  style={{fontSize:15}}>{legend.labelFirst}</div>
+                            <Tooltip placement="top" title={legend.labelFirst}>
+                            <div  className="labelClass">
+                              {legend.labelFirst}
+                            </div>
+                            </Tooltip>
                           <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>      
                           </div>  
                           <div class="column2">

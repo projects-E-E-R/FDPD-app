@@ -14,8 +14,12 @@ export const useStoreDataForm =  create((set) => ({
             next:(data)=>{
                 set({loading:false});
                 if (data?.data?.fields) {
-                    let fieldsReMapFirst = data?.data?.fields;   
-                    let sectionContent = data?.data?.section_content;     
+                    let fieldsReMapFirst = data?.data?.fields;
+                    let fieldsOrder = data?.data?.fields_order?.sort((a, b) => { 
+                        return a.position - b.position;
+                    });       
+                    let sectionContent = data?.data?.section_content;
+                  
                     //fieldsReMapFirst.unshift({id:0,label:'',options:[],required:false,section:1,sub_section_id:1,type:'RADIO'});     
                     let fieldsReMap = fieldsReMapFirst?.map((f)=>{
                         if(f?.sub_section_id){
@@ -92,7 +96,17 @@ export const useStoreDataForm =  create((set) => ({
                                 }
                             })
                         });
-                    });            
+                    });
+                    /* Re order */
+                   /*  let arraySend = fieldsOrder */
+                   let arraySend = fieldsOrder?.map((fo)=>{
+                    let as = arraytoSend?.find((e)=>e?.id == fo.id);
+                    return{
+                        ...as,
+                        position:fo?.position
+                    }
+
+                   })
                 set({valueDetailForm:
                     {
                         ...data?.data,
@@ -102,10 +116,10 @@ export const useStoreDataForm =  create((set) => ({
                                 sub_section: arraySection[index]?.length
                             }
                         }),
-                        fields: arraytoSend,
-                        fieldsOrder: arraytoSend?.reduce((acc,{id,position})=>{      
+                        fields: arraySend,
+                        fieldsOrder: arraySend?.reduce((acc,{id,position})=>{      
                             return {
-                                ...acc,[id]:position     
+                                ...acc,[id]:position-1     
                             }
                         },[])
                     }

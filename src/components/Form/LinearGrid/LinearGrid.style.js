@@ -19,7 +19,10 @@ export const Layout = styled.div`
   flex-direaction:column;
   align-items:center;
   margin-bottom:10px;
+  font-size:15px;
+  overflow: visible hidden;
   text-overflow: ellipsis;
+  
   & input {
     margin: 0 0px;
     text-align: center;
@@ -34,7 +37,7 @@ export const Layout = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  @media ${device.mobileL}{
+  @media ${device.desktopL}{
       & td {
         text-align: center;
         max-width: 0px;
@@ -43,20 +46,16 @@ export const Layout = styled.div`
         white-space: nowrap;
     }
   }
-  @media ${device.mobileL}{
+  @media ${device.desktopL} {
       & .column {
-      float: left;
-      width: 30%;
-      padding: 10px;
-      height: 50px; /* Should be removed. Only for demonstration */
+      text-overflow: ellipsis;
     }
   }
 /* Create two equal columns that floats next to each other */
   & .column {
     width: 30%;
-  
   }
-  @media ${device.mobileL}{
+  @media ${device.desktopL}{
       & .column {
       float: left;
       width: 30%;
@@ -64,7 +63,6 @@ export const Layout = styled.div`
       height: 50px; /* Should be removed. Only for demonstration */
     }
   }
-
   .column2 {
     margin-top:10px;
     float: right;
