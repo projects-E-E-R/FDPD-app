@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 export const BASE_URL =
-  //process.env.REACT_APP_API_URL || 'http://localhost:8080/v1';
-  process.env.REACT_APP_API_URL || 'https://fdpd.onrender.com/v1';
+  process.env.REACT_APP_API_URL || 'http://localhost:8080/v1';
+  //process.env.REACT_APP_API_URL || 'https://fdpd.onrender.com/v1';
 export const SEND_EXCEL = '/user/create'
 export const DEFAULT_DATE = 'DD/MM/YYYY';
 export const DEFAULT_TIMEZONE = 'America/Santiago';

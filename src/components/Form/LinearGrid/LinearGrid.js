@@ -1,12 +1,11 @@
 import React from "react";
 import { useLinearInput } from "react-google-forms-hooks";
-import {ErrorLabel,Layout} from "./LinearGrid.style";
-import { Tooltip} from "antd";
-
-
+import {ErrorLabel, Layout, QuestionContainerLinear, StyleImageContent} from "./LinearGrid.style";
+import { Tooltip,Image,Row,Col,Space} from "antd";
+import Question from "components/Question/Question";
 const LinearGrid = ({ id,field })=>{
 
-  const { options, legend, error } = useLinearInput(id);
+  const { options, legend, error,image_url,title,question_description,label } = useLinearInput(id);
 
   return (
     <>
@@ -46,7 +45,47 @@ const LinearGrid = ({ id,field })=>{
                             </tr>
                           </table>
                           </div> 
-                         </Layout></> : 
+                         </Layout></> :
+        title     ? <>
+                        <Question command={false} title={title} shadow loading={false} initSection={false}>
+                        
+                                          
+                                            <div>
+                                            <p>
+                                              {question_description}
+                                            </p>   
+                                            <p  style={{fontSize:15}}>
+                                            {
+                                              label != ''  ? label : legend.labelFirst 
+                                            }        
+                                            </p> 
+                                            <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>     
+                                            </div>
+                                            {
+                                                  image_url ?  <StyleImageContent as={Image} width={"100%"} src={image_url} preview={false}/> : null
+                                            } 
+                                            <div>
+                                               {
+                                                options.map((o) => {
+                                              return  <>
+                                              <QuestionContainerLinear key={id}>                                               
+                                                <input style={{height:20, width:20, marginRight: 10}} key={o.id} type="radio" {...o.registerOption()} />
+                                                <p>{o?.label}</p>          
+                                              </QuestionContainerLinear>
+                                              </>;
+                                              })
+                                            }
+                                            </div> 
+                                            
+                                         
+                        
+                       
+                       
+                        </Question>
+                      </>             
+                         
+                         
+                         : 
                          <Layout>
                           <div class="column">
                           <div  style={{fontSize:15}}>{legend.labelFirst}</div> 

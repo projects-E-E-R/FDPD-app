@@ -98,7 +98,10 @@ const FormWrapper = (props) => {
               field?.title ? 
               <>{questionInput}</> 
               :
-              field?.items ? <>{questionInput}</> 
+              field?.items ? <>{questionInput}</>  :
+              field?.type == 'LINEAR' && field?.image_url ? 
+              <>{questionInput}</>  
+
               :
               <Question command={field?.type =="LINEAR" ? true : false} title={field?.label} shadow loading={false} initSection={false}>
               <QuestionContainer key={id}>
@@ -122,7 +125,7 @@ const FormWrapper = (props) => {
         setSub_section_count(1);
       } 
     }else{
-      if(sectionForm == sectionFormMax){
+      if(sectionForm > sectionFormMax){
         if(subscription){
           setTimeForResponse(timeForResponse,timerSection,sections,sectionForm+1);
           subscription.unsubscribe();

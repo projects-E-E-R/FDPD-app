@@ -96,3 +96,34 @@ export const FirstRow = styled.div`
     height: 50px; /* Should be removed. Only for demonstration */
   }
 `;
+
+export const CheckboxContainer = styled.div`
+  display: flex;
+
+  & label {
+    font-size:15px;
+    margin: 0 10px;
+  }
+`;
+
+export const QuestionContainer = styled.div`
+  margin-bottom: 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:left;
+`;
+export const StyleImageContent = styled.div`
+ max-width:50%;
+ min-width:50%;
+ max-height:50%;
+ min-height:50%;
+`;
+export const QuestionContainerLinear = styled.div`
+    display: flex;
+    align-items: left;
+    margin-bottom: 10px;
+    .& p {
+      margin-left: 10px;
+      margin-top:10px;
+    }
+`;
