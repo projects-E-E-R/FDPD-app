@@ -5,6 +5,8 @@ import {ErrorLabel,QuestionContainer,StyleImageContent} from './ShortAnswerInput
 import Question from "components/Question/Question";
 export default function ShortAnswerInput({ id,field }) {
   const { register, label,error,items,image_url,question_description, title } = useShortAnswerInput(id);
+  const image_array = image_url?.split(" ");
+
     return (
       items ? 
       <>
@@ -26,11 +28,15 @@ export default function ShortAnswerInput({ id,field }) {
       <p>
       {question_description}
       </p>
-      {image_url ? <QuestionContainer key={1}>
-                      <StyleImageContent as={Image} width={"100%"} src={image_url} preview={false}>
-                      </StyleImageContent>
-                   </QuestionContainer> : null 
-      }    
+       { image_array?.length > 0 ?   
+                          image_array?.map((image,index) => {
+                            return <QuestionContainer key={index}>
+                                    <StyleImageContent as={Image} width={"100%"} src={image} preview={false}/>
+                                  </QuestionContainer>
+                            })
+                                          
+        : null          
+      }
       <b>
         {label}
       </b>

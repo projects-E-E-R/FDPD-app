@@ -125,7 +125,7 @@ const FormWrapper = (props) => {
         setSub_section_count(1);
       } 
     }else{
-      if(sectionForm > sectionFormMax){
+      if(sectionForm == sectionFormMax){
         if(subscription){
           setTimeForResponse(timeForResponse,timerSection,sections,sectionForm+1);
           subscription.unsubscribe();

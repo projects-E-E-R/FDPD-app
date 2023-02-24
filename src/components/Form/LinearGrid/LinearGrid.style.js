@@ -118,6 +118,12 @@ export const StyleImageContent = styled.div`
  max-height:50%;
  min-height:50%;
 `;
+export const StyleImageContentTwo = styled.div`
+ max-width:100%;
+ min-width:100%;
+ max-height:100%;
+ min-height:100%;
+`;
 export const QuestionContainerLinear = styled.div`
     display: flex;
     align-items: left;
