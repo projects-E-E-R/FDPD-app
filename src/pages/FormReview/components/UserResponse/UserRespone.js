@@ -21,7 +21,7 @@ const UserResponse = (props) => {
   const [scoresData, setScoresData] = useState([])
   const [showButtonUpdateScore, setShowButtonUpdateScore] = useState(false)
   
-  const {requestUserResponse, requestSetScore, requestSetMultiScore, userResponseValue, form_id, user_id, loading} = useStoreFormUserResponse();
+  const {requestUserResponse, requestSetScore, requestSetMultiScore, userResponseValue, form_id, user_id, user_name, loading} = useStoreFormUserResponse();
 
   const onClickUpdateScore = () => {
     console.log(scoresData)
@@ -243,7 +243,8 @@ const UserResponse = (props) => {
             {
               dataModel ?
               <>
-                <div style={{direction: 'rtl'}}>
+                <div style={{display: 'flex', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10}}>
+                  <Title>Alumno: {user_name}</Title>
                   <Title>Puntaje total: {dataModel?.score || 0} puntos</Title>
                 </div>
                 {dataModel?.sections?.map((section)=> {

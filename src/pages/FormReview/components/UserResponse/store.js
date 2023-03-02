@@ -5,14 +5,16 @@ import { setScoreAsObservable } from 'services/common/score';
 export const useStoreFormUserResponse =  create((set) => ({
     userResponseValue: undefined,
     user_id: undefined,
+    user_name: undefined,
     form_id: undefined,
     loading:false,
     error:null,
     complete:null,
-    requestUserResponse:(formID, userID)=>{
+    requestUserResponse:(formID, userID, userName)=>{
         set({userResponseValue: undefined})
         set({form_id: formID})
         set({user_id: userID})
+        set({user_name: userName})
         const url = BASE_URL + GET_USERS_RESPONSE.replace(':formID',formID).replace(':userID',userID)
         set({loading:true});
         getUserReponseAsObservable({url}).subscribe({

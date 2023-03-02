@@ -29,7 +29,7 @@ export const useCareersStore = create((set) => ({
       url: BASE_URL + GET_CAREERS
     }).subscribe({
       next: (result) => {
-        const dataRequest = result?.data?.[0]?.data?.users
+        const dataRequest = result?.data?.[0]?.data?.careers
         set({
           error: result?.error,
           careerData: dataRequest?.length > 0
@@ -37,11 +37,12 @@ export const useCareersStore = create((set) => ({
                   ?.map(
                     ({
                         career_id,
-                        name,
+                        career_name,
                         short_name,
                     }) => ({
-                        career_id,
-                        name,
+                        id: parseInt(career_id),
+                        name: career_name,
+                        value: career_name,
                         short_name,
                     })
                   )

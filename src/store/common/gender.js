@@ -1,4 +1,4 @@
-import { getCareerAsObservable } from 'services/common/career';
+import { getGenderAsObservable } from 'services/common/gender';
 import { BASE_URL, GET_GENDERS } from 'settings/constants';
 import { getUnix } from 'utils/datetime';
 import create from 'zustand';
@@ -11,36 +11,38 @@ export const useGendersStore = create((set) => ({
     set({ value: selection, changedAt: getUnix() });
   },
   genderData: [{
-    gender_id: 1,
+    id: 1,
     name: "Masculino",
     value: "Masculino",
     char: "M",
   },
   {
-    gender_id: 2,
+    id: 2,
     name: "Femenino",
     value: "Femenino",
     char: "F",
   },],
   requestData: () => {
     set({ loading: true });
-    console.log(BASE_URL + GET_GENDERS)
-    getCareerAsObservable({
+    console.log("GENDER: " + BASE_URL + GET_GENDERS)
+    getGenderAsObservable({
       url: BASE_URL + GET_GENDERS
     }).subscribe({
       next: (result) => {
-        const dataRequest = result?.data?.[0]?.data?.users
+        const dataRequest = result?.data?.[0]?.data?.genders
         set({
           error: result?.error,
-          careerData: dataRequest?.length > 0
+          genderData: dataRequest?.length > 0
               ? dataRequest
                   ?.map(
                     ({
                         gender_id,
-                        name,
+                        gender_name,
                     }) => ({
-                        gender_id,
-                        name,
+                        id: parseInt(gender_id),
+                        name: gender_name,
+                        value: gender_name,
+                        char: gender_name[0]?.toUpperCase(),
                     })
                   )
                   .sort((a, b) =>

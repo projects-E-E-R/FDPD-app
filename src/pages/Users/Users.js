@@ -39,8 +39,8 @@ const Users = (props) => {
     
     useEffect(()=>{
       fetchUsersData();
-      //fetchCareerData();
-      //fetchGenderData();
+      fetchCareerData();
+      fetchGenderData();
     }
     ,[]);
     

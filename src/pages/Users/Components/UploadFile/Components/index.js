@@ -6,9 +6,13 @@ import { Form, Upload,message } from 'antd';
 import {StyledForm } from './style';
 import Button from 'ui/Button/Button';
 import useStoreUploadExcel from './store';
+import { useCareersStore } from 'store/common/career';
+import { useGendersStore } from 'store/common/gender';
 
 const TransformToJson = () => {
   const {requestData, response, error} = useStoreUploadExcel(({requestData, response, error})=>({requestData, response, error}));
+  const { requestData: fetchCareerData, careerData, loading: careerLoading, ...careerState } = useCareersStore();
+  const { requestData: fetchGenderData, genderData, loading: genderLoading, ...genderState } = useGendersStore();
   const clearInputFile = (f) => {
     if(f.value){
         try{
@@ -72,9 +76,9 @@ const readUploadFile = (e) => {
                   //const gender_name = "MascUliNo"
                   const gender_name = row["Género"]
 
-                  const career = career_data.find(career => (career_name?.toUpperCase()?.match(career.name?.toUpperCase()) || career_name?.toUpperCase()?.match(career.short_name?.toUpperCase())))
+                  const career = careerData.find(career => (career_name?.toUpperCase()?.match(career.name?.toUpperCase()) || career_name?.toUpperCase()?.match(career.short_name?.toUpperCase())))
                   
-                  const gender = gender_data.find(gender => (gender_name?.toUpperCase()?.match(gender.name?.toUpperCase()) || gender_name?.toUpperCase() == gender.char?.toUpperCase()))
+                  const gender = genderData.find(gender => (gender_name?.toUpperCase()?.match(gender.name?.toUpperCase()) || gender_name?.toUpperCase() == gender.char?.toUpperCase()))
 
                   return {
                     first_name: row["Nombre"],

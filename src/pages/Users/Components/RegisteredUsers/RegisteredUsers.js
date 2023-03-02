@@ -110,6 +110,10 @@ const RegisteredUsers = (props) => {
       console.log(genderData)
       setGenderOptions(genderData)
   }, [genderData])
+  
+  useEffect(() => {
+    fetchCareerData()
+  }, [])
 
     /////////////////////
 
