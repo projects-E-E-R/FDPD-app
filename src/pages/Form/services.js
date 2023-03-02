@@ -2,6 +2,7 @@ import {SEND_ANSWERS} from 'settings/constants';
 import { getFormsAsObservable } from 'services/common/forms';
 import {POST} from 'services/common/http'
 import {today,toUtc} from 'utils/datetime';
+import { message } from 'antd';
 const getId = (options,label)=>{
     let result = options?.find((e)=>e?.label == label);
     return parseInt(result?.id);
@@ -53,15 +54,18 @@ export const sendResponse = (form,data,timeForResponse,idUser,setLoading) =>{
     getFormsAsObservable({url:SEND_ANSWERS,type:POST,config:{data:bodyAnswer}}).subscribe({
         next:(data)=>{
             setLoading(false);
-            console.log(data);
+            if(data?.data?.code  == 201){
+                message.success(`Respuestas enviadas correctamente`);
+            }else{
+                message.error(data?.data?.error?.title ?? `Error al enviar sus respuestas, vuelve a responder por favor`);
+            }
         },
         error:({error})=>{
             setLoading(false);
-            console.log(error);
+            message.error(error ?? `Error al subir el archivo`);
         },
-        complete:(data)=>{
+        complete:()=>{
             setLoading(false);
-            console.log(data);
         }
     })
 

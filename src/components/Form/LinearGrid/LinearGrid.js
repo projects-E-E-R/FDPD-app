@@ -1,17 +1,17 @@
 import React from "react";
 import { useLinearInput } from "react-google-forms-hooks";
-import {ErrorLabel,Layout} from "./LinearGrid.style";
-import { Tooltip } from "antd";
-
-
+import {ErrorLabel, Layout, QuestionContainerLinear, StyleImageContent,StyleImageContentTwo} from "./LinearGrid.style";
+import { Tooltip,Image,Row,Col,Space} from "antd";
+import Question from "components/Question/Question";
 const LinearGrid = ({ id,field })=>{
 
-  const { options, legend, error } = useLinearInput(id);
+  const { options, legend, error,image_url,title,question_description,label } = useLinearInput(id);
 
+  const image_array = image_url?.split(" ");
   return (
     <>
     {
-      legend?.columns ? <>
+      legend?.columns && question_description == undefined ? <>
                           <Layout>
                             <div class="column">
                             </div>  
@@ -30,7 +30,11 @@ const LinearGrid = ({ id,field })=>{
                           </Layout>      
                          <Layout>
                           <div class="column">
-                          <div  style={{fontSize:15}}>{legend.labelFirst}</div>
+                            <Tooltip placement="top" title={legend.labelFirst}>
+                            <div  className="labelClass">
+                              {legend.labelFirst}
+                            </div>
+                            </Tooltip>
                           <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>      
                           </div>  
                           <div class="column2">
@@ -42,7 +46,56 @@ const LinearGrid = ({ id,field })=>{
                             </tr>
                           </table>
                           </div> 
-                         </Layout></> : 
+                         </Layout></> :
+        title     ? <>
+                        <Question command={false} title={title} shadow loading={false} initSection={false}>
+                        
+                                          
+                                            <div>
+                                            <p>
+                                              {question_description}
+                                            </p>   
+                                            <p  style={{fontSize:15}}>
+                                            {
+                                              label != ''  ? label : legend.labelFirst 
+                                            }        
+                                            </p> 
+                                            <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>     
+                                            </div>
+                                            {
+                                              image_array?.length > 0 ?  
+                                            
+                                              image_array?.map((image) => {
+                                                return <StyleImageContent as={Image} width={"100%"} src={image} preview={false}/>
+                                              })
+                                          
+                                               : null
+                                            } 
+                                            <div>
+                                               {
+                                                options.map((o) => {
+                                              return  <>
+                                              <QuestionContainerLinear key={id}>                                               
+                                                <input style={{height:20, width:20, marginRight: 10}} key={o.id} type="radio" {...o.registerOption()} />
+                                                <p>{o?.label}</p>
+                                                {
+                                                  o?.image_url ?  <StyleImageContentTwo as={Image} width={"35%"} src={o?.image_url} preview={false}/> : null
+                                                }           
+                                              </QuestionContainerLinear>
+                                              </>;
+                                              })
+                                            }
+                                            </div> 
+                                            
+                                         
+                        
+                       
+                       
+                        </Question>
+                      </>             
+                         
+                         
+                         : 
                          <Layout>
                           <div class="column">
                           <div  style={{fontSize:15}}>{legend.labelFirst}</div> 

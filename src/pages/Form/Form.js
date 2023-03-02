@@ -95,7 +95,13 @@ const FormWrapper = (props) => {
               return null;
             }
             return (
-              field?.items ? <>{questionInput}</> 
+              field?.title ? 
+              <>{questionInput}</> 
+              :
+              field?.items ? <>{questionInput}</>  :
+              field?.type == 'LINEAR' && field?.image_url ? 
+              <>{questionInput}</>  
+
               :
               <Question command={field?.type =="LINEAR" ? true : false} title={field?.label} shadow loading={false} initSection={false}>
               <QuestionContainer key={id}>
@@ -187,24 +193,26 @@ const FormWrapper = (props) => {
           {sectionForm == 1 ? 
                 <Question titleCenter title={formQuestion} shadow loading={false} initSection={true}>
                   <p style={{fontSize:15}}>
-                  ¡Hola!
-                  Esta encuesta es direccionada a los/las estudiantes de ingeniaría de la Universidad Católica del Norte (UCN) en su primera asignatura de programación.<br/>
-                  Esta encuesta hace parte del proyecto “¿La actitud hacia la programación predice el pensamiento computacional? Análisis de las diferencias de género y
-                  la experiencia en programación”, que tiene por objetivo medir la correlación entre la actitud hacia la programación y las habilidades de pensamiento computacional.
-                  Los resultados servirán de base para mejorar continuamente las clases de programación y podrán ser publicados en eventos y jornales académicos.<br/>
-                  La participación en esta encuesta es completamente anónima y voluntarias. Los/las participantes pueden desistir de su participación a cualquier momento.<br/>
-                  Esta encuesta se divide en tres secciones:<br/>
-                  1. Información Demográfica (Tiempo estimado para responder: 5 minutos)<br/>
-                  2. Actitud hacia la Programación (Tiempo estimado para responder: 20 minutos)<br/>
-                  3. Test de Pensamiento Computacional (Responder el máximo de preguntas posible hasta 50 minutos).<br/>
-                  Los responsables por este proyecto son los/las académica(o)s:
-                  <br/>
-                  Isotilia Costa Melo, Escuela de Ingeniería de Coquimbo<br/>
-                  Ariel Areyuna, Escuela de Ingeniería de Coquimbo<br/>
-                  Carolina Rojas, Departamento de Ingeniería Industrial, Antofagasta<br/>
-                  Paulo Alves Junior, Escuela de Ingeniería de Coquimbo<br/>
-                  Ítalo Donoso, Departamento de Ingeniería de Sistemas y Computación<br/>
-                  Si tiene más preguntas y dudas, puede escribir un correo para <a href="mailto:Isotilia.costa@ce.ucn.cl">Isotilia.costa@ce.ucn.cl</a>
+                  ¡Hola! Esta encuesta es direccionada a los/las estudiantes de ingeniaría de la Universidad Católica del Norte (UCN).<br/><br/>
+
+Esta encuesta tiene por objetivo medir la correlación entre la actitud hacia la programación y las habilidades de pensamiento computacional. Los resultados servirán de base para mejorar continuamente las clases de programación y podrán ser publicados en eventos y jornales académicos.
+<br/><br/>
+La participación en esta encuesta es completamente anónima y voluntarias. <br/>
+Los/las participantes pueden desistir de su participación a cualquier momento.<br/>
+<br/>
+Esta encuesta se divide en tres secciones:<br/>
+1. Información Demográfica (Tiempo estimado para responder: 5 minutos)<br/>
+2. Actitud hacia la Programación (Tiempo estimado para responder: 20 minutos)<br/>
+3. Test de Pensamiento Computacional (Responder el máximo de preguntas posible hasta 50 minutos).<br/>
+<br/>
+Los responsables por este proyecto son los/las académica(o)s:<br/>
+Isotilia Costa Melo, Escuela de Ingeniería de Coquimbo<br/>
+Ariel Areyuna, Escuela de Ingeniería de Coquimbo<br/>
+Carolina Rojas, Departamento de Ingeniería Industrial, Antofagasta<br/>
+Paulo Alves Junior, Escuela de Ingeniería de Coquimbo<br/>
+Ítalo Donoso, Departamento de Ingeniería de Sistemas y Computación, Antofagasta<br/>
+<br/>
+Si tiene más preguntas y dudas, puede contactarlos.<br/>
                   </p>
                 </Question> : 
                 <Question titleCenter title={sections[sectionForm-1]?.title} shadow loading={false} initSection={true}>
