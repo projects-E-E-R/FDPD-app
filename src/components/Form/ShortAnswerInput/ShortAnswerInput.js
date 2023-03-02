@@ -4,7 +4,7 @@ import { useShortAnswerInput } from "react-google-forms-hooks";
 import {ErrorLabel,QuestionContainer,StyleImageContent} from './ShortAnswerInputStyle';
 import Question from "components/Question/Question";
 export default function ShortAnswerInput({ id,field }) {
-  const { register, label,error,items,image_url,question_description, title } = useShortAnswerInput(id);
+  const { register, label,error,items,image_url,question_description, title,input_text } = useShortAnswerInput(id);
   const image_array = image_url?.split(" ");
 
     return (
@@ -41,7 +41,7 @@ export default function ShortAnswerInput({ id,field }) {
         {label}
       </b>
       <div>
-        <input id="number" type="number" {...register()} />
+        <input id="number"  type={input_text ? "string":"number" } {...register()} />
       </div>
       
       </QuestionContainer>
@@ -49,7 +49,7 @@ export default function ShortAnswerInput({ id,field }) {
       :
       <>       
         <div>
-        <input id="number" type="number" {...register()} />
+        <input id="number"  type={input_text ? "string":"number" } {...register()} />
         </div>
         <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>
       </>
