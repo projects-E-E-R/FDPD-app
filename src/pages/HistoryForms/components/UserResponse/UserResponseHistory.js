@@ -38,7 +38,6 @@ const UserResponseHistory = () => {
 
   const SectionDetail = (props) => {
     const {name, duration, children} = props
-
     const getTimeLabel = (duration_sec) => {
       if (duration_sec >= 3600) {
         const duration_hrs = Math.round(duration_sec / 3600)
@@ -57,12 +56,9 @@ const UserResponseHistory = () => {
         return "Tiempo no determinado"
       }
     }
-
     return <div>
-      <Badge.Ribbon text={getTimeLabel(duration)}>
       <Title style={{color: "orange", maxWidth: "80%"}}>{name}</Title>
       {children}
-      </Badge.Ribbon>
     </div>
   }
   

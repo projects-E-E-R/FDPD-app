@@ -190,34 +190,45 @@ const FormWrapper = (props) => {
       ) : (
         <>
           <Section  title={''}  loading={loadingForm} shadow>
-          {sectionForm == 1 ? 
+          {sectionForm == 1 && form?.form_id == 1 ? 
                 <Question titleCenter title={formQuestion} shadow loading={false} initSection={true}>
                   <p style={{fontSize:15}}>
                   ¡Hola! Esta encuesta es direccionada a los/las estudiantes de ingeniaría de la Universidad Católica del Norte (UCN).<br/><br/>
-
-Esta encuesta tiene por objetivo medir la correlación entre la actitud hacia la programación y las habilidades de pensamiento computacional. Los resultados servirán de base para mejorar continuamente las clases de programación y podrán ser publicados en eventos y jornales académicos.
-<br/><br/>
-La participación en esta encuesta es completamente anónima y voluntarias. <br/>
-Los/las participantes pueden desistir de su participación a cualquier momento.<br/>
-<br/>
-Esta encuesta se divide en tres secciones:<br/>
-1. Información Demográfica (Tiempo estimado para responder: 5 minutos)<br/>
-2. Actitud hacia la Programación (Tiempo estimado para responder: 20 minutos)<br/>
-3. Test de Pensamiento Computacional (Responder el máximo de preguntas posible hasta 50 minutos).<br/>
-<br/>
-Los responsables por este proyecto son los/las académica(o)s:<br/>
-Isotilia Costa Melo, Escuela de Ingeniería de Coquimbo<br/>
-Ariel Areyuna, Escuela de Ingeniería de Coquimbo<br/>
-Carolina Rojas, Departamento de Ingeniería Industrial, Antofagasta<br/>
-Paulo Alves Junior, Escuela de Ingeniería de Coquimbo<br/>
-Ítalo Donoso, Departamento de Ingeniería de Sistemas y Computación, Antofagasta<br/>
-<br/>
-Si tiene más preguntas y dudas, puede contactarlos.<br/>
+                  Esta encuesta tiene por objetivo medir la correlación entre la actitud hacia la programación y las habilidades de pensamiento computacional. Los resultados servirán de base para mejorar continuamente las clases de programación y podrán ser publicados en eventos y jornales académicos.
+                  <br/><br/>
+                  La participación en esta encuesta es completamente anónima y voluntarias. <br/>
+                  Los/las participantes pueden desistir de su participación a cualquier momento.<br/>
+                  <br/>
+                  Esta encuesta se divide en tres secciones:<br/>
+                  1. Información Demográfica (Tiempo estimado para responder: 5 minutos)<br/>
+                  2. Actitud hacia la Programación (Tiempo estimado para responder: 20 minutos)<br/>
+                  3. Test de Pensamiento Computacional (Responder el máximo de preguntas posible hasta 50 minutos).<br/>
+                  <br/>
+                  Los responsables por este proyecto son los/las académica(o)s:<br/>
+                  Isotilia Costa Melo, Escuela de Ingeniería de Coquimbo<br/>
+                  Ariel Areyuna, Escuela de Ingeniería de Coquimbo<br/>
+                  Carolina Rojas, Departamento de Ingeniería Industrial, Antofagasta<br/>
+                  Paulo Alves Junior, Escuela de Ingeniería de Coquimbo<br/>
+                  Ítalo Donoso, Departamento de Ingeniería de Sistemas y Computación, Antofagasta<br/>
+                  <br/>
+                  Si tiene más preguntas y dudas, puede contactarlos.<br/>
                   </p>
                 </Question> : 
+                sectionForm == 4  && form?.form_id == 1 ? 
+                <Question titleCenter title={formQuestion} shadow loading={false} initSection={true}>
+                  <p style={{fontSize:15}}>
+                  Ahora usted va a empezar el testeo de pensamiento computacional.
+                  No hay necesidad de responder todas las preguntas.
+                   Si no sabe la respuesta, puede dejar en blanco.
+                    Pero, para la buena interpretación de los resultados pedagógicos, es importante hacer el tieste del inicio al fin sin interrupciones.
+                    La duración estimada del testeo es de 50 minutos.
+                   
+                  </p>
+                </Question>               
+                :
                 <Question titleCenter title={sections[sectionForm-1]?.title} shadow loading={false} initSection={true}>
                 </Question>
-            }
+          }
           {
             methods && form && (
             <GoogleFormProvider {...methods}>
