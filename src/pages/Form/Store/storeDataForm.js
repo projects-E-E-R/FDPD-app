@@ -103,6 +103,7 @@ export const useStoreDataForm =  create((set) => ({
                     let as = arraytoSend?.find((e)=>e?.id == fo.id);
                     return{
                         ...as,
+                        required:false,
                         position:fo?.position
                     }
 

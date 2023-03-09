@@ -40,7 +40,7 @@ const RadioInput = ({id,field})=> {
         </CheckboxContainer>
           )
         }
-        { element?.options && <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>}                
+        {/* { element?.options && <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>}     */}            
           </Question>
         })
       }
@@ -68,7 +68,7 @@ const RadioInput = ({id,field})=> {
         </CheckboxContainer>
       )
       }
-      <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>
+      {/* <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel> */}
     </Container>) : null
   );
 }

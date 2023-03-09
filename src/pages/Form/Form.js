@@ -16,11 +16,18 @@ import CompleteSection from 'components/CompleteSection';
 import useAccountStore from 'store/common/account';
 import useStoreForms from '../Forms/Store';
 import {sendResponse} from './services';
+import Stopwatch from './components/timer'
+import { useStopwatch } from 'react-timer-hook';
 /* import form from './form.json'; */
 const FormWrapper = (props) => {
   const {history,location} = props;
   const {state : form} = location; 
   const {t} =useTranslation();
+
+
+const[dataFormGoogleForm,setDataFormGoogleForm] =useState(null);
+  const[diff,setDiff] =useState(null)
+  const [initial,setInitial] = useState(null)
   const [formQuestion,setFormQuestion]= useState(null);
   const [sectionForm,setSectionForm]= useState(1);
   const [sectionFormMax,setSectionFormMax]= useState(1);
@@ -51,15 +58,19 @@ const FormWrapper = (props) => {
       useStoreDataForm(({requestGetDetail,loading,valueDetailForm,cleanAll,setLoading}) => ({
         requestGetDetail,loading,valueDetailForm,cleanAll,setLoading
       }));
-      
-  
+    /* Calculate time */
 
   const Questions = (form) => {
     const { total_section,section_content,fields } = form?.form;
-
+    console.log('Hay refresh la ptm')
     useEffect( () => {
     if(total_section == sectionForm){
+      const sectionView = sections?.find((e)=>e?.id == sectionForm);
+      console.log(sectionView)
+      console.log('ultimo total')
+      setTimer(sectionView)
       setPermissionToSend(true);
+      
     }
     },[sectionForm]);
     useEffect(()=>{
@@ -126,10 +137,6 @@ const FormWrapper = (props) => {
       } 
     }else{
       if(sectionForm == sectionFormMax){
-        if(subscription){
-          setTimeForResponse(timeForResponse,timerSection,sections,sectionForm+1);
-          subscription.unsubscribe();
-        }
         setFormComplete(true);
         sendResponse(form,data,timeForResponse,idUser,setLoading);
   
@@ -139,10 +146,12 @@ const FormWrapper = (props) => {
       }
     }
   };
+
   useEffect(()=>{
     if(sections){
       const sectionView = sections?.find((e)=>e?.id == sectionForm);
-      setTimer();
+      console.log(sectionView)
+      setTimer(sectionView)
       if(sectionView?.sub_section > 1){
         setChangeSubSection(true);
       }else{
@@ -151,7 +160,7 @@ const FormWrapper = (props) => {
     }
   },[sectionForm]);
 
-  useEffect(()=>{
+/*   useEffect(()=>{
     if(subscribeTimer){
       if(subscription){
         setTimeForResponse(timeForResponse,timerSection,sections,sectionForm);
@@ -162,17 +171,13 @@ const FormWrapper = (props) => {
       });
       setSubscription(subscribe);
     }
-  },[subscribeTimer]);
+  },[subscribeTimer]); */
 
   useEffect(()=>{
     let result = valueForms?.find((e)=> e?.form_id == history.location.state?.form_id);
     setFormQuestion(result?.form_title);
   },[]);
-/*   useEffect(()=>{
-    if(form){
 
-    }
-  },[form]) */
   useEffect(()=>{
     if(formQuestion){
       //requestGetDetail(GET_DETAIL_FORM,formQuestion?.id,GET);
@@ -249,7 +254,13 @@ const FormWrapper = (props) => {
                     style={{position:'absolute',right:-25,bottom:1,top:-30,width:100,height:50,fontSize:16}}
                     >
                     {  permissionToSend ?   t('common.send') :  t('common.next')}
-                </Button>   
+                </Button>
+                {
+                  form && sections && (
+                  <Stopwatch form={form} sections={sections} sectionForm={sectionForm} />
+                )
+                }
+               
           </Question>
         </>
       )
