@@ -23,36 +23,32 @@ const FormWrapper = (props) => {
   const {history,location} = props;
   const {state : form} = location; 
   const {t} =useTranslation();
-
-
-const[dataFormGoogleForm,setDataFormGoogleForm] =useState(null);
-  const[diff,setDiff] =useState(null)
-  const [initial,setInitial] = useState(null)
   const [formQuestion,setFormQuestion]= useState(null);
   const [sectionForm,setSectionForm]= useState(1);
   const [sectionFormMax,setSectionFormMax]= useState(1);
   const [sub_section_count,setSub_section_count ] = useState(1);
   const [sections,setSections]= useState(null);
-  const [fields,setFields]= useState(null);
   const [permissionToSend,setPermissionToSend]= useState(false);
   const [changeSubSection,setChangeSubSection]= useState(false);
-  const[timerSection,setTimerSection] = useState(0);
-  const[subscription,setSubscription] = useState(null);
   const {idUser} = useAccountStore(({idUser})=>({idUser}));
   const {valueForms} = useStoreForms(({valueForms})=>({valueForms}));
   const {
-    setTimer,subscribeTimer,
-    setTimeForResponse,
+    setTimer,
     timeForResponse,
     formComplete,
     setFormComplete,cleanAllStoreForm
     } = 
     useStoreForm(({
-      setTimer,subscribeTimer,
-      setTimeForResponse,timeForResponse,
-      formComplete,setFormComplete,cleanAllStoreForm}) => ({
-      setTimer,subscribeTimer,setTimeForResponse,
-      timeForResponse,formComplete,setFormComplete,cleanAllStoreForm
+      setTimer,
+      timeForResponse,
+      formComplete,
+      setFormComplete,
+      cleanAllStoreForm}) => ({
+      setTimer,
+      timeForResponse,
+      formComplete,
+      setFormComplete,
+      cleanAllStoreForm
       }));
       const {requestGetDetail,loading : loadingForm,valueDetailForm,cleanAll,setLoading}  = 
       useStoreDataForm(({requestGetDetail,loading,valueDetailForm,cleanAll,setLoading}) => ({
@@ -61,23 +57,8 @@ const[dataFormGoogleForm,setDataFormGoogleForm] =useState(null);
     /* Calculate time */
 
   const Questions = (form) => {
-    const { total_section,section_content,fields } = form?.form;
-    console.log('Hay refresh la ptm')
-    useEffect( () => {
-    if(total_section == sectionForm){
-      const sectionView = sections?.find((e)=>e?.id == sectionForm);
-      console.log(sectionView)
-      console.log('ultimo total')
-      setTimer(sectionView)
-      setPermissionToSend(true);
-      
-    }
-    },[sectionForm]);
-    useEffect(()=>{
-      setSectionFormMax(total_section);
-      setSections(section_content);
-      setFields(fields);
-    },[]);
+    const { fields } = form?.form;
+   
     return (
     
       <div>
@@ -127,6 +108,7 @@ const[dataFormGoogleForm,setDataFormGoogleForm] =useState(null);
   };
 
   const onSubmit = async (data) => {
+    /* Cambiamos subsecciones */
     if(changeSubSection){
       const sectionView = sections?.find((e)=> e?.id == sectionForm);
       if(sectionView?.sub_section > 0 && sub_section_count < sectionView?.sub_section){
@@ -136,11 +118,13 @@ const[dataFormGoogleForm,setDataFormGoogleForm] =useState(null);
         setSub_section_count(1);
       } 
     }else{
+      /* Si tomamos el max del formulario */
       if(sectionForm == sectionFormMax){
         setFormComplete(true);
+        console.log('Vamos a enviar el form')
         sendResponse(form,data,timeForResponse,idUser,setLoading);
-  
       } else {
+        /* Cuando queremos cambiar de seccion */
           setSectionForm(sectionForm+1);
           setSub_section_count(1);
       }
@@ -150,7 +134,6 @@ const[dataFormGoogleForm,setDataFormGoogleForm] =useState(null);
   useEffect(()=>{
     if(sections){
       const sectionView = sections?.find((e)=>e?.id == sectionForm);
-      console.log(sectionView)
       setTimer(sectionView)
       if(sectionView?.sub_section > 1){
         setChangeSubSection(true);
@@ -160,27 +143,26 @@ const[dataFormGoogleForm,setDataFormGoogleForm] =useState(null);
     }
   },[sectionForm]);
 
-/*   useEffect(()=>{
-    if(subscribeTimer){
-      if(subscription){
-        setTimeForResponse(timeForResponse,timerSection,sections,sectionForm);
-        subscription.unsubscribe();
-      }
-      const subscribe = subscribeTimer.subscribe((val) => {
-        setTimerSection(val);
-      });
-      setSubscription(subscribe);
+  useEffect( () => {
+    if(sectionFormMax !=1 && sectionFormMax == sectionForm){
+      console.log(sectionFormMax+'Calculando'+sectionForm)
+      setPermissionToSend(true);
     }
-  },[subscribeTimer]); */
-
+    },[sectionForm]);
   useEffect(()=>{
-    let result = valueForms?.find((e)=> e?.form_id == history.location.state?.form_id);
-    setFormQuestion(result?.form_title);
-  },[]);
+    if(form){
+      const { total_section,section_content } = form;
+      console.log(total_section,section_content )
+      setSectionFormMax(total_section);
+      setSections(section_content);
+      let result = valueForms?.find((e)=> e?.form_id == history.location.state?.form_id);
+      setFormQuestion(result?.form_title);
+     
+    }
+  },[form]);
 
   useEffect(()=>{
     if(formQuestion){
-      //requestGetDetail(GET_DETAIL_FORM,formQuestion?.id,GET);
       document.title = formQuestion;
     }
   },[formQuestion]);
@@ -248,23 +230,19 @@ const[dataFormGoogleForm,setDataFormGoogleForm] =useState(null);
                     $capitalize
                     loading={false}
                     disabled={false}
-                    type="submit"
                     color="primary"
                     onClick={methods.handleSubmit(onSubmit)}
                     style={{position:'absolute',right:-25,bottom:1,top:-30,width:100,height:50,fontSize:16}}
                     >
                     {  permissionToSend ?   t('common.send') :  t('common.next')}
                 </Button>
-                {
-                  form && sections && (
-                  <Stopwatch form={form} sections={sections} sectionForm={sectionForm} />
-                )
-                }
-               
+                
           </Question>
         </>
       )
+      
     }
+    <Stopwatch form={form} sections={sections} sectionForm={sectionForm} formComplete={formComplete} /> 
 
     </Layout.Content>
     </StyledForm>

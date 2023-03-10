@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 import useStoreForm from '../Store/useStoreForm'
 const Stopwatch=(props)=>{
-  const {sections,sectionForm} = props;
+  const {sections,sectionForm,formComplete} = props;
   const {
     seconds,
     minutes,
@@ -16,27 +16,21 @@ const Stopwatch=(props)=>{
   const {section,setTimeForResponse,timeForResponse} = useStoreForm.getState()
   useEffect(()=>{
     if(section){
-      reset()
-      console.log(hours,minutes,seconds)
-
-      let timerSection = hours*3600+ minutes*60 + seconds;
-      if(timerSection >0){
-        setTimeForResponse(timeForResponse,timerSection,sections,sectionForm);
+      if(formComplete){
+        let timerSection = hours*3600+ minutes*60 + seconds;
+        setTimeForResponse(formComplete,timeForResponse,timerSection,sections,sectionForm);
+        pause()
+      }else{
+        reset()
+        let timerSection = hours*3600+ minutes*60 + seconds;
+        setTimeForResponse(formComplete,timeForResponse,timerSection,sections,sectionForm);
+        start()
       }
-      start()
-    }
-  },[section])
-  return (
-    <div style={{textAlign: 'center'}}>
-      <h1>react-timer-hook</h1>
-      <p>Stopwatch Demo</p>
-      <div style={{fontSize: '100px'}}>
-        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
-      </div>
-      
-      <p>{isRunning ? 'Running' : 'Not running'}</p>
 
-    </div>
+    }
+  },[section,formComplete])
+  return (
+    <></>
   )
 }
 export default Stopwatch

@@ -2,12 +2,17 @@ import create from 'zustand';
 import { timer } from 'rxjs';
 const useStoreForm= create((set) => ({
   timeForResponse: [],
-  setTimeForResponse: (oldTimerForResponse,timerSection,sections,sectionForm) =>{
+  setTimeForResponse: (formComplete,oldTimerForResponse,timerSection,sections,sectionForm) =>{
+    if(formComplete){
     const sectionView = sections?.find((e)=>e?.id == sectionForm-1);
+    oldTimerForResponse.push({id:sectionView?.id+1,timeAnswared:timerSection});
+    set({timeForResponse:oldTimerForResponse});
+    }else{
+       const sectionView = sections?.find((e)=>e?.id == sectionForm-1);
     oldTimerForResponse.push({id:sectionView?.id,timeAnswared:timerSection});
     set({timeForResponse:oldTimerForResponse});
+    }
   },
-  subscribeTimer:null,
   section:null,
   setTimer:(section)=>{
      set({section});
@@ -16,7 +21,7 @@ const useStoreForm= create((set) => ({
   setFormComplete: (formComplete) => set({ formComplete }),
   cleanAllStoreForm:()=>
   set({
-    subscribeTimer:null,
+    section:null,
     formComplete:false,
     timeForResponse: []
   })
