@@ -80,11 +80,12 @@ const readUploadFile = (e) => {
                   
                   const gender = genderData.find(gender => (gender_name?.toUpperCase()?.match(gender.name?.toUpperCase()) || gender_name?.toUpperCase() == gender.char?.toUpperCase()))
 
+                  const rut_str = row["Rut"]
                   return {
                     first_name: row["Nombre"],
                     last_name: row["Apellido"],
                     full_name: row["Nombre"] + " " + row["Apellido"],
-                    rut: row["Rut"],
+                    rut: rut_str?.replaceAll(".","")?.replaceAll("-",""),
                     career_id: career?.id,
                     gender_id: gender?.id,
                     email: row["Correo"],

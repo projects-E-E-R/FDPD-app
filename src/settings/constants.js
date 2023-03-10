@@ -25,5 +25,6 @@ export const GET_GENDERS = '/info/gender';
 /* RESPONSES */
 export const GET_FORM_RESPONSES = '/answers/form/:formID';
 export const GET_USERS_RESPONSE = '/answers/user/:userID/:formID';
+export const GET_ALL_USERS_RESPONSE = '/answers/forms';
 export const SET_SCORE = '/answers/assigne-score';
 export const SET_MULTI_SCORE = '/answers/assigne-scores';

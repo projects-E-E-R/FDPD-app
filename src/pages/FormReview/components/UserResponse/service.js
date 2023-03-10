@@ -28,11 +28,12 @@ export const getDataModel = ({data},{t}) => {
         const dataResponse = []
         data?.form_responses?.forEach((item) => {
             if(section.id == item.section_id){
+                //var hasImage = (item.image_url || item.question_has_image)
                 const dataResp = {
-                    question: item.question,
+                    question: item?.short_question_description || item.question,
                     answer: item.answer,
                     is_open_question: (item.is_open_question || item.question_type == 'SHORT_ANSWER'),
-                    is_linear_question: item.question_type == 'LINEAR',
+                    is_linear_question: item.question_type == 'LINEAR' && !(item.image_url || item.question_has_image) && item.AnswerInt != 0,
                     has_score: item.has_score,
                     linear_question_answer_scale: item.AnswerInt > 0 ? 20 * item.AnswerInt : undefined,
                     question_id: item.question_id,
@@ -43,8 +44,9 @@ export const getDataModel = ({data},{t}) => {
                     },
                     section_id: item.section_id,
                     section_title: item.section_title,
+                    is_corrected: item.has_score ? true : false,
                     is_correct: item.has_score ? item.is_correct : undefined,
-                    score: item.question_type == 'SHORT_ANSWER' ? (item.assigne_score || item.score_for_each_question) : item.score_for_each_question,
+                    score: !item.has_score ? 0 : item.is_correct? item.score_for_each_question : (item.assigne_score || 0),
                   }
                 dataResponse.push(dataResp)
                 if(dataResp.has_score){
@@ -62,7 +64,7 @@ export const getDataModel = ({data},{t}) => {
             })
     })
     console.log(dataSource)
-    return {score: totalScore,sections: dataSource};
+    return {user_id: data?.student_id, score: totalScore, sections: dataSource}; //fix
 }
 
 export const getDataReport = (

@@ -46,7 +46,7 @@ const RegisteredUsers = (props) => {
     };
     
     const resetPassword = (record) => {
-      const newPassword = record?.rut?.replaceAll(".","")?.split("-")
+      const newPassword = record?.rut?.replaceAll(".","")?.replaceAll("-","").slice(-4)
       requestResetPassword(record.email, newPassword[0])
 
     };

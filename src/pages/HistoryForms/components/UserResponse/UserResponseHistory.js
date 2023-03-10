@@ -12,12 +12,15 @@ import Title from 'ui/Title/Title';
 import { green, red } from '@ant-design/colors';
 import ExcelExport from 'components/Excel/ExcelExport/ExcelExport';
 import MoreOptionsButton from 'components/MoreOptionsButton/MoreOptionsButton';
+import useAccountStore from 'store/common/account';
 
 
 const UserResponseHistory = () => {
   const {t} = useTranslation();
   const [dataModel, setDataModel] = useState(null)
   const [dataReport, setDataReport] = useState(null)
+
+  const {fullName: user_name} = useAccountStore()
   
   const {requestUserResponse, userResponseValue, loading} = useStoreFormUserResponse();
 
@@ -89,15 +92,31 @@ const UserResponseHistory = () => {
     />);
 }
 
+const ResponseScore = (props) => {
+  const {response, section_score} = props
+  
+
+  return <>
+    <div style={{display: "grid", justifyItems: "end", paddingLeft:10, fontSize: 17, color: response.score == section_score? "green" : response.score == 0? "red" : null}}>
+        <i>{response.score} pts.</i>
+    </div>
+  </>
+}
+
 
 
   return (
     <StyledFormReview>
       <Layout.Content>
-        <Section  title={'Respuestas formulario'} icon={<AlertOutlined />} loading={loading} shadow tools={<ExportMenu/>}>
+      <Section  title={'Respuestas del usuario'} icon={<AlertOutlined />} loading={loading} shadow tools={<ExportMenu/>}>
             {
               dataModel ?
-                dataModel?.map((section)=> {
+              <>
+                <div style={{display: 'flex', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10}}>
+                  <Title>Alumno: {user_name}</Title>
+                  <Title>Puntaje total: {dataModel?.score || 0} puntos</Title>
+                </div>
+                {dataModel?.sections?.map((section)=> {
                     return <div style={{margin:20}}>
                       <Divider></Divider>
                        <SectionDetail name={section?.section_name} duration={section.time_seconds}>
@@ -125,9 +144,9 @@ const UserResponseHistory = () => {
                                   </div>
                                 }
                                 />
-                              <div >
-                                Puntaje: <InputNumber size="medium" min={0} max={section.score_for_each_question} disabled={!item.is_open_question} defaultValue={item.is_correct ? item.score : 0} style={{ width: 'fit' }} /> pts.
-                              </div>
+                                {
+                                  item.has_score ? <ResponseScore response={item} section_score={section.score_for_each_question}/> : <></>
+                                }
                              {/*  <Button onClick={decline} icon={<MinusOutlined />} />
                               <Button onClick={increase} icon={<PlusOutlined />} /> */}
                             </List.Item>
@@ -135,7 +154,8 @@ const UserResponseHistory = () => {
                           />
                       </SectionDetail>
                     </div>
-                })
+                })}
+                </>
             : <Empty></Empty>}
           
         </Section>

@@ -7,7 +7,7 @@ import { CloudDownloadOutlined } from '@ant-design/icons';
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
-const ExcelExport = ({ data, sheetname, filename, element, isMenuItem, ...rest }) => {
+const ExcelExport = ({ data, sheetname, filename, element, isArray, isMenuItem, ...rest }) => {
   const { t } = useTranslation();
 
   const defaultElement = (
@@ -23,13 +23,37 @@ const ExcelExport = ({ data, sheetname, filename, element, isMenuItem, ...rest }
         (
           <Menu.Item {...rest}>
             <ExcelFile element={element || defaultElement} filename={filename} fileExtension="xlsx">
-              <ExcelSheet dataSet={data} name={sheetname} />
+            {isArray ? (
+          data.map((dataSheet, index) => {
+            return (
+              <ExcelSheet
+                key={sheetname}
+                dataSet={dataSheet}
+                name={sheetname[index]}
+              />
+            );
+          })
+        ) : (
+          <ExcelSheet dataSet={data} name={sheetname} />
+        )}
             </ExcelFile>
           </Menu.Item>
         ) :
         (
           <ExcelFile element={element || defaultElement} filename={filename} fileExtension="xlsx">
-            <ExcelSheet dataSet={data} name={sheetname} />
+            {isArray ? (
+          data.map((dataSheet, index) => {
+            return (
+              <ExcelSheet
+                key={sheetname}
+                dataSet={dataSheet}
+                name={sheetname[index]}
+              />
+            );
+          })
+        ) : (
+          <ExcelSheet dataSet={data} name={sheetname} />
+        )}
           </ExcelFile>
         )
       
@@ -39,3 +63,4 @@ const ExcelExport = ({ data, sheetname, filename, element, isMenuItem, ...rest }
 };
 
 export default React.memo(ExcelExport);
+

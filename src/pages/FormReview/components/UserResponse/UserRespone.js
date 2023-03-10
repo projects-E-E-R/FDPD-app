@@ -17,7 +17,8 @@ import MoreOptionsButton from 'components/MoreOptionsButton/MoreOptionsButton';
 const UserResponse = (props) => {
   const {t} = useTranslation();
   const [dataModel, setDataModel] = useState(null)
-  const [dataReport, setDataReport] = useState(null)
+  const [dataReport, setDataReport] = useState([])
+  const [dataReportSheetName, setDataReportSheetName] = useState([])
   const [scoresData, setScoresData] = useState([])
   const [showButtonUpdateScore, setShowButtonUpdateScore] = useState(false)
   
@@ -183,7 +184,7 @@ const UserResponse = (props) => {
           Puntaje: <InputNumber size="medium" 
                       min={0} 
                       max={section_score} 
-                      disabled={!response.is_open_question} 
+                      disabled={!response.is_corrected} 
                       defaultValue={score}
                       value={scoreValue}
                       style={{ width: 'fit' }} 
