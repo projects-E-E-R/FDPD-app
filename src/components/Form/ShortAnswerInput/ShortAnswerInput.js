@@ -15,7 +15,7 @@ export default function ShortAnswerInput({ id,field }) {
                       {element?.title}
                       {element?.image ?<QuestionContainer key={index}>   <StyleImageContent as={Image} width={"100%"} src={element?.image}> </StyleImageContent>
                       </QuestionContainer> : null }
-                      {items?.length == index+1 ?    <QuestionContainer key={index}>  <input id="number" type="number"  style={{width:"20%"}}{...register()} />     <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel></QuestionContainer> : null} 
+                      {items?.length == index+1 ?    <QuestionContainer key={index}>  <input min="0" id="number" type="number"  style={{width:"20%"}}{...register()} />     <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel></QuestionContainer> : null} 
                     </Question>
      
         })
@@ -41,7 +41,7 @@ export default function ShortAnswerInput({ id,field }) {
         {label}
       </b>
       <div>
-        <input id="number"  type={input_text ? "string":"number" } {...register()} />
+        <input min="0" id="number"  type={input_text ? "string":"number" } {...register()} />
       </div>
       
       </QuestionContainer>
@@ -49,7 +49,7 @@ export default function ShortAnswerInput({ id,field }) {
       :
       <>       
         <div>
-        <input id="number"  type={input_text ? "string":"number" } {...register()} />
+        <input id="number"  min="0" type={input_text ? "string":"number" } {...register()} />
         </div>
         <ErrorLabel>{error && "Este campo es requerido"}</ErrorLabel>
       </>
